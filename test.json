@@ -1,0 +1,155 @@
+[
+    {
+        "data": {
+            "backup_code_enabled": false,
+            "banned": false,
+            "create_organization_enabled": true,
+            "created_at": 1723363063718,
+            "delete_self_enabled": false,
+            "email_addresses": [
+                {
+                    "created_at": 1723363062430,
+                    "email_address": "vescko332@gmail.com",
+                    "id": "idn_2kVJy9vQ2eZ1Zykt4bktNHrWNqi",
+                    "linked_to": [{ "id": "idn_2kVJyEh5wGIfti2rzOVQOxCYVLQ", "type": "oauth_github" }],
+                    "object": "email_address",
+                    "reserved": false,
+                    "updated_at": 1723363063755,
+                    "verification": {
+                        "attempts": null,
+                        "expire_at": null,
+                        "status": "verified",
+                        "strategy": "from_oauth_github"
+                    }
+                }
+            ],
+            "external_accounts": [
+                {
+                    "approved_scopes": "read:user user:email",
+                    "avatar_url": "https://avatars.githubusercontent.com/u/104438838?v=4",
+                    "created_at": 1723363062417,
+                    "email_address": "vescko332@gmail.com",
+                    "first_name": "Veselin",
+                    "id": "eac_2kVJyEFm6LllQQuvrTwKmV6o4t4",
+                    "identification_id": "idn_2kVJyEh5wGIfti2rzOVQOxCYVLQ",
+                    "image_url": "https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2F2YXRhcnMuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvMTA0NDM4ODM4P3Y9NCIsInMiOiIwajdTSFdPZHlrMk90aVVLUmpGNm9tR1VUb0lzZzJBem1lL2xQM3puMFdRIn0",
+                    "label": null,
+                    "last_name": "Yordanov",
+                    "object": "external_account",
+                    "provider": "oauth_github",
+                    "provider_user_id": "104438838",
+                    "public_metadata": {},
+                    "updated_at": 1723363062417,
+                    "username": "veskata98",
+                    "verification": {
+                        "attempts": null,
+                        "expire_at": 1723363658810,
+                        "status": "verified",
+                        "strategy": "oauth_github"
+                    }
+                }
+            ],
+            "external_id": null,
+            "first_name": "Veselin",
+            "has_image": true,
+            "id": "usenov",
+            "last_sign_in_at": null,
+            "locked": false,
+            "lockout_expires_in_seconds": null,
+            "mfa_disabled_at": null,
+            "mfa_enabled_at": null,
+            "object": "user",
+            "passkeys": [],
+            "password_enabled": false,
+            "phone_numbers": [],
+            "primary_email_address_id": "idn_2kVJy9vQ2eZ1Zykt4bktNHrWNqi",
+            "primary_phone_number_id": null,
+            "primary_web3_wallet_id": null,
+            "private_metadata": {},
+            "profile_image_url": "https://images.clerk.dev/oauth_github/img_2kVJyIqeBvkpNdqZor55ErWKj1u",
+            "public_metadata": {},
+            "saml_accounts": [],
+            "totp_enabled": false,
+            "two_factor_enabled": false,
+            "unsafe_metadata": {},
+            "updated_at": 1723363063776,
+            "username": "veskata98",
+            "verification_attempts_remaining": 100,
+            "web3_wallets": []
+        },
+        "event_attributes": {
+            "http_request": {
+                "client_ip": "45.155.43.137",
+                "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:129.0) Gecko/20100101 Firefox/129.0"
+            }
+        },
+        "object": "event",
+        "type": "user.created"
+    },
+
+    {
+        "data": {
+            "backup_code_enabled": false,
+            "banned": false,
+            "create_organization_enabled": true,
+            "created_at": 1723373479687,
+            "delete_self_enabled": false,
+            "email_addresses": [
+                {
+                    "created_at": 1723373471486,
+                    "email_address": "videostiktokmaken@gmail.com",
+                    "id": "idn_2kVf4G1GXb9P74YeRWMlN0leN9n",
+                    "linked_to": [],
+                    "object": "email_address",
+                    "reserved": false,
+                    "updated_at": 1723373479705,
+                    "verification": {
+                        "attempts": null,
+                        "expire_at": 1723374071899,
+                        "status": "verified",
+                        "strategy": "email_link"
+                    }
+                }
+            ],
+            "external_accounts": [],
+            "external_id": null,
+            "first_name": null,
+            "has_image": false,
+            "id": "user_2kVf5FVMIBoakny6Scam9Jzzukd",
+            "image_url": "https://img.clerk.com/eyJ0eXBlIjoiZGVmYXVsdCIsImlpZCI6Imluc18ya1ZFY2J3MDFnS1dUdlBJeDI2cWlQOEZvVjEiLCJyaWQiOiJ1c2VyXzJrVmY1RlZNSUJvYWtueTZTY2FtOUp6enVrZCJ9",
+            "last_active_at": 1723373479685,
+            "last_name": null,
+            "last_sign_in_at": null,
+            "locked": false,
+            "lockout_expires_in_seconds": null,
+            "mfa_disabled_at": null,
+            "mfa_enabled_at": null,
+            "object": "user",
+            "passkeys": [],
+            "password_enabled": true,
+            "phone_numbers": [],
+            "primary_email_address_id": "idn_2kVf4G1GXb9P74YeRWMlN0leN9n",
+            "primary_phone_number_id": null,
+            "primary_web3_wallet_id": null,
+            "private_metadata": {},
+            "profile_image_url": "https://www.gravatar.com/avatar?d=mp",
+            "public_metadata": {},
+            "saml_accounts": [],
+            "totp_enabled": false,
+            "two_factor_enabled": false,
+            "unsafe_metadata": {},
+            "updated_at": 1723373479721,
+            "username": "vescko",
+            "verification_attempts_remaining": 100,
+            "web3_wallets": []
+        },
+        "event_attributes": {
+            "http_request": {
+                "client_ip": "91.214.64.87",
+                "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:129.0) Gecko/20100101 Firefox/129.0"
+            }
+        },
+        "object": "event",
+        "type": "user.created"
+    }
+]

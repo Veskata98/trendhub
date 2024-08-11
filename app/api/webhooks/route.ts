@@ -61,7 +61,7 @@ export async function POST(req: Request) {
 
         //External account
         if (bodyObject?.data?.external_accounts?.length > 0) {
-            const externalAcc = bodyObject?.data?.external_accounts;
+            const externalAcc = bodyObject?.data?.external_accounts[0];
 
             userData.id = externalAcc?.id;
             userData.email_address = externalAcc?.email_address;
@@ -69,15 +69,15 @@ export async function POST(req: Request) {
             userData.last_name = externalAcc?.last_name;
             userData.username = externalAcc?.username;
             userData.image_url = externalAcc?.image_url;
-            userData.created_at = externalAcc?.created_at;
-            userData.updated_at = externalAcc?.updated_at;
+            userData.created_at = new Date(externalAcc?.created_at).toISOString();
+            userData.updated_at = new Date(externalAcc?.updated_at).toISOString();
         } else {
             const data = bodyObject?.data;
 
             userData.id = data?.id;
             userData.email_address = data?.email_addresses[0]?.email_address;
-            userData.firstName = data?.first_name;
-            userData.lastName = data?.last_name;
+            userData.first_name = data?.first_name;
+            userData.last_name = data?.last_name;
             userData.username = data?.username;
             userData.image_url = '/no-avatar.png';
             userData.created_at = new Date(data?.created_at).toISOString();

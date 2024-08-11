@@ -4,6 +4,7 @@ import './globals.css';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
 import { Navbar } from '@/components/navbar/Navbar';
 import { ClerkProvider } from '@clerk/nextjs';
+import { LeftSidebar } from '@/components/left-sidebar/LeftSidebar';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -22,7 +23,10 @@ export default function RootLayout({
                 <body className={inter.className}>
                     <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
                         <Navbar />
-                        <main className="h-[calc(100%-56px)]">{children}</main>
+                        <main className="h-[calc(100%-56px)] w-full flex">
+                            <LeftSidebar />
+                            {children}
+                        </main>
                     </ThemeProvider>
                 </body>
             </html>

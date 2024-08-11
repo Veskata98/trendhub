@@ -1,25 +1,29 @@
+import { ChangeAvatar } from '@/components/profile/ChangeAvatar';
 import { ProfileInfo } from '@/components/profile/ProfileInfo';
+import prisma from '@/lib/db';
 import { currentUser } from '@clerk/nextjs/server';
-import Image from 'next/image';
+import { redirect } from 'next/navigation';
 
 type ProfilePageProps = {
     params: {
-        id: string;
+        username: string;
     };
 };
 
 export default async function ProfilePage({ params }: ProfilePageProps) {
+    const profile = await prisma.profile.findFirst({ where: { username: params.username } });
+
+    if (!profile) {
+        redirect('/');
+    }
+
     const user = await currentUser();
+    const canEdit = user?.username === profile.username;
 
     return (
         <div className="flex flex-col align-middle my-8 px-8 relative items-center border-r border-orange-500 w-2/5">
-            <ProfileInfo />
-            <form className="mb-10">
-                <input className="mb-2 w-full" type="file" accept=".jpeg,.jpg,.png,.gif" />
-                <button className="bg-orange-500 w-full text-white py-2 px-4 rounded transition duration-200 ease-in-out hover:bg-orange-600">
-                    Save
-                </button>
-            </form>
+            <ProfileInfo username={params.username} />
+            {canEdit && <ChangeAvatar />}
             <form className="mb-10 flex flex-col w-full">
                 <input
                     className="mb-2 p-2 rounded border border-gray-300 focus:outline-none focus:border-orange-500"

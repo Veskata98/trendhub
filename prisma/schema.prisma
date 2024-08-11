@@ -16,8 +16,8 @@ datasource db {
 model Profile {
   id            String  @id
   email_address String  @unique
-  firstName     String?
-  lastName      String?
+  first_name    String?
+  last_name     String?
   username      String  @unique
   image_url     String
 
