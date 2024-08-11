@@ -1,6 +1,5 @@
 import Image from 'next/image';
-import { LogoutButton } from './LogoutButton';
-import { currentUser } from '@clerk/nextjs/server';
+
 import prisma from '@/lib/db';
 import { redirect } from 'next/navigation';
 
@@ -20,8 +19,8 @@ export const ProfileInfo = async ({ username }: ProfileInfoProps) => {
             <Image
                 className="rounded-full object-cover object-center"
                 src={profile.image_url || '/no-avatar.png'}
-                width={164}
-                height={164}
+                width={100}
+                height={100}
                 alt="user_avatar"
             />
             <h2 className="font-semibold">{profile.username}</h2>

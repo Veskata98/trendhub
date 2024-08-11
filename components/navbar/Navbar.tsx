@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { NavbarUser } from './NavbarUser';
 
-import { auth, currentUser } from '@clerk/nextjs/server';
+import { currentUser } from '@clerk/nextjs/server';
 import { SignInButton } from '@clerk/nextjs';
 import prisma from '@/lib/db';
 

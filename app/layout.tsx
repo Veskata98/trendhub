@@ -5,6 +5,7 @@ import { ThemeProvider } from '@/components/providers/ThemeProvider';
 import { Navbar } from '@/components/navbar/Navbar';
 import { ClerkProvider } from '@clerk/nextjs';
 import { LeftSidebar } from '@/components/left-sidebar/LeftSidebar';
+import { Toaster } from '@/components/ui/toaster';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -27,6 +28,7 @@ export default function RootLayout({
                             <LeftSidebar />
                             {children}
                         </main>
+                        <Toaster />
                     </ThemeProvider>
                 </body>
             </html>
