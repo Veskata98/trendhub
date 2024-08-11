@@ -1,7 +1,7 @@
 'use client';
 import { Forward } from 'lucide-react';
 import { usePathname } from 'next/navigation';
-import { useToast } from '../ui/use-toast';
+import { useToast } from '@/components/ui/use-toast';
 
 export const CopyProfileUrlButton = () => {
     const { toast } = useToast();
@@ -18,7 +18,10 @@ export const CopyProfileUrlButton = () => {
     };
 
     return (
-        <button onClick={handleCopyClick} className="flex gap-2 justify-center text-sm">
+        <button
+            onClick={handleCopyClick}
+            className="flex gap-2 justify-center text-sm bg-zinc-700 hover:bg-opacity-70 bg-opacity-50 p-1 rounded-md"
+        >
             <Forward />
             Share Profile
         </button>

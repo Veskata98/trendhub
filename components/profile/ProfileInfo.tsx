@@ -14,6 +14,8 @@ export const ProfileInfo = async ({ username }: ProfileInfoProps) => {
         redirect('/');
     }
 
+    const nameToShow = profile.first_name ? `${profile.first_name} ${profile.last_name}` : profile.username;
+
     return (
         <div className="flex flex-col items-center gap-2 mb-4">
             <Image
@@ -23,7 +25,7 @@ export const ProfileInfo = async ({ username }: ProfileInfoProps) => {
                 height={100}
                 alt="user_avatar"
             />
-            <h2 className="font-semibold">{profile.username}</h2>
+            <h2 className="font-semibold">{nameToShow}</h2>
         </div>
     );
 };

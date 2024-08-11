@@ -1,6 +1,6 @@
 import { ChangeAvatar } from '@/components/profile/ChangeAvatar';
 import { ProfileInfo } from '@/components/profile/ProfileInfo';
-import { UserStatSidebar } from '@/components/profile/UserStatSidebar';
+import { UserStatSidebar } from '@/components/profile/right-sidebar/UserStatSidebar';
 import prisma from '@/lib/db';
 import { currentUser } from '@clerk/nextjs/server';
 import { redirect } from 'next/navigation';
