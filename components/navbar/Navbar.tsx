@@ -14,7 +14,11 @@ export const Navbar = async () => {
                         TrendHub
                     </Link>
 
-                    {user ? <NavbarUser profilePicture={user.picture} /> : <SignInButton />}
+                    {user ? (
+                        <NavbarUser profilePicture={user.picture} username={user.username || ''} />
+                    ) : (
+                        <SignInButton />
+                    )}
                 </div>
             </div>
         </nav>
