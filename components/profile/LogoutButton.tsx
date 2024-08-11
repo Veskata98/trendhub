@@ -1,7 +1,7 @@
 'use client';
 
-import { LogoutLink } from '@kinde-oss/kinde-auth-nextjs';
+import { SignOutButton } from '@clerk/nextjs';
 
 export const LogoutButton = () => {
-    return <LogoutLink>Sign Out</LogoutLink>;
+    return <SignOutButton>Sign Out</SignOutButton>;
 };

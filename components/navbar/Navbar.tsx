@@ -1,10 +1,11 @@
 import Link from 'next/link';
 import { NavbarUser } from './NavbarUser';
-import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server';
-import { SignInButton } from './SignInButton';
+
+import { currentUser } from '@clerk/nextjs/server';
+import { SignInButton } from '@clerk/nextjs';
 
 export const Navbar = async () => {
-    const user = await getKindeServerSession().getUser();
+    const user = await currentUser();
 
     return (
         <nav className="h-[56px] bg-primary-500 px-8">
@@ -15,7 +16,7 @@ export const Navbar = async () => {
                     </Link>
 
                     {user ? (
-                        <NavbarUser profilePicture={user.picture} username={user.username || ''} />
+                        <NavbarUser profilePicture={user.imageUrl} username={user.username || ''} />
                     ) : (
                         <SignInButton />
                     )}

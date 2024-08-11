@@ -10,6 +10,7 @@ import { DarkModeToggle } from '../DarkModeToggle';
 import { Separator } from '../ui/separator';
 import { LogOut, User } from 'lucide-react';
 import { useTheme } from 'next-themes';
+import { SignOutButton } from '@clerk/nextjs';
 
 type NavbarUserProps = {
     profilePicture: string | null;
@@ -48,10 +49,10 @@ export const NavbarUser = ({ profilePicture, username }: NavbarUserProps) => {
 
                         <Separator className="dark:bg-slate-600" />
 
-                        <Link href="/api/auth/logout" className="w-full flex gap-2 h-12 items-center">
+                        <div className="w-full flex gap-2 h-12 items-center">
                             <LogOut width={18} height={18} />
-                            Log Out
-                        </Link>
+                            <SignOutButton>Log Out</SignOutButton>
+                        </div>
                     </div>
                 </PopoverContent>
             </Popover>

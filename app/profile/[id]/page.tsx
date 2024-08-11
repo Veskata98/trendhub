@@ -1,5 +1,5 @@
 import { ProfileInfo } from '@/components/profile/ProfileInfo';
-import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server';
+import { currentUser } from '@clerk/nextjs/server';
 import Image from 'next/image';
 
 type ProfilePageProps = {
@@ -9,7 +9,7 @@ type ProfilePageProps = {
 };
 
 export default async function ProfilePage({ params }: ProfilePageProps) {
-    const user = await getKindeServerSession().getUser();
+    const user = await currentUser();
 
     return (
         <div className="flex flex-col align-middle my-8 px-8 relative items-center border-r border-orange-500 w-2/5">
