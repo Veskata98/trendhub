@@ -21,7 +21,7 @@ export const NavbarUser = ({ profilePicture, username }: NavbarUserProps) => {
     const { theme } = useTheme();
 
     return (
-        <div className="relative cursor-pointer">
+        <div className="my-auto cursor-pointer">
             <Popover>
                 <PopoverTrigger asChild>
                     <div>
@@ -30,7 +30,7 @@ export const NavbarUser = ({ profilePicture, username }: NavbarUserProps) => {
                             alt=""
                             width={32}
                             height={32}
-                            className="rounded-full"
+                            className="rounded-full shadow"
                         />
                     </div>
                 </PopoverTrigger>
@@ -40,14 +40,16 @@ export const NavbarUser = ({ profilePicture, username }: NavbarUserProps) => {
                             <User width={18} height={18} />
                             View Profile
                         </Link>
-
                         <Separator className="dark:bg-slate-600" />
-                        <div className="flex items-center gap-4 h-12">
-                            {theme === 'dark' ? <p>Dark Mode</p> : <p>Light Mode</p>}
-                            <DarkModeToggle />
+
+                        <div className="block md:hidden">
+                            <div className="flex items-center gap-4 h-12">
+                                {theme === 'dark' ? <p>Dark Mode</p> : <p>Light Mode</p>}
+                                <DarkModeToggle />
+                            </div>
+
+                            <Separator className="dark:bg-slate-600" />
                         </div>
-
-                        <Separator className="dark:bg-slate-600" />
 
                         <div className="w-full flex gap-2 h-12 items-center">
                             <LogOut width={18} height={18} />

@@ -1,8 +1,7 @@
-import { ChangeAvatar } from '@/components/profile/ChangeAvatar';
+import { ProfileMainSection } from '@/components/profile/profile-main-section/ProfileMainSection';
 import { ProfileInfo } from '@/components/profile/ProfileInfo';
 import { UserStatSidebar } from '@/components/profile/right-sidebar/UserStatSidebar';
 import prisma from '@/lib/db';
-import { currentUser } from '@clerk/nextjs/server';
 import { redirect } from 'next/navigation';
 
 type ProfilePageProps = {
@@ -18,14 +17,11 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
         redirect('/');
     }
 
-    const user = await currentUser();
-    const canEdit = user?.username === profile.username;
-
     return (
         <div className="flex p-4 w-full justify-between xl:justify-center gap-4">
             <div className="flex-1 xl:flex-none">
                 <ProfileInfo username={params.username} />
-                {canEdit && <ChangeAvatar />}
+                <ProfileMainSection />
             </div>
             <UserStatSidebar username={params.username} />
         </div>

@@ -4,8 +4,9 @@ import { useTheme } from 'next-themes';
 
 import { Button } from '@/components/ui/button';
 import { MoonStarIcon, SunMedium } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
-export function DarkModeToggle() {
+export function DarkModeToggle({ className }: { className?: string }) {
     const { theme, setTheme } = useTheme();
 
     return (
@@ -13,7 +14,10 @@ export function DarkModeToggle() {
             variant="ghost"
             size="icon"
             onClick={() => (theme === 'dark' ? setTheme('light') : setTheme('dark'))}
-            className="hover:bg-zinc-300 dark:hover:bg-zinc-800 focus-visible:ring-0 focus-visible:ring-offset-0"
+            className={cn(
+                'hover:bg-primary-300 dark:hover:bg-primary-700 focus-visible:ring-0 focus-visible:ring-offset-0 hover:text-white',
+                className
+            )}
         >
             <SunMedium className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
             <MoonStarIcon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
