@@ -1,9 +1,11 @@
 import { X } from 'lucide-react';
-import { MouseEvent, useEffect } from 'react';
+import { MouseEvent, useEffect, useState } from 'react';
 import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
 import { Button } from '../ui/button';
 import { createTrend } from '@/actions/createTrend';
+import { Label } from '../ui/label';
+import { useToast } from '../ui/use-toast';
 
 type CreateTrendModalProps = {
     isOpen: boolean;
@@ -11,6 +13,8 @@ type CreateTrendModalProps = {
 };
 
 export const CreateTrendModal = ({ isOpen, onClose }: CreateTrendModalProps) => {
+    const [error, setError] = useState<{} | null>(null);
+    const { toast } = useToast();
     const onBackdropClick = (e: MouseEvent<HTMLDivElement>) => {
         if (e.target === e.currentTarget) {
             onClose();
@@ -45,13 +49,30 @@ export const CreateTrendModal = ({ isOpen, onClose }: CreateTrendModalProps) => 
                     <Image src={user.image || '/no-avatar.png'} alt="" fill className="rounded-md shadow p-2" />
                 </div> */}
                 <form
-                    action={(formData) => {
-                        createTrend(formData);
-                        onClose();
+                    action={async (formData) => {
+                        const error = await createTrend(formData);
+
+                        if (!error) {
+                            return onClose();
+                        }
+
+                        const errors = Object.values(error)
+                            .map((e) => e)
+                            .join('\n');
+                        console.log(errors);
+
+                        toast({
+                            className: 'bg-rose-500 text-white',
+                            duration: 3000,
+                            title: 'Error creating Trend',
+                            description: errors,
+                        });
                     }}
                 >
                     <h4 className="font-semibold mb-4">Create Trend</h4>
+                    <Label htmlFor="name">Trend Name</Label>
                     <Input type="text" name="name" />
+                    <Label htmlFor="description">Description</Label>
                     <Textarea name="description" />
                     <Button type="submit">Submit</Button>
                 </form>
