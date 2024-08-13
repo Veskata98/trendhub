@@ -1,4 +1,4 @@
-import { ProfileMainSection } from '@/components/profile/profile-main-section/ProfileMainSection';
+import { ProfileActivitySection } from '@/components/profile/profile-activity-section/ProfileActivitySection';
 
 type ProfilePageProps = {
     params: {
@@ -7,5 +7,5 @@ type ProfilePageProps = {
 };
 
 export default async function ProfilePage({ params }: ProfilePageProps) {
-    return <ProfileMainSection username={params.username} />;
+    return <ProfileActivitySection username={params.username} />;
 }

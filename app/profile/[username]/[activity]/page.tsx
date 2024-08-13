@@ -1,5 +1,5 @@
 import { redirect } from 'next/navigation';
-import { ProfileMainSection } from '@/components/profile/profile-main-section/ProfileMainSection';
+import { ProfileActivitySection } from '@/components/profile/profile-activity-section/ProfileActivitySection';
 import { currentUser } from '@clerk/nextjs/server';
 
 type ProfileActivityPageProps = {
@@ -25,5 +25,5 @@ export default async function ProfileActivityPage({ params }: ProfileActivityPag
         redirect('/');
     }
 
-    return <ProfileMainSection username={username} activity={activity} />;
+    return <ProfileActivitySection username={username} activity={activity} />;
 }

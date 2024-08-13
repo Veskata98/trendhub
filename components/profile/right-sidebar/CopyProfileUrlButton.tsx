@@ -1,12 +1,13 @@
 'use client';
 import { Forward } from 'lucide-react';
-import { usePathname } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import { useToast } from '@/components/ui/use-toast';
 
 export const CopyProfileUrlButton = () => {
     const { toast } = useToast();
-    const path = usePathname();
-    const profileUrl = process.env.NEXT_PUBLIC_BASE_URL + path;
+    const params = useParams();
+
+    const profileUrl = `${process.env.NEXT_PUBLIC_BASE_URL!}/profile/${params.username}`;
 
     const handleCopyClick = async () => {
         await navigator.clipboard.writeText(profileUrl);

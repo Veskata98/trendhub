@@ -31,6 +31,7 @@ model Trend {
   id          String  @id @unique @default(uuid())
   name        String  @unique
   description String?
+  image_url   String
 
   creator_name String
   creator      Profile   @relation("CreatorTrends", fields: [creator_name], references: [username], onDelete: Cascade)

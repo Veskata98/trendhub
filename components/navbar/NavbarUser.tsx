@@ -11,7 +11,7 @@ import { Separator } from '../ui/separator';
 import { LogOut, Plus, User } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { SignOutButton } from '@clerk/nextjs';
-import { CreateTrend } from '../trends/CreateTrend';
+import { CreateTrend } from '../trends/create-trend/CreateTrend';
 
 type NavbarUserProps = {
     profilePicture: string | null;

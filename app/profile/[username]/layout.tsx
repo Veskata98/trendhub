@@ -2,7 +2,7 @@ import { ProfileInfo } from '@/components/profile/ProfileInfo';
 import { UserStatSidebar } from '@/components/profile/right-sidebar/UserStatSidebar';
 import prisma from '@/lib/db';
 import { redirect } from 'next/navigation';
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 
 export default async function UsernameLayout({
     children,
@@ -21,7 +21,7 @@ export default async function UsernameLayout({
 
     return (
         <div className="flex p-4 w-full justify-between xl:justify-center gap-4">
-            <div className="w-full xl:w-auto flex-1 w-full xl:flex-none ">
+            <div className="w-full xl:w-auto flex-1 xl:flex-none ">
                 <ProfileInfo username={username} />
                 {children}
             </div>

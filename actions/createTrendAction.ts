@@ -27,18 +27,20 @@ export const createTrend = async (formdata: FormData) => {
             throw parseError;
         }
 
-        // await prisma.trend.create({
-        //     data: {
-        //         name,
-        //         description,
-        //         creator_name: user.username,
-        //     },
-        // });
+        await prisma.trend.create({
+            data: {
+                name,
+                description,
+                creator_name: user.username,
+                image_url: '/default-trend-logo.png',
+            },
+        });
     } catch (error) {
         if (error instanceof ZodError) {
             return error.flatten().fieldErrors;
         }
+        console.log(error);
     }
 
-    redirect(`/trend/${name}`);
+    redirect(`/t/${name}`);
 };

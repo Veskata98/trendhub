@@ -26,7 +26,7 @@ export const UserStatSidebar = async ({ username }: UserStatSidebarProps) => {
             </div>
             <AuraSection createdAtDate={profile.created_at.toLocaleDateString()} />
             {canEdit && (
-                <button className="bg-red-500 w-full text-white py-2 px-4 rounded transition duration-200 ease-out hover:bg-red-600">
+                <button className="bg-red-500 w-full text-white py-2 px-4 rounded transition duration-200 ease-out hover:bg-red-600 mt-auto">
                     Delete account
                 </button>
             )}

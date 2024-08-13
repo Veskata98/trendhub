@@ -1,4 +1,6 @@
+import { TrendHeader } from '@/components/trends/trend-main/TrendHeader';
 import prisma from '@/lib/db';
+import Image from 'next/image';
 import { redirect } from 'next/navigation';
 
 type TrendNamePageProps = {
@@ -20,5 +22,11 @@ export default async function TrendNamePage({ params }: TrendNamePageProps) {
         redirect('/');
     }
 
-    return <div>Trend</div>;
+    return (
+        <section className="w-full">
+            <div className="w-full md:w-2/3 mx-auto p-4">
+                <TrendHeader trend={trend} />
+            </div>
+        </section>
+    );
 }

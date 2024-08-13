@@ -1,12 +1,11 @@
 import { X } from 'lucide-react';
-import { MouseEvent, useEffect, useState } from 'react';
-import { Input } from '../ui/input';
-import { Textarea } from '../ui/textarea';
-import { Button } from '../ui/button';
+import { MouseEvent, useEffect } from 'react';
+import { Input } from '../../ui/input';
+import { Textarea } from '../../ui/textarea';
+import { Button } from '../../ui/button';
 import { createTrend } from '@/actions/createTrendAction';
-import { Label } from '../ui/label';
-import { useToast } from '../ui/use-toast';
-import { useRouter } from 'next/navigation';
+import { Label } from '../../ui/label';
+import { useToast } from '../../ui/use-toast';
 
 type CreateTrendModalProps = {
     isOpen: boolean;
@@ -14,7 +13,6 @@ type CreateTrendModalProps = {
 };
 
 export const CreateTrendModal = ({ isOpen, onClose }: CreateTrendModalProps) => {
-    const router = useRouter();
     const { toast } = useToast();
     const onBackdropClick = (e: MouseEvent<HTMLDivElement>) => {
         if (e.target === e.currentTarget) {

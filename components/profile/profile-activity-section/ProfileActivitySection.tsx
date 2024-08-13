@@ -5,7 +5,7 @@ import Link from 'next/link';
 const LIST_ITEMS = { Overall: '', Posts: 'posts', Comments: 'comments', Upvotes: 'upvotes', Downvotes: 'downvotes' };
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
-export const ProfileMainSection = async ({ username, activity }: { username: string; activity?: string }) => {
+export const ProfileActivitySection = async ({ username, activity }: { username: string; activity?: string }) => {
     const activeLink = Object.values(LIST_ITEMS).find((x) => x === activity) || '';
 
     const user = await currentUser();
