@@ -27,7 +27,7 @@ export const ProfileMainSection = async ({ username, activity }: { username: str
                         >
                             <Link
                                 className="hover:underline"
-                                href={`${BASE_URL}/profile/${username}${!value ? '' : '/' + value}`}
+                                href={`${BASE_URL}/profile/${username}${value ? '/' + value : ''}`}
                             >
                                 {key}
                             </Link>

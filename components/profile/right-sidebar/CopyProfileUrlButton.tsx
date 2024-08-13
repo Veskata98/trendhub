@@ -20,7 +20,7 @@ export const CopyProfileUrlButton = () => {
     return (
         <button
             onClick={handleCopyClick}
-            className="flex gap-2 justify-center text-sm bg-zinc-700 hover:bg-opacity-70 bg-opacity-50 py-1 px-2 rounded-md"
+            className="flex gap-2 justify-center text-sm bg-zinc-700 hover:bg-opacity-70 bg-opacity-50 py-[6px] px-2 rounded-md"
         >
             <Forward />
             Share Profile

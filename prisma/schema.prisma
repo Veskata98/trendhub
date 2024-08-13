@@ -14,12 +14,27 @@ datasource db {
 }
 
 model Profile {
-  id            String  @id
-  email_address String  @unique
-  first_name    String?
-  last_name     String?
-  username      String  @unique
-  image_url     String
+  id             String  @id
+  email_address  String  @unique
+  first_name     String?
+  last_name      String?
+  username       String  @unique
+  image_url      String
+  trends         Trend[] @relation("TrendMembers")
+  created_trends Trend[] @relation("CreatorTrends")
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+model Trend {
+  id          String  @id @unique @default(uuid())
+  name        String  @unique
+  description String?
+
+  creator_name String
+  creator      Profile   @relation("CreatorTrends", fields: [creator_name], references: [username], onDelete: Cascade)
+  members      Profile[] @relation("TrendMembers")
 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
