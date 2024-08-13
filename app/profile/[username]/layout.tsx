@@ -21,7 +21,7 @@ export default async function UsernameLayout({
 
     return (
         <div className="flex p-4 w-full justify-between xl:justify-center gap-4">
-            <div className="flex-1 xl:flex-none">
+            <div className="w-full xl:w-auto flex-1 w-full xl:flex-none ">
                 <ProfileInfo username={username} />
                 {children}
             </div>

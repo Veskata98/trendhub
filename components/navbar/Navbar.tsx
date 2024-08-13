@@ -5,7 +5,7 @@ import { currentUser } from '@clerk/nextjs/server';
 import { SignInButton, SignUpButton } from '@clerk/nextjs';
 import prisma from '@/lib/db';
 import { DarkModeToggle } from '../DarkModeToggle';
-import { CreateTrendButton } from '../trends/CreateTrendButton';
+import { CreateTrend } from '../trends/CreateTrend';
 
 export const Navbar = async () => {
     const user = await currentUser();
@@ -20,7 +20,7 @@ export const Navbar = async () => {
                     </Link>
                     <div className="flex justify-center gap-4">
                         <DarkModeToggle className="hidden md:flex" />
-                        <CreateTrendButton />
+                        <CreateTrend />
 
                         {user ? (
                             <NavbarUser profilePicture={profile?.image_url || null} username={user.username || ''} />

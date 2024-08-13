@@ -11,15 +11,15 @@ const trendSchema = z.object({
 });
 
 export const createTrend = async (formdata: FormData) => {
+    const name = formdata.get('name') as string;
+    const description = formdata.get('description') as string;
+
     try {
         const user = await currentUser();
 
         if (!user || !user.username) {
             return;
         }
-
-        const name = formdata.get('name') as string;
-        const description = formdata.get('description') as string;
 
         const parseError = trendSchema.safeParse({ name, description }).error;
 
@@ -39,4 +39,6 @@ export const createTrend = async (formdata: FormData) => {
             return error.flatten().fieldErrors;
         }
     }
+
+    redirect(`/trend/${name}`);
 };

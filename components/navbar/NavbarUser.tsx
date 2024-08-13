@@ -8,9 +8,10 @@ import Link from 'next/link';
 
 import { DarkModeToggle } from '../DarkModeToggle';
 import { Separator } from '../ui/separator';
-import { LogOut, User } from 'lucide-react';
+import { LogOut, Plus, User } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { SignOutButton } from '@clerk/nextjs';
+import { CreateTrend } from '../trends/CreateTrend';
 
 type NavbarUserProps = {
     profilePicture: string | null;

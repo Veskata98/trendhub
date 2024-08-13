@@ -3,9 +3,10 @@ import { MouseEvent, useEffect, useState } from 'react';
 import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
 import { Button } from '../ui/button';
-import { createTrend } from '@/actions/createTrend';
+import { createTrend } from '@/actions/createTrendAction';
 import { Label } from '../ui/label';
 import { useToast } from '../ui/use-toast';
+import { useRouter } from 'next/navigation';
 
 type CreateTrendModalProps = {
     isOpen: boolean;
@@ -13,7 +14,7 @@ type CreateTrendModalProps = {
 };
 
 export const CreateTrendModal = ({ isOpen, onClose }: CreateTrendModalProps) => {
-    const [error, setError] = useState<{} | null>(null);
+    const router = useRouter();
     const { toast } = useToast();
     const onBackdropClick = (e: MouseEvent<HTMLDivElement>) => {
         if (e.target === e.currentTarget) {
@@ -40,7 +41,7 @@ export const CreateTrendModal = ({ isOpen, onClose }: CreateTrendModalProps) => 
 
     return (
         <div
-            className="fixed inset-0 z-50 flex items-start md:items-center justify-center bg-black bg-opacity-10 backdrop-blur-sm"
+            className="fixed inset-0 z-50 flex items-start md:items-center justify-center bg-black bg-opacity-10 backdrop-blur-sm w-screen h-screen"
             onClick={onBackdropClick}
         >
             <div className="relative bg-zinc-500 mt-32 md:mt-0 mx-8 p-8 w-full md:w-2/4 lg:w-1/3 max-w-[460px] rounded-lg shadow-sm flex flex-col items-center">
@@ -59,12 +60,11 @@ export const CreateTrendModal = ({ isOpen, onClose }: CreateTrendModalProps) => 
                         const errors = Object.values(error)
                             .map((e) => e)
                             .join('\n');
-                        console.log(errors);
 
                         toast({
                             className: 'bg-rose-500 text-white',
                             duration: 3000,
-                            title: 'Error creating Trend',
+                            title: 'Error creating trend',
                             description: errors,
                         });
                     }}

@@ -15,26 +15,21 @@ export const ProfileMainSection = async ({ username, activity }: { username: str
 
     return (
         <div className="p-2 py-4">
-            <div>
-                <ul className="flex gap-4 justify-center p-1">
-                    {Object.entries(links).map(([key, value]) => (
-                        <li
-                            className={cn(
-                                'px-4 py-2',
-                                value === activeLink && 'bg-slate-200 dark:bg-zinc-500 rounded-3xl'
-                            )}
-                            key={key}
+            <ul className="flex gap-1 md:gap-4 sm:justify-center p-1 overflow-x-scroll text-sm">
+                {Object.entries(links).map(([key, value]) => (
+                    <li
+                        className={cn('px-4 py-2', value === activeLink && 'bg-slate-200 dark:bg-zinc-500 rounded-3xl')}
+                        key={key}
+                    >
+                        <Link
+                            className="hover:underline"
+                            href={`${BASE_URL}/profile/${username}${value ? '/' + value : ''}`}
                         >
-                            <Link
-                                className="hover:underline"
-                                href={`${BASE_URL}/profile/${username}${value ? '/' + value : ''}`}
-                            >
-                                {key}
-                            </Link>
-                        </li>
-                    ))}
-                </ul>
-            </div>
+                            {key}
+                        </Link>
+                    </li>
+                ))}
+            </ul>
         </div>
     );
 };

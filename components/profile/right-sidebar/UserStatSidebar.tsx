@@ -19,7 +19,7 @@ export const UserStatSidebar = async ({ username }: UserStatSidebarProps) => {
     const canEdit = user?.username === profile.username;
 
     return (
-        <aside className="text-white rounded-xl flex-col gap-8 w-80 hidden md:flex pt-12 bg-gradient-to-t from-primary-500/90 via-purple-500/90 to-rose-500/90 p-4">
+        <aside className="text-white rounded-xl flex-col gap-8 w-80 hidden lg:flex pt-12 bg-gradient-to-t from-primary-500/90 via-purple-500/90 to-rose-500/90 p-4">
             <div className="mx-auto text-center space-y-1">
                 <p>{profile.username}</p>
                 <CopyProfileUrlButton />
