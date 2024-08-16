@@ -21,8 +21,8 @@ model Profile {
   username      String  @id @unique
   image_url     String
 
-  createdTrends Trend[]
-  trends        TrendOnProfile[]
+  created_trends Trend[]
+  trends         TrendOnProfile[]
 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt

@@ -5,8 +5,10 @@ import { Trend } from '@prisma/client';
 import { useSearchParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { joinTrend } from '@/actions/joinTrendAction';
+import { UserStatus } from '@/types';
+import { leaveTrend } from '@/actions/leaveTrend';
 
-export const TrendHeader = ({ trend }: { trend: Trend }) => {
+export const TrendHeader = ({ trend, userStatus }: { trend: Trend; userStatus: UserStatus }) => {
     const searchParams = useSearchParams();
 
     return (
@@ -19,13 +21,26 @@ export const TrendHeader = ({ trend }: { trend: Trend }) => {
                 <div>Sort type</div>
                 <div>
                     <Button>Add post</Button>
-                    <Button
-                        onClick={() => {
-                            joinTrend(trend.name);
-                        }}
-                    >
-                        Join
-                    </Button>
+                    {userStatus === 'member' && (
+                        <Button
+                            className="text-rose-500"
+                            onClick={() => {
+                                leaveTrend(trend.name);
+                            }}
+                        >
+                            Leave
+                        </Button>
+                    )}
+                    {userStatus === 'nonMember' && (
+                        <Button
+                            className="text-emerald-500"
+                            onClick={() => {
+                                joinTrend(trend.name);
+                            }}
+                        >
+                            Join
+                        </Button>
+                    )}
                 </div>
             </div>
         </div>

@@ -37,6 +37,10 @@ export const NavbarUser = ({ profilePicture, username }: NavbarUserProps) => {
                 </PopoverTrigger>
                 <PopoverContent className="w-60 dark:bg-zinc-700 bg-zinc-100 py-1">
                     <div className="flex flex-col text-sm w-full">
+                        <div className="w-full flex gap-2 h-12 items-center justify-center">
+                            <p className="font-semibold">{username}</p>
+                        </div>
+                        <Separator className="dark:bg-slate-600" />
                         <Link href={`/profile/${username}`} className="w-full flex gap-2 items-center h-12">
                             <User width={18} height={18} />
                             View Profile

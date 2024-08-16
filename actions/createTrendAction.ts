@@ -1,7 +1,7 @@
 'use server';
 
 import prisma from '@/lib/db';
-import { currentUser } from '@clerk/nextjs/server';
+import serverUser from '@/lib/serverUser';
 import { redirect } from 'next/navigation';
 import z, { ZodError } from 'zod';
 
@@ -15,11 +15,7 @@ export const createTrend = async (formdata: FormData) => {
     const description = formdata.get('description') as string;
 
     try {
-        const user = await currentUser();
-
-        if (!user || !user.username) {
-            return;
-        }
+        const user = await serverUser({ redirectToLogin: true });
 
         const parseError = trendSchema.safeParse({ name, description }).error;
 
@@ -31,7 +27,7 @@ export const createTrend = async (formdata: FormData) => {
             data: {
                 name,
                 description,
-                creator_name: user.username,
+                creator_name: user!.username,
                 image_url: '/default-trend-logo.png',
             },
         });
