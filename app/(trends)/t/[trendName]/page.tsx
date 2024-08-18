@@ -4,6 +4,7 @@ import serverUser from '@/lib/serverUser';
 import { UserStatus } from '@/types';
 
 import { redirect } from 'next/navigation';
+import { Suspense } from 'react';
 
 type TrendNamePageProps = {
     params: {
@@ -41,11 +42,17 @@ export default async function TrendNamePage({ params }: TrendNamePageProps) {
         isMember ? (userStatus = 'member') : (userStatus = 'nonMember');
     }
 
+    if (!user) {
+        userStatus = 'guest';
+    }
+
     return (
         <section className="w-full">
-            <div className="w-full md:w-2/3 mx-auto p-4">
-                <TrendHeader trend={trend} userStatus={userStatus} />
-            </div>
+            <Suspense fallback={'Loading...'}>
+                <div className="w-full md:w-2/3 mx-auto p-4">
+                    <TrendHeader trend={trend} userStatus={userStatus} />
+                </div>
+            </Suspense>
         </section>
     );
 }

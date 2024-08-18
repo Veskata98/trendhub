@@ -4,4 +4,4 @@ export interface ServerUser extends User {
     username: string;
 }
 
-export type UserStatus = 'owner' | 'member' | 'nonMember';
+export type UserStatus = 'owner' | 'member' | 'nonMember' | 'guest';

@@ -6,7 +6,7 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 
 import Link from 'next/link';
 
-import { DarkModeToggle } from '../DarkModeToggle';
+import { DarkModeToggle } from '../other/DarkModeToggle';
 import { Separator } from '../ui/separator';
 import { LogOut, User } from 'lucide-react';
 import { useTheme } from 'next-themes';
