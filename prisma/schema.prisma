@@ -59,10 +59,10 @@ model TrendOnProfile {
 }
 
 model Post {
-  id          String @id @default(uuid())
+  id          String  @id @default(uuid())
   title       String
-  description String
-  image_url   String
+  description String?
+  image_url   String?
 
   trend_name String
   trend      Trend  @relation(fields: [trend_name], references: [name], onDelete: Cascade)

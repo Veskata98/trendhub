@@ -21,7 +21,7 @@ export const TrendHeader = ({ trend, userStatus }: { trend: Trend; userStatus: U
             <div className="flex justify-between items-center border-b-[1px] border-zinc-600">
                 <div>Sort type</div>
                 <div className="flex">
-                    <CreatePost />
+                    {userStatus !== 'nonMember' && <CreatePost trendName={trend.name} />}
                     {userStatus === 'member' && (
                         <Button
                             className="text-rose-500"

@@ -1,4 +1,4 @@
-import { TrendHeader } from '@/components/trends/trend-main/TrendHeader';
+import { TrendHeader } from '@/components/trends/trend-header/TrendHeader';
 import prisma from '@/lib/db';
 import serverUser from '@/lib/serverUser';
 import { UserStatus } from '@/types';

@@ -6,38 +6,72 @@ import { redirect } from 'next/navigation';
 import z, { ZodError } from 'zod';
 
 const postSchema = z.object({
-    name: z.string().min(3, { message: 'Trend name at least 3 characters' }),
-    image: z.string().optional(),
-    description: z.string().min(10, { message: 'Description at least 10 characters' }),
+    title: z.string().min(3, { message: 'Title must be at least 3 characters' }),
+    postImage: z.instanceof(File).optional(),
+    description: z.string().optional(),
 });
 
-export const createPost = async (formdata: FormData) => {
-    const name = formdata.get('name') as string;
-    const description = formdata.get('description') as string;
+export const createPost = async (formData: FormData, trendName: string) => {
+    const title = formData.get('title') as string;
+    const description = formData.get('description') as string;
+    const postImage = formData.get('postImage') as File;
+
+    console.log(title);
+    console.log(description);
+    console.log(postImage);
 
     try {
         const user = await serverUser({ redirectToLogin: true });
 
-        const parseError = postSchema.safeParse({ name, description }).error;
+        const trend = await prisma.trend.findFirst({
+            where: {
+                name: trendName,
+                AND: [
+                    {
+                        OR: [
+                            { creator_name: user!.username },
+                            {
+                                members: {
+                                    some: {
+                                        profile_username: user!.username,
+                                    },
+                                },
+                            },
+                        ],
+                    },
+                ],
+            },
+        });
+
+        if (!trend) {
+            throw 'Join the trend before creating post';
+        }
+
+        const parseError = postSchema.safeParse({ title, description, postImage }).error;
 
         if (parseError) {
             throw parseError;
         }
 
-        await prisma.trend.create({
+        await prisma.post.create({
             data: {
-                name,
+                title,
+                trend_name: trendName,
                 description,
                 creator_name: user!.username,
-                image_url: '/default-trend-logo.png',
             },
         });
     } catch (error) {
         if (error instanceof ZodError) {
             return error.flatten().fieldErrors;
         }
+
+        if (typeof error === 'string') {
+            return { authError: [error] };
+        }
+
         console.log(error);
     }
 
-    redirect(`/t/${name}`);
+    redirect(`/t/${trendName}`);
 };

@@ -3,17 +3,18 @@ import { MouseEvent, useEffect } from 'react';
 import { Input } from '../../ui/input';
 import { Textarea } from '../../ui/textarea';
 import { Button } from '../../ui/button';
-import { createTrend } from '@/actions/createTrendAction';
 import { Label } from '../../ui/label';
 import { useToast } from '../../ui/use-toast';
 import Image from 'next/image';
+import { createPost } from '@/actions/createPost';
 
 type CreatePostModalProps = {
     isOpen: boolean;
+    trendName: string;
     onClose: () => void;
 };
 
-export const CreatePostModal = ({ isOpen, onClose }: CreatePostModalProps) => {
+export const CreatePostModal = ({ isOpen, trendName, onClose }: CreatePostModalProps) => {
     const { toast } = useToast();
     const onBackdropClick = (e: MouseEvent<HTMLDivElement>) => {
         if (e.target === e.currentTarget) {
@@ -50,7 +51,7 @@ export const CreatePostModal = ({ isOpen, onClose }: CreatePostModalProps) => {
                 </div> */}
                 <form
                     action={async (formData) => {
-                        const error = await createTrend(formData);
+                        const error = await createPost(formData, trendName);
 
                         if (!error) {
                             return onClose();
@@ -63,19 +64,19 @@ export const CreatePostModal = ({ isOpen, onClose }: CreatePostModalProps) => {
                         toast({
                             className: 'bg-rose-500 text-white',
                             duration: 3000,
-                            title: 'Error creating trend',
+                            title: 'Error creating post',
                             description: errors,
                         });
                     }}
                 >
                     <h4 className="font-semibold mb-4">Create Post</h4>
-                    <Label htmlFor="name">Title</Label>
-                    <Input type="text" name="name" />
+                    <Label htmlFor="title">Title</Label>
+                    <Input type="text" name="title" />
 
                     <Label htmlFor="postImage">Image (*optional)</Label>
                     <Input type="file" accept=".png, .jpg, .gif, .jpeg, .avif, .webp" name="postImage" />
 
-                    <Label htmlFor="description">Description</Label>
+                    <Label htmlFor="description">Description (*optional)</Label>
                     <Textarea name="description" />
 
                     <Button type="submit">Submit</Button>

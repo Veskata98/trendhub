@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { CreatePostModal } from './CreatePostModal';
 import { CreatePostButton } from './CreatePostButton';
 
-export const CreatePost = () => {
+export const CreatePost = ({ trendName }: { trendName: string }) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const onOpen = () => {
@@ -18,7 +18,7 @@ export const CreatePost = () => {
     return (
         <>
             <CreatePostButton onOpen={onOpen} />
-            <CreatePostModal isOpen={isOpen} onClose={onClose} />
+            <CreatePostModal isOpen={isOpen} onClose={onClose} trendName={trendName} />
         </>
     );
 };
