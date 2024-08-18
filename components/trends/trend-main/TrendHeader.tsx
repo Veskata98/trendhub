@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { joinTrend } from '@/actions/joinTrendAction';
 import { UserStatus } from '@/types';
 import { leaveTrend } from '@/actions/leaveTrend';
+import { CreatePost } from '@/components/posts/create-post/CreatePost';
 
 export const TrendHeader = ({ trend, userStatus }: { trend: Trend; userStatus: UserStatus }) => {
     const searchParams = useSearchParams();
@@ -19,8 +20,8 @@ export const TrendHeader = ({ trend, userStatus }: { trend: Trend; userStatus: U
             </div>
             <div className="flex justify-between items-center border-b-[1px] border-zinc-600">
                 <div>Sort type</div>
-                <div>
-                    <Button>Add post</Button>
+                <div className="flex">
+                    <CreatePost />
                     {userStatus === 'member' && (
                         <Button
                             className="text-rose-500"

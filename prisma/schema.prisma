@@ -24,6 +24,9 @@ model Profile {
   created_trends Trend[]
   trends         TrendOnProfile[]
 
+  posts Post[]
+  likes Like[]
+
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 }
@@ -39,6 +42,8 @@ model Trend {
 
   members TrendOnProfile[]
 
+  posts Post[]
+
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 }
@@ -51,4 +56,40 @@ model TrendOnProfile {
   trend   Trend   @relation(fields: [trend_name], references: [name], onDelete: Cascade)
 
   @@id([profile_username, trend_name])
+}
+
+model Post {
+  id          String @id @default(uuid())
+  title       String
+  description String
+  image_url   String
+
+  trend_name String
+  trend      Trend  @relation(fields: [trend_name], references: [name], onDelete: Cascade)
+
+  creator_name String
+  creator      Profile @relation(fields: [creator_name], references: [username])
+
+  likes Like[]
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+model Like {
+  id   Int      @id @default(autoincrement())
+  type LikeType
+
+  username String
+  profile  Profile @relation(fields: [username], references: [username])
+
+  postId String
+  post   Post   @relation(fields: [postId], references: [id])
+
+  @@unique([username, postId, type])
+}
+
+enum LikeType {
+  LIKE
+  DISLIKE
 }
