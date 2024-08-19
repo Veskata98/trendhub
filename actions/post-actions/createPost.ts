@@ -7,18 +7,13 @@ import z, { ZodError } from 'zod';
 
 const postSchema = z.object({
     title: z.string().min(3, { message: 'Title must be at least 3 characters' }),
-    postImage: z.instanceof(File).optional(),
     description: z.string().optional(),
+    imageUrl: z.string().optional(),
 });
 
-export const createPost = async (formData: FormData, trendName: string) => {
+export const createPost = async (formData: FormData, trendName: string, imageUrl: string | null) => {
     const title = formData.get('title') as string;
     const description = formData.get('description') as string;
-    const postImage = formData.get('postImage') as File;
-
-    console.log(title);
-    console.log(description);
-    console.log(postImage);
 
     try {
         const user = await serverUser({ redirectToLogin: true });
@@ -47,7 +42,7 @@ export const createPost = async (formData: FormData, trendName: string) => {
             throw 'Join the trend before creating post';
         }
 
-        const parseError = postSchema.safeParse({ title, description, postImage }).error;
+        const parseError = postSchema.safeParse({ title, description, imageUrl }).error;
 
         if (parseError) {
             throw parseError;
@@ -58,6 +53,7 @@ export const createPost = async (formData: FormData, trendName: string) => {
                 title,
                 trend_name: trendName,
                 description,
+                image_url: imageUrl,
                 creator_name: user!.username,
             },
         });
@@ -71,6 +67,7 @@ export const createPost = async (formData: FormData, trendName: string) => {
         }
 
         console.log(error);
+        return { serverError: ['Something went wrong'] };
     }
 
     redirect(`/t/${trendName}`);

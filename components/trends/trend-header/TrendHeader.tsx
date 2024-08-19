@@ -18,14 +18,14 @@ export const TrendHeader = ({ trend, userStatus }: { trend: Trend; userStatus: U
                 <Image src={trend.image_url} alt="trend_logo" width={48} height={48} className="rounded-full" />
                 <span className="text-xl font-semibold">t/{trend.name}</span>
             </div>
-            <div className="flex justify-between items-center border-b-[1px] border-zinc-600">
+            <div className="flex justify-between items-center border-b-[1px] border-zinc-600 pb-2">
                 <div>Sort type</div>
-                <div className="flex">
+                <div className="flex gap-1 items-center">
                     {(userStatus === 'owner' || userStatus === 'member') && <CreatePost trendName={trend.name} />}
 
                     {userStatus === 'member' && (
                         <Button
-                            className="text-rose-500"
+                            className="font-semibold text-rose-500 hover:bg-rose-500/20"
                             onClick={() => {
                                 leaveTrend(trend.name);
                             }}
@@ -36,7 +36,7 @@ export const TrendHeader = ({ trend, userStatus }: { trend: Trend; userStatus: U
 
                     {userStatus === 'nonMember' && (
                         <Button
-                            className="text-emerald-500"
+                            className="font-semibold text-emerald-500 hover:bg-emerald-500/20"
                             onClick={() => {
                                 joinTrend(trend.name);
                             }}

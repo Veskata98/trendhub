@@ -37,7 +37,7 @@ export const NavbarUser = ({ profilePicture, username }: NavbarUserProps) => {
                         />
                     </div>
                 </PopoverTrigger>
-                <PopoverContent className="w-60 dark:bg-zinc-700 bg-zinc-100 py-2">
+                <PopoverContent className="w-screen sm:w-60 dark:bg-zinc-700 bg-zinc-100 py-2">
                     <div className="flex flex-col text-sm w-full">
                         <div className="w-full flex gap-2 h-12 items-center justify-center">
                             <p className="font-semibold">{username}</p>

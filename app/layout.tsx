@@ -6,6 +6,7 @@ import { Navbar } from '@/components/navbar/Navbar';
 import { ClerkProvider } from '@clerk/nextjs';
 import { LeftSidebar } from '@/components/left-sidebar/LeftSidebar';
 import { Toaster } from '@/components/ui/toaster';
+import '@uploadcare/react-uploader/core.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
