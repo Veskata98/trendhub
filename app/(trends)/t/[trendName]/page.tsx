@@ -27,6 +27,16 @@ export default async function TrendNamePage({ params }: TrendNamePageProps) {
                     profile_username: true,
                 },
             },
+            posts: {
+                orderBy: {
+                    created_at: 'desc',
+                },
+                take: 10,
+                select: {
+                    title: true,
+                    likes: true,
+                },
+            },
         },
     });
 
@@ -44,6 +54,8 @@ export default async function TrendNamePage({ params }: TrendNamePageProps) {
     if (!user) {
         userStatus = 'guest';
     }
+
+    console.log(trend);
 
     return (
         <section className="w-full">

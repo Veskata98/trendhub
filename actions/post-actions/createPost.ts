@@ -6,9 +6,14 @@ import { redirect } from 'next/navigation';
 import z, { ZodError } from 'zod';
 
 const postSchema = z.object({
-    title: z.string().min(3, { message: 'Title must be at least 3 characters' }),
+    title: z
+        .string()
+        .regex(/^[a-zA-Z0-9]*$/, {
+            message: 'Title must be alphanumeric',
+        })
+        .min(3, { message: 'Title must be at least 3 characters' }),
     description: z.string().optional(),
-    imageUrl: z.string().optional(),
+    imageUrl: z.union([z.string(), z.null()]).optional(),
 });
 
 export const createPost = async (formData: FormData, trendName: string, imageUrl: string | null) => {
