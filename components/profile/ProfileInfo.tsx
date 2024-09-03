@@ -21,7 +21,7 @@ export const ProfileInfo = async ({ username }: ProfileInfoProps) => {
 
     return (
         <div className="flex flex-col items-center gap-2 pt-4">
-            <ProfileAvatar canEdit={canEdit} src={profile.image_url} />
+            <ProfileAvatar canEdit={canEdit} src={profile.image_url} username={profile.username} />
             <h2 className="font-semibold">{nameToShow}</h2>
         </div>
     );

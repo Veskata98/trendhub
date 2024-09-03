@@ -8,10 +8,10 @@ import { PostWithTrendAndLikes } from '@/types';
 
 export const PostCard = ({ post }: { post: PostWithTrendAndLikes }) => {
     return (
-        <Card className="w-full max-w-2xl dark:bg-zinc-700/30">
+        <Card className="w-full dark:bg-zinc-700/30">
             <CardHeader className="flex flex-row items-center gap-4">
                 <Avatar className="h-8 w-8">
-                    <AvatarImage src={post.trend.image_url} alt="User avatar" />
+                    <AvatarImage src={post.trend.image_url} alt="trend_avatar" />
                     <AvatarFallback>U</AvatarFallback>
                 </Avatar>
                 <div className="flex flex-col">

@@ -1,7 +1,5 @@
 'use client';
 
-import Image from 'next/image';
-
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 
 import Link from 'next/link';
@@ -13,6 +11,7 @@ import { useTheme } from 'next-themes';
 import { SignOutButton } from '@clerk/nextjs';
 
 import { useState } from 'react';
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 
 type NavbarUserProps = {
     profilePicture: string | null;
@@ -28,13 +27,10 @@ export const NavbarUser = ({ profilePicture, username }: NavbarUserProps) => {
             <Popover open={isOpen} onOpenChange={setIsOpen}>
                 <PopoverTrigger asChild onClick={() => setIsOpen(true)}>
                     <div>
-                        <Image
-                            src={profilePicture || '/no-avatar.png'}
-                            alt=""
-                            width={32}
-                            height={32}
-                            className="rounded-full shadow"
-                        />
+                        <Avatar className="h-8 w-8">
+                            <AvatarImage src={profilePicture || ''} alt="trend_avatar" />
+                            <AvatarFallback>{username.at(0)?.toUpperCase()}</AvatarFallback>
+                        </Avatar>
                     </div>
                 </PopoverTrigger>
                 <PopoverContent className="w-screen sm:w-60 dark:bg-zinc-700 bg-zinc-100 py-2">

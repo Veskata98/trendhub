@@ -1,14 +1,14 @@
 import Link from 'next/link';
 import { NavbarUser } from './NavbarUser';
 
-import { currentUser } from '@clerk/nextjs/server';
 import { SignInButton, SignUpButton } from '@clerk/nextjs';
 import prisma from '@/lib/db';
 import { DarkModeToggle } from '../other/DarkModeToggle';
 import { CreateTrend } from '../trends/create-trend/CreateTrend';
+import serverUser from '@/lib/serverUser';
 
 export const Navbar = async () => {
-    const user = await currentUser();
+    const user = await serverUser();
     const profile = await prisma.profile.findFirst({ where: { username: user?.username || '' } });
 
     return (
