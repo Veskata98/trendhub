@@ -1,7 +1,7 @@
 'use client';
 
 import { getPosts } from '@/actions/infiniteScrollPost';
-import { PostCard } from './PostCard';
+import { PostCardHomePage } from './PostCardHomePage';
 import { PostWithTrendAndLikes } from '@/types';
 import { useCallback, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
@@ -34,9 +34,9 @@ export const NewPosts = ({ initialPosts }: { initialPosts: PostWithTrendAndLikes
     }, [inView, loadMorePosts, hasMore]);
 
     return (
-        <div className="space-y-2">
+        <div className="space-y-2 flex flex-col items-center">
             {posts.map((post) => (
-                <PostCard key={post.id} post={post} />
+                <PostCardHomePage key={post.id} post={post} />
             ))}
             {hasMore && <div ref={ref}>Loading...</div>}
         </div>

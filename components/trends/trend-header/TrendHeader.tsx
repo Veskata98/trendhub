@@ -18,7 +18,7 @@ export const TrendHeader = ({ trend, userStatus }: { trend: Trend; userStatus: U
                 <Image src={trend.image_url} alt="trend_logo" width={48} height={48} className="rounded-full" />
                 <span className="text-xl font-semibold">t/{trend.name}</span>
             </div>
-            <div className="flex justify-between items-center border-b-[1px] border-zinc-600 pb-2">
+            <div className="flex justify-between items-center border-b-[1px] border-zinc-300/50 dark:border-zinc-700/50 pb-2">
                 <div>Sort type</div>
                 <div className="flex gap-1 items-center">
                     {(userStatus === 'owner' || userStatus === 'member') && <CreatePost trendName={trend.name} />}

@@ -17,9 +17,9 @@ export const CreateTrend = () => {
     };
 
     return (
-        <>
+        <div className="hidden md:block">
             <CreateTrendButton onOpen={onOpen} />
             <CreateTrendModal isOpen={isOpen} onClose={onClose} />
-        </>
+        </div>
     );
 };

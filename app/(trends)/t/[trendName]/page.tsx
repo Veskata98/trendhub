@@ -35,6 +35,7 @@ export default async function TrendNamePage({ params }: TrendNamePageProps) {
                 take: 10,
                 include: {
                     likes: true,
+                    creator: { select: { image_url: true } },
                 },
             },
         },
@@ -59,7 +60,7 @@ export default async function TrendNamePage({ params }: TrendNamePageProps) {
 
     return (
         <section className="w-full">
-            <div className="w-full md:w-2/3 mx-auto p-4">
+            <div className="w-full md:w-2/3 mx-auto p-4 space-y-2">
                 <TrendHeader trend={trend} userStatus={userStatus} />
                 <TrendPosts posts={trend.posts} />
             </div>
