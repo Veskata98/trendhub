@@ -9,7 +9,7 @@ import { PostWithTrendAndLikes } from '@/types';
 export const PostCard = ({ post }: { post: PostWithTrendAndLikes }) => {
     return (
         <Card className="w-full dark:bg-zinc-700/30">
-            <CardHeader className="flex flex-row items-center gap-4">
+            <CardHeader className="flex flex-row items-center gap-4 py-4">
                 <Avatar className="h-8 w-8">
                     <AvatarImage src={post.trend.image_url} alt="trend_avatar" />
                     <AvatarFallback>U</AvatarFallback>
@@ -29,14 +29,6 @@ export const PostCard = ({ post }: { post: PostWithTrendAndLikes }) => {
                         <Image src={post.image_url} alt="post_image" fill className="object-contain" />
                     </div>
                 )}
-
-                {!post.image_url && !post.description && (
-                    <div className="select-none w-full rounded-sm p-4 flex justify-center items-center">
-                        <span className="tracking-wide text-s font-semibold text-zinc-500">
-                            404: Description Not Found
-                        </span>
-                    </div>
-                )}
             </CardContent>
             <CardFooter className="flex justify-between">
                 <div className="flex items-center space-x-2">
@@ -50,7 +42,7 @@ export const PostCard = ({ post }: { post: PostWithTrendAndLikes }) => {
                 </div>
                 <Button variant="ghost" size="sm" className="space-x-2">
                     <MessageSquare className="h-4 w-4" />
-                    <span>24 Comments</span>
+                    <span>0 Comments</span>
                 </Button>
                 <Button variant="ghost" size="sm" className="space-x-2">
                     <Share2 className="h-4 w-4" />
