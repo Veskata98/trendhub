@@ -25,5 +25,5 @@ export default async function ProfileActivityPage({ params }: ProfileActivityPag
         redirect('/');
     }
 
-    return <ProfileActivitySection username={username} activity={activity} />;
+    return <div>posts</div>;
 }

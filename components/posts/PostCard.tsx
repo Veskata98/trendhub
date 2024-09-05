@@ -12,8 +12,13 @@ export const PostCard = ({ post }: { post: PostWithCreatorAndLikes }) => {
         <Card className="w-full dark:bg-zinc-700/30">
             <CardHeader className="flex flex-row items-center gap-4 py-4">
                 <Avatar className="h-8 w-8">
-                    <AvatarImage src={post.creator.image_url} alt="trend_avatar" />
-                    <AvatarFallback>U</AvatarFallback>
+                    {post.creator.image_url ? (
+                        <AvatarImage src={post.creator.image_url} alt="trend_avatar" />
+                    ) : (
+                        <AvatarFallback className="text-lg select-none">
+                            {post.creator_name.at(0)?.toUpperCase()}
+                        </AvatarFallback>
+                    )}
                 </Avatar>
                 <p className="text-sm font-semibold !m-0">
                     <Link href={`/profile/${post.creator_name}`}>{post.creator_name}</Link>

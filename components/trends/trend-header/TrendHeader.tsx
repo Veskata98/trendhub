@@ -7,10 +7,10 @@ import { Button } from '@/components/ui/button';
 import { joinTrend } from '@/actions/joinTrendAction';
 import { UserStatus } from '@/types';
 import { leaveTrend } from '@/actions/leaveTrend';
-import { CreatePost } from '@/components/posts/create-post/CreatePost';
+import { CreatePostButton } from '@/components/trends/create-post/CreatePostButton';
 
 export const TrendHeader = ({ trend, userStatus }: { trend: Trend; userStatus: UserStatus }) => {
-    const searchParams = useSearchParams();
+    // const searchParams = useSearchParams();
 
     return (
         <div className="w-full flex flex-col">
@@ -21,7 +21,7 @@ export const TrendHeader = ({ trend, userStatus }: { trend: Trend; userStatus: U
             <div className="flex justify-between items-center border-b-[1px] border-zinc-300/50 dark:border-zinc-700/50 pb-2">
                 <div>Sort type</div>
                 <div className="flex gap-1 items-center">
-                    {(userStatus === 'owner' || userStatus === 'member') && <CreatePost trendName={trend.name} />}
+                    {(userStatus === 'owner' || userStatus === 'member') && <CreatePostButton trendName={trend.name} />}
 
                     {userStatus === 'member' && (
                         <Button

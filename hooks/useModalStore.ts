@@ -1,17 +1,23 @@
 import { create } from 'zustand';
 
-export type ModalType = 'createTrend';
+export type ModalType = 'createTrend' | 'createPost';
 
-export type ModalStore = {
+interface ModalData {
+    trendName?: string;
+}
+
+interface ModalStore {
     type: ModalType | null;
     isOpen: boolean;
-    onOpen: (type: ModalType) => void;
+    data: ModalData;
+    onOpen: (type: ModalType, data?: ModalData) => void;
     onClose: () => void;
-};
+}
 
 export const useModal = create<ModalStore>((set) => ({
     type: null,
     isOpen: false,
-    onOpen: (type) => set((prev) => ({ ...prev, isOpen: true, type })),
-    onClose: () => set((prev) => ({ ...prev, isOpen: false, type: null })),
+    data: {},
+    onOpen: (type, data = {}) => set((prev) => ({ ...prev, isOpen: true, type, data })),
+    onClose: () => set((prev) => ({ ...prev, isOpen: false, type: null, data: {} })),
 }));

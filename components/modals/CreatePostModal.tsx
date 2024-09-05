@@ -8,15 +8,13 @@ import { useToast } from '../ui/use-toast';
 import Image from 'next/image';
 import { createPost } from '@/actions/post-actions/createPost';
 import { imageUpload } from '@/lib/imageUpload';
+import { useModal } from '@/hooks/useModalStore';
 
-type CreatePostModalProps = {
-    isOpen: boolean;
-    trendName: string;
-    onClose: () => void;
-};
-
-export const CreatePostModal = ({ isOpen, trendName, onClose }: CreatePostModalProps) => {
+export const CreatePostModal = () => {
+    const { isOpen, onClose, type, data } = useModal();
     const { toast } = useToast();
+
+    const { trendName } = data;
 
     const [image, setImage] = useState<File | null>();
 
@@ -45,7 +43,7 @@ export const CreatePostModal = ({ isOpen, trendName, onClose }: CreatePostModalP
         }
     };
 
-    if (!isOpen) {
+    if (!isOpen || type !== 'createPost' || !trendName) {
         return null;
     }
 

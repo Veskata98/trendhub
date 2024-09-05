@@ -1,3 +1,4 @@
+import { ProfileActivitySection } from '@/components/profile/profile-activity-section/ProfileActivitySection';
 import { ProfileInfo } from '@/components/profile/ProfileInfo';
 import { UserStatSidebar } from '@/components/profile/right-sidebar/UserStatSidebar';
 import prisma from '@/lib/db';
@@ -9,7 +10,7 @@ export default async function UsernameLayout({
     params,
 }: {
     children: ReactNode;
-    params: { username: string };
+    params: { username: string; activity: string };
 }) {
     const username = params.username;
 
@@ -23,7 +24,10 @@ export default async function UsernameLayout({
         <div className="flex p-4 w-full justify-between xl:justify-center gap-4">
             <div className="w-full xl:w-auto flex-1 xl:flex-none ">
                 <ProfileInfo username={username} />
-                {children}
+                <div>
+                    <ProfileActivitySection username={username} />
+                    {children}
+                </div>
             </div>
             <UserStatSidebar username={username} />
         </div>

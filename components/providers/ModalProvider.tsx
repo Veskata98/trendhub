@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { CreateTrendModal } from '../modals/CreateTrendModal';
+import { CreatePostModal } from '../modals/CreatePostModal';
 
 export const ModalProvider = () => {
     const [isMounted, setIsMounted] = useState(false);
@@ -17,6 +18,7 @@ export const ModalProvider = () => {
     return (
         <>
             <CreateTrendModal />
+            <CreatePostModal />
         </>
     );
 };

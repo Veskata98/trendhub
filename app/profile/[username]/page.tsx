@@ -7,5 +7,5 @@ type ProfilePageProps = {
 };
 
 export default async function ProfilePage({ params }: ProfilePageProps) {
-    return <ProfileActivitySection username={params.username} />;
+    return <div>posts</div>;
 }
