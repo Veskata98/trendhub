@@ -12,6 +12,7 @@ import { SignOutButton } from '@clerk/nextjs';
 
 import { useState } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
+import { CreateTrendButton } from '../trends/create-trend/CreateTrendButton';
 
 type NavbarUserProps = {
     profilePicture: string | null;
@@ -33,18 +34,18 @@ export const NavbarUser = ({ profilePicture, username }: NavbarUserProps) => {
                         </Avatar>
                     </div>
                 </PopoverTrigger>
-                <PopoverContent className="w-screen sm:w-60 dark:bg-zinc-700 bg-zinc-100 py-2">
-                    <div className="flex flex-col text-sm w-full">
+                <PopoverContent className="w-screen sm:w-60 dark:bg-zinc-700 bg-zinc-100 py-2 mt-2 px-0">
+                    <div className="flex flex-col text-sm w-full items-center sm:items-start">
                         <div className="w-full flex gap-2 h-12 items-center justify-center">
                             <p className="font-semibold">{username}</p>
                         </div>
                         <Separator className="dark:bg-slate-600" />
 
-                        <div className="rounded hover:bg-zinc-200 dark:hover:bg-zinc-600">
+                        <div className="px-4 hover:bg-zinc-200 dark:hover:bg-zinc-600 w-full">
                             <Link
                                 href={`/profile/${username}`}
                                 onClick={() => setIsOpen(false)}
-                                className="w-full flex gap-2 items-center h-12"
+                                className="w-full flex gap-2 items-center h-12 justify-center sm:justify-start"
                             >
                                 <User width={18} height={18} />
                                 View Profile
@@ -52,15 +53,29 @@ export const NavbarUser = ({ profilePicture, username }: NavbarUserProps) => {
                         </div>
                         <Separator className="dark:bg-slate-600" />
 
-                        <div className="block md:hidden">
+                        <div
+                            className="px-4 flex md:hidden w-full flex-col items-center sm:items-start
+                     hover:bg-zinc-300 dark:hover:bg-zinc-600"
+                        >
+                            <div onClick={() => setIsOpen(false)} className="w-full flex items-center gap-4 h-12">
+                                <CreateTrendButton smallDisplay={true} />
+                            </div>
+                            <Separator className="dark:bg-slate-600" />
+                        </div>
+
+                        <div className="px-4 flex md:hidden w-full flex-col items-center sm:items-start">
                             <div className="flex items-center gap-4 h-12">
-                                {theme === 'dark' ? <p>Dark Mode</p> : <p>Light Mode</p>}
+                                {theme === 'dark' ? (
+                                    <p className="hidden sm:block">Dark Mode</p>
+                                ) : (
+                                    <p className="hidden sm:block">Light Mode</p>
+                                )}
                                 <DarkModeToggle className="hover:bg-zinc-300 dark:hover:bg-zinc-600" />
                             </div>
                             <Separator className="dark:bg-slate-600" />
                         </div>
 
-                        <div className="w-full flex gap-2 h-12 items-center cursor-pointer rounded hover:bg-zinc-200 dark:hover:bg-zinc-600">
+                        <div className="px-4 w-full flex gap-2 h-12 items-center justify-center sm:justify-start cursor-pointer hover:bg-zinc-200 dark:hover:bg-zinc-600">
                             <LogOut width={18} height={18} />
                             <SignOutButton>
                                 <p>Log Out</p>
