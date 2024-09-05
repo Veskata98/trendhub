@@ -1,10 +1,10 @@
 import { X } from 'lucide-react';
 import { MouseEvent, useEffect, useState } from 'react';
-import { Input } from '../../ui/input';
-import { Textarea } from '../../ui/textarea';
-import { Button } from '../../ui/button';
-import { Label } from '../../ui/label';
-import { useToast } from '../../ui/use-toast';
+import { Input } from '../ui/input';
+import { Textarea } from '../ui/textarea';
+import { Button } from '../ui/button';
+import { Label } from '../ui/label';
+import { useToast } from '../ui/use-toast';
 import Image from 'next/image';
 import { createPost } from '@/actions/post-actions/createPost';
 import { imageUpload } from '@/lib/imageUpload';

@@ -1,6 +1,6 @@
 import { getPosts } from '@/actions/infiniteScrollPost';
-import { NewPosts } from '@/components/home-page/NewPosts';
-import { ScrollArea } from '@/components/ui/scroll-area';
+import { NewPosts } from '@/components/home-page/home-page-post/NewPosts';
+import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 
 export default async function Home() {
     const posts = await getPosts();

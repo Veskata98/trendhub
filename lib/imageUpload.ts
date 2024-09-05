@@ -4,10 +4,10 @@ import imageCompression from 'browser-image-compression';
 export const imageUpload = async (image: File) => {
     try {
         const options = {
-            maxWidthOrHeight: 300,
+            maxWidthOrHeight: 1000,
             useWebWorker: true,
             maxSizeMB: 0.1, // Set maximum size to 100KB (adjust as necessary)
-            initialQuality: 0.7, // Adjust the quality to reduce the file size
+            initialQuality: 1, // Adjust the quality to reduce the file size
             fileType: 'image/webp', // Ensure the output format is WebP
         };
 

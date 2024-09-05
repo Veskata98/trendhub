@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { CreatePostModal } from './CreatePostModal';
+import { CreatePostModal } from '../../modals/CreatePostModal';
 import { CreatePostButton } from './CreatePostButton';
 
 export const CreatePost = ({ trendName }: { trendName: string }) => {
