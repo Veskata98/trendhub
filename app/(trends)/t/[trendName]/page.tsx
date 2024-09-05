@@ -56,8 +56,6 @@ export default async function TrendNamePage({ params }: TrendNamePageProps) {
         userStatus = 'guest';
     }
 
-    console.log(trend);
-
     return (
         <section className="w-full">
             <div className="w-full md:w-2/3 mx-auto p-4 space-y-2">

@@ -19,9 +19,12 @@ export const ProfileAvatar = ({ canEdit, src, username }: ProfileAvatarProps) =>
     if (!canEdit) {
         return (
             <div className="relative">
-                <Avatar className="h-[100px] w-[100px]">
-                    <AvatarImage src={src || ''} alt="trend_avatar" />
-                    <AvatarFallback className="6xl">{username.at(0)?.toUpperCase()}</AvatarFallback>
+                <Avatar className={cn('h-[100px] w-[100px] border-zinc-500 border-[1px] border-opacity-20 shadow')}>
+                    {src ? (
+                        <AvatarImage src={src} alt="trend_avatar" />
+                    ) : (
+                        <AvatarFallback className="text-6xl">{username.at(0)?.toUpperCase()}</AvatarFallback>
+                    )}
                 </Avatar>
             </div>
         );
@@ -47,8 +50,11 @@ export const ProfileAvatar = ({ canEdit, src, username }: ProfileAvatarProps) =>
                                 showEdit && 'opacity-50'
                             )}
                         >
-                            <AvatarImage src={src || ''} alt="trend_avatar" />
-                            <AvatarFallback className="text-6xl">{username.at(0)?.toUpperCase()}</AvatarFallback>
+                            {src ? (
+                                <AvatarImage src={src} alt="trend_avatar" />
+                            ) : (
+                                <AvatarFallback className="text-6xl">{username.at(0)?.toUpperCase()}</AvatarFallback>
+                            )}
                         </Avatar>
 
                         {showEdit && (

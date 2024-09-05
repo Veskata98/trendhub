@@ -29,8 +29,11 @@ export const NavbarUser = ({ profilePicture, username }: NavbarUserProps) => {
                 <PopoverTrigger asChild onClick={() => setIsOpen(true)}>
                     <div>
                         <Avatar className="h-8 w-8">
-                            <AvatarImage src={profilePicture || ''} alt="trend_avatar" />
-                            <AvatarFallback>{username.at(0)?.toUpperCase()}</AvatarFallback>
+                            {profilePicture ? (
+                                <AvatarImage src={profilePicture} alt="trend_avatar" />
+                            ) : (
+                                <AvatarFallback>{username.at(0)?.toUpperCase()}</AvatarFallback>
+                            )}
                         </Avatar>
                     </div>
                 </PopoverTrigger>

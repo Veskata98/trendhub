@@ -79,7 +79,7 @@ export async function POST(req: Request) {
             userData.first_name = data?.first_name;
             userData.last_name = data?.last_name;
             userData.username = data?.username;
-            userData.image_url = '/no-avatar.png';
+            userData.image_url = '';
             userData.created_at = new Date(data?.created_at).toISOString();
             userData.updated_at = new Date(data?.updated_at).toISOString();
         }

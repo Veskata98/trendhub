@@ -1,5 +1,5 @@
 import { User } from '@clerk/nextjs/server';
-import { Like, Post, Trend } from '@prisma/client';
+import { Like, Post } from '@prisma/client';
 
 export interface ServerUser extends User {
     username: string;

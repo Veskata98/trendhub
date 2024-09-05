@@ -26,8 +26,8 @@ export const Navbar = async () => {
                             </div>
                         )}
 
-                        {user ? (
-                            <NavbarUser profilePicture={profile?.image_url || null} username={user.username || ''} />
+                        {profile ? (
+                            <NavbarUser profilePicture={profile.image_url} username={profile.username} />
                         ) : (
                             <div className="flex gap-2 justify-center text-sm">
                                 <SignInButton>
