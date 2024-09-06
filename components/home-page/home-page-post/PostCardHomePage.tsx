@@ -7,6 +7,7 @@ import { PostWithTrendAndLikes } from '@/types';
 import moment from 'moment';
 
 import { PostImage } from '../../posts/PostImage';
+import Link from 'next/link';
 
 export const PostCardHomePage = ({ post }: { post: PostWithTrendAndLikes }) => {
     return (
@@ -14,10 +15,12 @@ export const PostCardHomePage = ({ post }: { post: PostWithTrendAndLikes }) => {
             <CardHeader className="flex flex-row items-center gap-4 py-4 px-4 md:px-6">
                 <Avatar className="h-8 w-8">
                     <AvatarImage src={post.trend.image_url} alt="trend_avatar" />
-                    <AvatarFallback>U</AvatarFallback>
+                    <AvatarFallback>T</AvatarFallback>
                 </Avatar>
                 <div className="flex flex-col !mt-0">
-                    <p className="text-sm font-semibold">{post.trend.name}</p>
+                    <Link href={`/t/${post.trend_name}`}>
+                        <p className="text-sm font-semibold">{post.trend.name}</p>
+                    </Link>
                     <p className="text-xs text-muted-foreground">
                         Posted by {post.creator_name} • {moment(post.created_at).fromNow()}
                     </p>

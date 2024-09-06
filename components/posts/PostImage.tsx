@@ -10,7 +10,7 @@ export const PostImage = ({ imageUrl }: { imageUrl: string }) => {
     const [showArrow, setShowArrow] = useState(false);
 
     return (
-        <div className="w-full h-96 relative bg-zinc-800 rounded shadow">
+        <div className="w-full h-52 sm:h-64 md:h-72 lg:h-80 xl:h-96 relative bg-zinc-200 dark:bg-zinc-800 rounded shadow">
             <Link
                 href={imageUrl}
                 target="_blank"

@@ -15,7 +15,7 @@ export interface PostWithTrendAndLikes extends Post {
     likes: Like[];
 }
 
-export interface PostWithCreatorAndLikes extends Post {
+export interface PostWithCreatorAvatarAndLikes extends Post {
     creator: {
         image_url: string;
     };

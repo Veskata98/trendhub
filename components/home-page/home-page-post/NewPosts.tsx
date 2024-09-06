@@ -1,6 +1,6 @@
 'use client';
 
-import { getPosts } from '@/actions/infiniteScrollPost';
+import { getPostsWithTrend } from '@/actions/infiniteScrollPost';
 import { PostCardHomePage } from './PostCardHomePage';
 import { PostWithTrendAndLikes } from '@/types';
 import { useCallback, useEffect, useState } from 'react';
@@ -17,7 +17,7 @@ export const NewPosts = ({ initialPosts }: { initialPosts: PostWithTrendAndLikes
         if (!hasMore) return; // Stop loading if no more posts
 
         const next = page + 1;
-        const newPosts = await getPosts(next);
+        const newPosts = await getPostsWithTrend(next);
 
         if (newPosts.length === 0) {
             setHasMore(false); // No more posts to load

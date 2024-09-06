@@ -14,7 +14,7 @@ export const TrendHeader = ({ trend, userStatus }: { trend: Trend; userStatus: U
     // const searchParams = useSearchParams();
 
     return (
-        <div className="w-full flex flex-col">
+        <div className="w-full flex flex-col px-2">
             <div className="flex items-center justify-center gap-2">
                 <Avatar className="w-16 h-16">
                     <AvatarImage src={trend.image_url} alt="trend_image" />

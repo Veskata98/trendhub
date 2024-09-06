@@ -58,9 +58,9 @@ export default async function TrendNamePage({ params }: TrendNamePageProps) {
 
     return (
         <section className="w-full">
-            <div className="w-full md:w-2/3 mx-auto p-4 space-y-2">
+            <div className="w-full px-2 md:px-4 py-4 mx-auto pt-2 md:pt-4">
                 <TrendHeader trend={trend} userStatus={userStatus} />
-                <TrendPosts posts={trend.posts} />
+                <TrendPosts initialPosts={trend.posts} />
             </div>
         </section>
     );
