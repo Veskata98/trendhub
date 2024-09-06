@@ -8,6 +8,7 @@ import { joinTrend } from '@/actions/joinTrendAction';
 import { UserStatus } from '@/types';
 import { leaveTrend } from '@/actions/leaveTrend';
 import { CreatePostButton } from '@/components/trends/create-post/CreatePostButton';
+import { Avatar, AvatarImage } from '@/components/ui/avatar';
 
 export const TrendHeader = ({ trend, userStatus }: { trend: Trend; userStatus: UserStatus }) => {
     // const searchParams = useSearchParams();
@@ -15,7 +16,9 @@ export const TrendHeader = ({ trend, userStatus }: { trend: Trend; userStatus: U
     return (
         <div className="w-full flex flex-col">
             <div className="flex items-center justify-center gap-2">
-                <Image src={trend.image_url} alt="trend_logo" width={48} height={48} className="rounded-full" />
+                <Avatar className="w-16 h-16">
+                    <AvatarImage src={trend.image_url} alt="trend_image" />
+                </Avatar>
                 <span className="text-xl font-semibold">t/{trend.name}</span>
             </div>
             <div className="flex justify-between items-center border-b-[1px] border-zinc-300/50 dark:border-zinc-700/50 pb-2">

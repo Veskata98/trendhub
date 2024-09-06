@@ -56,7 +56,7 @@ export const CreateTrendModal = () => {
             const uploadCareResult = await imageUpload(image);
 
             if (uploadCareResult.error) {
-                return toast(uploadCareResult.error);
+                return toast.error(uploadCareResult.error);
             }
 
             imageUrl = uploadCareResult.imageUrl;

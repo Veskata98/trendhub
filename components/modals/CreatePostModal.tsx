@@ -4,15 +4,14 @@ import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
 import { Button } from '../ui/button';
 import { Label } from '../ui/label';
-import { useToast } from '../ui/use-toast';
 import Image from 'next/image';
 import { createPost } from '@/actions/post-actions/createPost';
 import { imageUpload } from '@/lib/imageUpload';
 import { useModal } from '@/hooks/useModalStore';
+import { toast } from 'sonner';
 
 export const CreatePostModal = () => {
     const { isOpen, onClose, type, data } = useModal();
-    const { toast } = useToast();
 
     const { trendName } = data;
 
@@ -55,11 +54,7 @@ export const CreatePostModal = () => {
             const uploadCareResult = await imageUpload(image);
 
             if (uploadCareResult.error) {
-                return toast({
-                    className: 'bg-emerald-500 text-white',
-                    duration: 3000,
-                    title: uploadCareResult.error,
-                });
+                return toast.error(uploadCareResult.error);
             }
 
             imageUrl = uploadCareResult.imageUrl;
@@ -69,24 +64,11 @@ export const CreatePostModal = () => {
 
         if (!error) {
             onClose();
-            toast({
-                className: 'bg-emerald-500 text-white',
-                duration: 3000,
-                title: 'Post was created successfully',
-            });
+            toast.success('Post was created successfully');
             return;
         }
 
-        // const errors = Object.values(error)
-        //     .map((e) => e)
-        //     .join('\n');
-
-        // toast({
-        //     className: 'bg-rose-500 text-white',
-        //     duration: 3000,
-        //     title: 'Error creating post',
-        //     description: errors,
-        // });
+        Object.values(error).forEach((error) => toast.error(error));
     };
 
     return (

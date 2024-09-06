@@ -7,7 +7,7 @@ import z, { ZodError } from 'zod';
 
 const trendSchema = z.object({
     name: z.string().min(3, { message: 'Trend name at least 3 characters' }),
-    description: z.string().min(10, { message: 'Description at least 10 characters' }),
+    description: z.string().min(10, { message: 'Trend Information too short (min 10 characters)' }),
     imageUrl: z.union([z.string(), z.null()]).optional(),
 });
 
