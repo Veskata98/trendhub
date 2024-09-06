@@ -10,7 +10,9 @@ export const CreateTrendButton = ({ smallDisplay }: { smallDisplay?: boolean }) 
         return (
             <Button
                 onClick={() => onOpen('createTrend')}
-                className=" px-0 w-full flex gap-2 items-center h-12 justify-center sm:justify-start font-normal"
+                className=" px-0 w-full flex gap-2 items-center h-12 justify-center 
+                sm:justify-start font-normal focus-visible:outline-none
+                focus-visible:ring-0 focus-visible:ring-offset-0"
             >
                 <Plus width={16} height={16} />
                 <span>Create Trend</span>

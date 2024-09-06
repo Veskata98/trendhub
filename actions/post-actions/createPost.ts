@@ -2,7 +2,7 @@
 
 import prisma from '@/lib/db';
 import serverUser from '@/lib/serverUser';
-import { redirect } from 'next/navigation';
+import { revalidatePath } from 'next/cache';
 import z, { ZodError } from 'zod';
 
 const postSchema = z.object({
@@ -62,6 +62,8 @@ export const createPost = async (formData: FormData, trendName: string, imageUrl
                 creator_name: user!.username,
             },
         });
+
+        revalidatePath(`/t/${trendName}`);
     } catch (error) {
         if (error instanceof ZodError) {
             return error.flatten().fieldErrors;
@@ -74,6 +76,4 @@ export const createPost = async (formData: FormData, trendName: string, imageUrl
         console.log(error);
         return { serverError: ['Something went wrong'] };
     }
-
-    redirect(`/t/${trendName}`);
 };

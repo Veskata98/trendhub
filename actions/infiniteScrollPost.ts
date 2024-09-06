@@ -21,10 +21,13 @@ export const getPostsWithTrend = async (page: number = 1) => {
     }
 };
 
-export const getPostsWithCreator = async (page: number = 1) => {
+export const getPostsWithCreator = async (page: number = 1, trendName: string) => {
     try {
         const skip = (page - 1) * LIMIT;
         const latestPosts = await prisma.post.findMany({
+            where: {
+                trend_name: trendName,
+            },
             skip,
             take: LIMIT,
             orderBy: { created_at: 'desc' },
