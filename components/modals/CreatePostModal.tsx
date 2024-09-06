@@ -77,16 +77,16 @@ export const CreatePostModal = () => {
             return;
         }
 
-        const errors = Object.values(error)
-            .map((e) => e)
-            .join('\n');
+        // const errors = Object.values(error)
+        //     .map((e) => e)
+        //     .join('\n');
 
-        toast({
-            className: 'bg-rose-500 text-white',
-            duration: 3000,
-            title: 'Error creating post',
-            description: errors,
-        });
+        // toast({
+        //     className: 'bg-rose-500 text-white',
+        //     duration: 3000,
+        //     title: 'Error creating post',
+        //     description: errors,
+        // });
     };
 
     return (

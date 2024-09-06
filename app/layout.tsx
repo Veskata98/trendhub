@@ -5,7 +5,7 @@ import { ThemeProvider } from '@/components/providers/ThemeProvider';
 import { Navbar } from '@/components/navbar/Navbar';
 import { ClerkProvider } from '@clerk/nextjs';
 import { LeftSidebar } from '@/components/left-sidebar/LeftSidebar';
-import { Toaster } from '@/components/ui/toaster';
+import { Toaster } from '@/components/ui/sonner';
 import '@uploadcare/react-uploader/core.css';
 import { ModalProvider } from '@/components/providers/ModalProvider';
 
@@ -31,7 +31,7 @@ export default function RootLayout({
                             {children}
                         </main>
                         <ModalProvider />
-                        <Toaster />
+                        <Toaster duration={3000} richColors theme="light" />
                     </ThemeProvider>
                 </body>
             </html>
