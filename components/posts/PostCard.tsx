@@ -5,11 +5,11 @@ import { Card, CardContent, CardFooter, CardHeader } from '../ui/card';
 import { Button } from '../ui/button';
 import { ArrowBigDown, ArrowBigUp, MessageSquare, Share2 } from 'lucide-react';
 import moment from 'moment';
-import { PostWithCreatorAndLikes } from '@/types';
+import { PostWithCreatorAvatarAndLikes } from '@/types';
 import Link from 'next/link';
 import { PostImage } from './PostImage';
 
-export const PostCard = ({ post }: { post: PostWithCreatorAndLikes }) => {
+export const PostCard = ({ post }: { post: PostWithCreatorAvatarAndLikes }) => {
     return (
         <Card className="w-full max-w-[750px] dark:bg-zinc-700/30">
             <CardHeader className="flex flex-row items-center gap-4 py-4 px-4 md:px-6">
@@ -28,7 +28,7 @@ export const PostCard = ({ post }: { post: PostWithCreatorAndLikes }) => {
                 </p>
             </CardHeader>
             <CardContent className="space-y-2">
-                <h2 className="text-xl font-bold">{post.title}</h2>
+                <h2 className="md:text-xl font-bold">{post.title}</h2>
                 {post.description && <p className="text-muted-foreground text-sm md:text-base">{post.description}</p>}
                 {post.image_url && <PostImage imageUrl={post.image_url} />}
             </CardContent>

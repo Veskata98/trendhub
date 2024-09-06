@@ -82,12 +82,12 @@ export const CreateTrendModal = () => {
             className="fixed inset-0 z-50 flex items-start md:items-center justify-center bg-black bg-opacity-10 backdrop-blur-sm w-screen h-screen"
             onClick={onBackdropClick}
         >
-            <div className="relative bg-zinc-400 dark:bg-zinc-600 mt-32 md:mt-0 mx-8 p-8 w-full md:w-2/3 xl:w-3/5 2xl:w-2/5 rounded-lg shadow-sm flex flex-col items-center">
+            <div className="relative bg-zinc-400 dark:bg-zinc-600 mt-32 md:mt-0 mx-8 p-8 w-full md:w-2/3 xl:w-3/5 2xl:w-2/5 rounded-lg shadow flex flex-col items-center">
                 <X className="absolute top-2 right-2 cursor-pointer text-zinc-200 rounded" onClick={() => onClose()} />
-                <div className="flex flex-col-reverse lg:flex-row justify-around w-full gap-6">
+                <div className="flex flex-col-reverse justify-around w-full gap-6">
                     <form
                         action={formAction}
-                        className="flex flex-col w-full lg:w-2/3 xl:w-1/2 space-y-4 justify-center"
+                        className="flex flex-col w-full lg:w-2/3 space-y-4 justify-center mx-auto"
                     >
                         <div className="relative flex items-center">
                             <Input

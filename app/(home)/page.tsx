@@ -6,7 +6,7 @@ export default async function Home() {
     const posts = await getPostsWithTrend();
 
     return (
-        <ScrollArea className="w-full px-2 md:px-8 py-4 mx-auto pt-2 md:pt-4">
+        <ScrollArea className="w-full px-2 md:px-8 py-2 mx-auto">
             <NewPosts initialPosts={posts} />
         </ScrollArea>
     );
