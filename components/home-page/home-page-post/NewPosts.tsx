@@ -7,10 +7,16 @@ import { useCallback, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 
 export const NewPosts = ({ initialPosts }: { initialPosts: PostWithTrendAndLikes[] }) => {
-    const [posts, setPosts] = useState(initialPosts);
+    const [posts, setPosts] = useState<PostWithTrendAndLikes[]>([]);
     const [page, setPage] = useState(1);
     const [hasMore, setHasMore] = useState(true);
     const [ref, inView] = useInView();
+
+    useEffect(() => {
+        setPosts(initialPosts);
+        setPage(1); // Reset page if initial posts change
+        setHasMore(true); // Reset hasMore if initial posts change
+    }, [initialPosts]);
 
     // Load more posts when in view and if more posts are available
     const loadMorePosts = useCallback(async () => {

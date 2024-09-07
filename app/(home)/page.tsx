@@ -1,13 +1,10 @@
-import { getPostsWithTrend } from '@/actions/infiniteScrollPost';
-import { NewPosts } from '@/components/home-page/home-page-post/NewPosts';
+import { PostsFetcher } from '@/components/home-page/home-page-post/PostsFetcher';
 import { ScrollArea } from '@/components/ui/scroll-area';
 
 export default async function Home() {
-    const posts = await getPostsWithTrend();
-
     return (
         <ScrollArea className="w-full px-2 md:px-8 py-2 mx-auto">
-            <NewPosts initialPosts={posts} />
+            <PostsFetcher />
         </ScrollArea>
     );
 }
