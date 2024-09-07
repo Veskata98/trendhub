@@ -31,7 +31,7 @@ export default function RootLayout({
                             {children}
                         </main>
                         <ModalProvider />
-                        <Toaster duration={3000} richColors theme="light" />
+                        <Toaster duration={3000} richColors theme="light" expand={true} />
                     </ThemeProvider>
                 </body>
             </html>

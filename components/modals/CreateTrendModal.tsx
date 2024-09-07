@@ -89,10 +89,11 @@ export const CreateTrendModal = () => {
                         action={formAction}
                         className="flex flex-col w-full lg:w-2/3 space-y-4 justify-center mx-auto"
                     >
-                        <div className="relative flex items-center">
+                        <div className="relative flex items-center border-b-[1px]">
                             <Input
-                                className="ml-[28px] focus-visible:ring-0 focus-visible:outline-none
-                                focus-visible:ring-offset-0"
+                                className="ml-4 focus-visible:ring-0 focus-visible:outline-none
+                                focus-visible:ring-offset-0 bg-transparent border-0 rounded-none
+                                text-lg"
                                 type="text"
                                 name="name"
                                 required
@@ -105,7 +106,7 @@ export const CreateTrendModal = () => {
                             </Label>
                             <Textarea
                                 className="focus-visible:ring-0 focus-visible:outline-none
-                                focus-visible:ring-offset-0"
+                                focus-visible:ring-offset-0 rounded-sm"
                                 name="description"
                                 rows={5}
                             />

@@ -8,12 +8,13 @@ type ServerUserProps = {
 export default async function serverUser({ redirectToLogin = false }: ServerUserProps = {}) {
     const user = await currentUser();
 
-    if (!user) {
-        if (redirectToLogin) {
-            return auth().redirectToSignIn();
-        }
-        return null;
+    if (user) {
+        return user as ServerUser;
     }
 
-    return user as ServerUser;
+    if (redirectToLogin) {
+        return auth().redirectToSignIn();
+    }
+
+    return null;
 }
