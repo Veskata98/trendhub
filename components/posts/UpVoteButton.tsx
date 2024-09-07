@@ -26,13 +26,9 @@ export const UpVoteButton = ({ postId, likes }: UpVoteButtonProps) => {
             onClick={onClick}
             variant="ghost"
             size="sm"
-            className={cn(
-                'px-[6px]',
-                isUpvoted && 'bg-emerald-300 hover:bg-emerald-300/80',
-                !user?.username && 'pointer-events-none'
-            )}
+            className={cn('px-[6px]', !user?.username && 'pointer-events-none')}
         >
-            <ArrowBigUp className={cn('h-5 w-5 text-muted-foreground', isUpvoted && 'text-white')} />
+            <ArrowBigUp className={cn('h-5 w-5 text-muted-foreground', isUpvoted && 'text-emerald-400')} />
         </Button>
     );
 };

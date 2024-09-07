@@ -26,13 +26,9 @@ export const DownVoteButton = ({ postId, likes }: DownVoteButtonProps) => {
             onClick={onClick}
             variant="ghost"
             size="sm"
-            className={cn(
-                'px-[6px]',
-                isDownvoted && 'bg-rose-400 hover:bg-rose-400/80',
-                !user?.username && 'pointer-events-none'
-            )}
+            className={cn('px-[6px]', !user?.username && 'pointer-events-none')}
         >
-            <ArrowBigDown className={cn('h-5 w-5 text-muted-foreground', isDownvoted && 'text-white')} />
+            <ArrowBigDown className={cn('h-5 w-5 text-muted-foreground', isDownvoted && 'text-rose-400')} />
         </Button>
     );
 };

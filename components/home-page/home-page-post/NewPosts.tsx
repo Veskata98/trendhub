@@ -1,6 +1,6 @@
 'use client';
 
-import { getPostsWithTrend } from '@/actions/infiniteScrollPost';
+import { getPostsWithTrend } from '@/actions/post-actions/infiniteScrollPost';
 import { PostCardHomePage } from './PostCardHomePage';
 import { PostWithTrendAndLikes } from '@/types';
 import { useCallback, useEffect, useState } from 'react';

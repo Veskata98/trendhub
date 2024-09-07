@@ -5,7 +5,7 @@ import { PostCard } from '@/components/posts/PostCard';
 import { PostWithCreatorAvatarAndLikes } from '@/types';
 import { useCallback, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { getPostsWithCreator } from '@/actions/infiniteScrollPost';
+import { getPostsWithCreator } from '@/actions/post-actions/infiniteScrollPost';
 
 export const TrendPosts = ({
     trendName,

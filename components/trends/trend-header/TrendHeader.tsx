@@ -4,9 +4,9 @@ import Image from 'next/image';
 import { Trend } from '@prisma/client';
 import { useSearchParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
-import { joinTrend } from '@/actions/joinTrendAction';
+import { joinTrend } from '@/actions/trend-actions/joinTrend';
 import { UserStatus } from '@/types';
-import { leaveTrend } from '@/actions/leaveTrend';
+import { leaveTrend } from '@/actions/trend-actions/leaveTrend';
 import { CreatePostButton } from '@/components/trends/create-post/CreatePostButton';
 import { Avatar, AvatarImage } from '@/components/ui/avatar';
 

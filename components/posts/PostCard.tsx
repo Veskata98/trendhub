@@ -8,6 +8,9 @@ import moment from 'moment';
 import { PostWithCreatorAvatarAndLikes } from '@/types';
 import Link from 'next/link';
 import { PostImage } from './PostImage';
+import { UpVoteButton } from './UpVoteButton';
+import { PostLikeCount } from './PostLikeCount';
+import { DownVoteButton } from './DownVoteButton';
 
 export const PostCard = ({ post }: { post: PostWithCreatorAvatarAndLikes }) => {
     return (
@@ -34,13 +37,9 @@ export const PostCard = ({ post }: { post: PostWithCreatorAvatarAndLikes }) => {
             </CardContent>
             <CardFooter className="flex justify-between pb-2 md:pb-4 px-2 md:px-6">
                 <div className="flex items-center space-x-2">
-                    <Button variant="ghost" size="sm" className="px-1">
-                        <ArrowBigUp className="h-5 w-5 text-muted-foreground" />
-                    </Button>
-                    <span className="font-bold">{0}</span>
-                    <Button variant="ghost" size="sm" className="px-1">
-                        <ArrowBigDown className="h-5 w-5 text-muted-foreground" />
-                    </Button>
+                    <UpVoteButton postId={post.id} likes={post.likes} />
+                    <PostLikeCount likes={post.likes} />
+                    <DownVoteButton postId={post.id} likes={post.likes} />
                 </div>
                 <Button variant="ghost" size="sm" className="space-x-2">
                     <MessageSquare className="h-4 w-4" />

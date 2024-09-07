@@ -3,7 +3,7 @@ import { TrendList } from './TrendList';
 
 export const LeftSidebar = async () => {
     return (
-        <aside className="w-72 lg:w-80 h-full hidden md:block">
+        <aside className="w-72 lg:w-80 h-full hidden md:block sticky top-0">
             <div className="p-4 flex flex-col gap-2">
                 <h2 className="text-lg font-semibold">New trends</h2>
                 <Separator className="h-[1px] bg-zinc-600" />
