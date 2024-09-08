@@ -15,7 +15,7 @@ export function DarkModeToggle({ className }: { className?: string }) {
             size="icon"
             onClick={() => (theme === 'dark' ? setTheme('light') : setTheme('dark'))}
             className={cn(
-                'hover:bg-primary-300 dark:hover:bg-primary-700 focus-visible:ring-0 focus-visible:ring-offset-0 hover:text-white',
+                'dark:hover:bg-primary-300 hover:bg-primary-700 focus-visible:ring-0 focus-visible:ring-offset-0 hover:text-white',
                 className
             )}
         >

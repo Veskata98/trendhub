@@ -17,7 +17,7 @@ export const CopyProfileUrlButton = () => {
     return (
         <button
             onClick={handleCopyClick}
-            className="flex gap-2 justify-center text-sm bg-zinc-400
+            className="flex gap-2 justify-center text-sm bg-primary-400
             hover:bg-opacity-70 bg-opacity-50 py-[6px] px-2 rounded-md
             font-semibold"
         >

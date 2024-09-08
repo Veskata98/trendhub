@@ -20,16 +20,16 @@ const config = {
                 background: 'hsl(var(--background))',
                 foreground: 'hsl(var(--foreground))',
                 primary: {
-                    '50': '#e6eaff',
-                    '100': '#cdd5ff',
-                    '200': '#aab7ff',
-                    '300': '#88a0ff',
-                    '400': '#6689ff',
-                    '500': '#5585FF',
-                    '600': '#4b77e6',
-                    '700': '#3d63bf',
-                    '800': '#314f99',
-                    '900': '#283d7a',
+                    '50': '#f3e9ff', // Very light violet
+                    '100': '#e6d4ff', // Lighter violet
+                    '200': '#c9a8ff', // Light violet
+                    '300': '#ac7eff', // Light-medium violet
+                    '400': '#8e53ff', // Medium violet (brighter)
+                    '500': 'rgb(139 92 246)', // The base violet
+                    '600': '#7345e6', // Darker violet
+                    '700': '#5c37bf', // Even darker violet
+                    '800': '#472c99', // Dark violet
+                    '900': '#342078', // Very dark violet
                 },
                 secondary: {
                     DEFAULT: 'hsl(var(--secondary))',

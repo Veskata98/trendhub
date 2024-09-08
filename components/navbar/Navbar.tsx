@@ -12,11 +12,11 @@ export const Navbar = async () => {
     const profile = await prisma.profile.findFirst({ where: { username: user?.username || '' } });
 
     return (
-        <nav className="h-[56px] bg-primary-500 px-4 md:px-8 text-white">
+        <nav className="h-[56px] bg-violet-500 px-4 md:px-8 text-white">
             <div className="w-full lg:w-2/3 mx-auto h-full">
                 <div className="flex justify-between items-center h-full">
                     <Link href="/" className="font-semibold text-xl">
-                        TrendHub
+                        TrendIt
                     </Link>
                     <div className="flex justify-center gap-4">
                         <DarkModeToggle className="hidden md:flex" />
