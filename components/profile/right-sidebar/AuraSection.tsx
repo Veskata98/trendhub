@@ -1,5 +1,4 @@
 import prisma from '@/lib/db';
-import moment from 'moment';
 
 type AuraSectionProps = {
     username: string;
@@ -8,7 +7,8 @@ type AuraSectionProps = {
 export const AuraSection = async ({ username }: AuraSectionProps) => {
     const likes = await prisma.like.findMany({
         where: {
-            username,
+            post: { creator_name: username }, // Posts created by the given user
+            username: { not: username }, // Exclude the user's own likes/dislikes
         },
     });
 

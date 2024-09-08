@@ -27,6 +27,9 @@ export const upvotePost = async (postId: string) => {
                     },
                 });
 
+                revalidatePath(`/profile/${alreadyVoted.username}/upvotes`);
+                revalidatePath(`/profile/${alreadyVoted.username}/posts`);
+
                 return { success: true, data: null };
             } else {
                 const updatedLike = await prisma.like.update({
@@ -37,6 +40,9 @@ export const upvotePost = async (postId: string) => {
                         type: 'LIKE',
                     },
                 });
+
+                revalidatePath(`/profile/${updatedLike.username}/upvotes`);
+                revalidatePath(`/profile/${updatedLike.username}/posts`);
 
                 return { success: true, data: updatedLike };
             }
@@ -49,6 +55,9 @@ export const upvotePost = async (postId: string) => {
                 username: user.username,
             },
         });
+
+        revalidatePath(`/profile/${newUpvote.username}/upvotes`);
+        revalidatePath(`/profile/${newUpvote.username}/posts`);
 
         return { success: true, data: newUpvote };
     } catch (error) {
@@ -80,6 +89,9 @@ export const downvotePost = async (postId: string) => {
                     },
                 });
 
+                revalidatePath(`/profile/${alreadyVoted.username}/downvotes`);
+                revalidatePath(`/profile/${alreadyVoted.username}/posts`);
+
                 return { success: true, data: null };
             } else {
                 const updatedDislike = await prisma.like.update({
@@ -90,6 +102,9 @@ export const downvotePost = async (postId: string) => {
                         type: 'DISLIKE',
                     },
                 });
+
+                revalidatePath(`/profile/${updatedDislike.username}/downvotes`);
+                revalidatePath(`/profile/${updatedDislike.username}/posts`);
 
                 return { success: true, data: updatedDislike };
             }
@@ -102,6 +117,9 @@ export const downvotePost = async (postId: string) => {
                 username: user.username,
             },
         });
+
+        revalidatePath(`/profile/${newDownvote.username}/downvotes`);
+        revalidatePath(`/profile/${newDownvote.username}/posts`);
 
         return { success: true, data: newDownvote };
     } catch (error) {
