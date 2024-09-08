@@ -48,7 +48,7 @@ export const TrendPosts = ({
     }, [inView, loadMorePosts, hasMore]);
 
     return (
-        <ScrollArea className="w-full px-2 py-4 mx-auto pt-2">
+        <ScrollArea className="w-full px-0 py-4 mx-auto pt-2">
             <div className="space-y-2 flex flex-col items-center">
                 {posts.map((post) => (
                     <PostCard key={post.id} post={post} />

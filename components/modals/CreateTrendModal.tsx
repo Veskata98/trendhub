@@ -10,6 +10,9 @@ import { useModal } from '@/hooks/useModalStore';
 import { imageUpload } from '@/lib/imageUpload';
 import { Avatar, AvatarImage } from '../ui/avatar';
 import { cn } from '@/lib/utils';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../ui/tooltip';
+import { useFormStatus } from 'react-dom';
+import LoadingSpinner from '../other/LoadingSpinner';
 
 export const CreateTrendModal = () => {
     const [showEdit, setShowEdit] = useState(false);
@@ -79,10 +82,14 @@ export const CreateTrendModal = () => {
 
     return (
         <div
-            className="fixed inset-0 z-50 flex items-start md:items-center justify-center bg-black bg-opacity-10 backdrop-blur-sm w-screen h-screen"
+            className="fixed inset-0 z-50 flex items-start md:items-center justify-center bg-black bg-opacity-60 backdrop-blur-sm w-screen h-screen"
             onClick={onBackdropClick}
         >
-            <div className="relative bg-zinc-400 dark:bg-zinc-600 mt-32 md:mt-0 mx-4 sm:mx-8 p-8 px-2 sm:px-8 w-full md:w-2/3 xl:w-3/5 2xl:w-2/5 rounded-lg shadow flex flex-col items-center">
+            <div
+                className="relative backdrop-blur-lg bg-white bg-opacity-30 dark:bg-opacity-40 dark:bg-zinc-600 mt-32 md:mt-0 mx-4 sm:mx-8 
+            p-8 px-2 sm:px-8 w-full md:w-2/3 xl:w-3/5 2xl:w-2/5 rounded-lg 
+            shadow flex flex-col items-center"
+            >
                 <X className="absolute top-2 right-2 cursor-pointer text-zinc-200 rounded" onClick={() => onClose()} />
                 <div className="flex flex-col-reverse justify-around w-full gap-6">
                     <form
@@ -93,15 +100,17 @@ export const CreateTrendModal = () => {
                             <Input
                                 className="ml-4 focus-visible:ring-0 focus-visible:outline-none
                                 focus-visible:ring-offset-0 bg-transparent border-0 rounded-none
-                                text-lg"
+                                text-lg text-white"
                                 type="text"
                                 name="name"
                                 required
                             />
-                            <span className="absolute top-[6px] left-2 select-none font-semibold text-lg">t/</span>
+                            <span className="absolute top-[6px] left-2 select-none font-semibold text-lg text-white">
+                                t/
+                            </span>
                         </div>
                         <div>
-                            <Label htmlFor="description" className="font-semibold">
+                            <Label htmlFor="description" className="font-semibold text-white">
                                 Trend Description
                             </Label>
                             <Textarea
@@ -111,13 +120,10 @@ export const CreateTrendModal = () => {
                                 rows={5}
                             />
                         </div>
-
-                        <Button type="submit" className="bg-primary-500">
-                            Submit
-                        </Button>
+                        <SubmitButton />
                     </form>
                     <div className="flex flex-col gap-4 items-center">
-                        <p className="font-semibold text-sm">Trend Avatar</p>
+                        <p className="font-semibold text-sm text-white">Trend Avatar</p>
 
                         {image ? (
                             <div className="relative m-auto">
@@ -137,27 +143,48 @@ export const CreateTrendModal = () => {
                                 <input
                                     ref={fileInputRef}
                                     type="file"
-                                    name="postImage"
-                                    accept=".png, .jpg, .gif, .jpeg, .avif, .webp"
+                                    name="trendImage"
+                                    accept=".png, .jpg, .jpeg, .avif, .webp"
                                     onChange={(e) => setImage(e.target.files?.item(0))}
                                     className="hidden"
                                 />
-                                <Avatar
-                                    className={cn('h-24 w-24 relative cursor-pointer shadow', showEdit && 'opacity-50')}
-                                    onMouseEnter={() => setShowEdit(true)}
-                                    onMouseLeave={() => setShowEdit(false)}
-                                    onClick={handleAvatarClick}
-                                >
-                                    <AvatarImage src="/default-trend-logo.png" alt="trend_avatar" />
-                                    {showEdit && (
-                                        <UserPen className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
-                                    )}
-                                </Avatar>
+                                <TooltipProvider>
+                                    <Tooltip>
+                                        <TooltipTrigger>
+                                            <Avatar
+                                                className={cn(
+                                                    'h-24 w-24 relative cursor-pointer shadow',
+                                                    showEdit && 'opacity-50'
+                                                )}
+                                                onMouseEnter={() => setShowEdit(true)}
+                                                onMouseLeave={() => setShowEdit(false)}
+                                                onClick={handleAvatarClick}
+                                            >
+                                                <AvatarImage src="/default-trend-logo.png" alt="trend_avatar" />
+                                                {showEdit && (
+                                                    <UserPen className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white" />
+                                                )}
+                                            </Avatar>
+                                        </TooltipTrigger>
+                                        <TooltipContent side="right">
+                                            <p>Change Trend Avatar</p>
+                                        </TooltipContent>
+                                    </Tooltip>
+                                </TooltipProvider>
                             </>
                         )}
                     </div>
                 </div>
             </div>
         </div>
+    );
+};
+
+const SubmitButton = () => {
+    const status = useFormStatus();
+    return (
+        <Button type="submit" disabled={status.pending} className="bg-primary-500 text-white">
+            {status.pending ? <LoadingSpinner className="w-6 h-6" /> : 'Create'}
+        </Button>
     );
 };

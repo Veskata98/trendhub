@@ -1,5 +1,5 @@
-import { X } from 'lucide-react';
-import { MouseEvent, useEffect, useState } from 'react';
+import { Plus, X } from 'lucide-react';
+import { MouseEvent, useEffect, useRef, useState } from 'react';
 import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
 import { Button } from '../ui/button';
@@ -9,9 +9,12 @@ import { createPost } from '@/actions/post-actions/createPost';
 import { imageUpload } from '@/lib/imageUpload';
 import { useModal } from '@/hooks/useModalStore';
 import { toast } from 'sonner';
+import { useFormStatus } from 'react-dom';
+import LoadingSpinner from '../other/LoadingSpinner';
 
 export const CreatePostModal = () => {
     const { isOpen, onClose, type, data } = useModal();
+    const fileInputRef = useRef<HTMLInputElement>(null);
 
     const { trendName } = data;
 
@@ -71,33 +74,43 @@ export const CreatePostModal = () => {
         Object.values(error).forEach((error) => toast.error(error));
     };
 
+    const imageInputClick = () => {
+        fileInputRef.current?.click();
+    };
+
     return (
         <div
-            className="fixed inset-0 z-50 flex items-start md:items-center justify-center bg-black bg-opacity-10 backdrop-blur-sm w-screen h-screen"
+            className="fixed inset-0 z-50 flex items-start md:items-center justify-center bg-black bg-opacity-60 backdrop-blur-sm w-screen h-screen"
             onClick={onBackdropClick}
         >
-            <div className="relative bg-zinc-400 dark:bg-zinc-600 mt-32 md:mt-0 mx-4 sm:mx-8 p-8 px-2 sm:px-8 w-full md:w-2/3 xl:w-3/5 2xl:w-2/5 rounded-lg shadow-sm flex flex-col items-center">
+            <div
+                className="relative backdrop-blur-lg bg-white bg-opacity-30 dark:bg-opacity-40 dark:bg-zinc-600 
+            mt-32 md:mt-0 mx-4 sm:mx-8 p-8 px-2 sm:px-8 w-full md:w-2/3 xl:w-3/5 2xl:w-2/5 
+            rounded-lg shadow-sm flex flex-col items-center"
+            >
                 <X className="absolute top-2 right-2 cursor-pointer text-zinc-200 rounded" onClick={() => onClose()} />
 
-                <h4 className="font-semibold mb-4">Create Post</h4>
+                <h4 className="font-semibold mb-4 text-white">Create Post</h4>
 
-                <div className="flex flex-col-reverse lg:flex-row justify-around w-full gap-6">
+                <div className="flex flex-col-reverse lg:flex-row justify-evenly w-full gap-6">
                     <form
                         action={formAction}
-                        className="flex flex-col w-full lg:w-2/3 xl:w-1/2 space-y-4 justify-center"
+                        className="flex flex-col w-full lg:w-2/3 xl:w-1/2 space-y-4 justify-center lg:h-[300px]"
                     >
                         <div>
-                            <Label htmlFor="title">Title</Label>
+                            <Label className="text-white" htmlFor="title">
+                                <sup>*</sup>Title
+                            </Label>
                             <Input type="text" name="title" required />
                         </div>
                         <div>
-                            <Label htmlFor="description">Description (*optional)</Label>
+                            <Label className="text-white" htmlFor="description">
+                                Description
+                            </Label>
                             <Textarea name="description" rows={5} />
                         </div>
 
-                        <Button type="submit" className="bg-primary-500">
-                            Submit
-                        </Button>
+                        <SubmitButton />
                     </form>
                     {image ? (
                         <div className="relative m-auto">
@@ -106,7 +119,7 @@ export const CreatePostModal = () => {
                                 alt="Preview"
                                 width={256}
                                 height={256}
-                                className="rounded"
+                                className="rounded max-w-[256]"
                             />
                             <Button
                                 onClick={() => setImage(null)}
@@ -116,19 +129,42 @@ export const CreatePostModal = () => {
                             </Button>
                         </div>
                     ) : (
-                        <div>
-                            <Label htmlFor="postImage">Image (*optional)</Label>
-                            <Input
-                                className="cursor-pointer"
-                                type="file"
-                                name="postImage"
-                                accept=".png, .jpg, .gif, .jpeg, .avif, .webp"
-                                onChange={(e) => setImage(e.target.files?.item(0))}
-                            />
+                        <div className="flex flex-col gap-2 items-center my-auto">
+                            <>
+                                <input
+                                    ref={fileInputRef}
+                                    type="file"
+                                    name="trendImage"
+                                    accept=".png, .jpg, .gif, .jpeg, .avif, .webp"
+                                    onChange={(e) => setImage(e.target.files?.item(0))}
+                                    className="hidden"
+                                />
+                                <div
+                                    className="rounded-full p-8 cursor-pointer bg-zinc-300 
+                                    hover:bg-zinc-200 dark:bg-zinc-500 dark:hover:bg-zinc-400 transition-all"
+                                    onClick={imageInputClick}
+                                >
+                                    <Plus
+                                        className="h-8 w-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 xl:w-11 xl:h-11 text-white"
+                                        height={44}
+                                        width={44}
+                                    />
+                                </div>
+                            </>
+                            <p className="font-semibold text-sm text-white">Image</p>
                         </div>
                     )}
                 </div>
             </div>
         </div>
+    );
+};
+
+const SubmitButton = () => {
+    const status = useFormStatus();
+    return (
+        <Button type="submit" disabled={status.pending} className="bg-primary-500 text-white">
+            {status.pending ? <LoadingSpinner className="text-white w-6 h-6" /> : 'Create'}
+        </Button>
     );
 };
