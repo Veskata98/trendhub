@@ -89,7 +89,7 @@ export const CreateTrendModal = () => {
                         action={formAction}
                         className="flex flex-col w-full lg:w-2/3 space-y-4 justify-center mx-auto"
                     >
-                        <div className="relative flex items-center border-b-[1px]">
+                        <div className="relative flex items-center border-b-[1px] border-zinc-200">
                             <Input
                                 className="ml-4 focus-visible:ring-0 focus-visible:outline-none
                                 focus-visible:ring-offset-0 bg-transparent border-0 rounded-none

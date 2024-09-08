@@ -5,7 +5,7 @@ import { SignInButton, SignUpButton } from '@clerk/nextjs';
 import prisma from '@/lib/db';
 import { DarkModeToggle } from '../other/DarkModeToggle';
 import serverUser from '@/lib/serverUser';
-import { CreateTrendButton } from '../trends/create-trend/CreateTrendButton';
+import { CreateTrendButton } from './CreateTrendButton';
 
 export const Navbar = async () => {
     const user = await serverUser();

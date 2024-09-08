@@ -12,7 +12,7 @@ import { SignOutButton } from '@clerk/nextjs';
 
 import { useState } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
-import { CreateTrendButton } from '../trends/create-trend/CreateTrendButton';
+import { CreateTrendButton } from './CreateTrendButton';
 
 type NavbarUserProps = {
     profilePicture: string | null;
@@ -30,7 +30,7 @@ export const NavbarUser = ({ profilePicture, username }: NavbarUserProps) => {
                     <div>
                         <Avatar className="h-8 w-8">
                             {profilePicture ? (
-                                <AvatarImage src={profilePicture} alt="trend_avatar" />
+                                <AvatarImage src={profilePicture} alt="user_avatar" />
                             ) : (
                                 <AvatarFallback>{username.at(0)?.toUpperCase()}</AvatarFallback>
                             )}

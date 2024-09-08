@@ -21,8 +21,8 @@ export default async function UsernameLayout({
     }
 
     return (
-        <div className="flex p-4 w-full justify-between xl:justify-center gap-4 overflow-y-auto">
-            <div className="w-full xl:w-auto flex-1  ">
+        <section className="flex p-4 w-full justify-between xl:justify-center gap-4 overflow-y-auto">
+            <div className="w-full xl:w-auto flex-1">
                 <ProfileInfo username={username} />
                 <>
                     <ProfileActivitySection username={username} />
@@ -30,6 +30,6 @@ export default async function UsernameLayout({
                 </>
             </div>
             <UserStatSidebar username={username} />
-        </div>
+        </section>
     );
 }

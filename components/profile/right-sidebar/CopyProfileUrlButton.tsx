@@ -1,4 +1,5 @@
 'use client';
+
 import { Forward } from 'lucide-react';
 import { useParams } from 'next/navigation';
 import { useToast } from '@/components/ui/use-toast';

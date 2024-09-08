@@ -1,5 +1,6 @@
 import { TrendHeader } from '@/components/trends/trend-header/TrendHeader';
 import { TrendPosts } from '@/components/trends/trend-main/TrendPosts';
+import { TrendSidebar } from '@/components/trends/trend-sidebar/TrendSidebar';
 import prisma from '@/lib/db';
 import serverUser from '@/lib/serverUser';
 import { UserStatus } from '@/types';
@@ -38,6 +39,11 @@ export default async function TrendNamePage({ params }: TrendNamePageProps) {
                     creator: { select: { image_url: true } },
                 },
             },
+            creator: {
+                select: {
+                    image_url: true,
+                },
+            },
         },
     });
 
@@ -57,11 +63,12 @@ export default async function TrendNamePage({ params }: TrendNamePageProps) {
     }
 
     return (
-        <section className="w-full">
-            <div className="w-full px-2 md:px-4 py-4 mx-auto pt-4">
+        <section className="flex p-4 px-0 md:px-4 w-full justify-between xl:justify-center gap-4 overflow-y-auto">
+            <div className="w-full px-2 md:px-4 py-4 pt-4 xl:w-auto flex-1">
                 <TrendHeader trend={trend} userStatus={userStatus} />
                 <TrendPosts trendName={trendName} initialPosts={trend.posts} />
             </div>
+            <TrendSidebar trend={trend} />
         </section>
     );
 }

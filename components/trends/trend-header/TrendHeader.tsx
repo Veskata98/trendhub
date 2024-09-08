@@ -1,20 +1,17 @@
 'use client';
 
-import Image from 'next/image';
-import { Trend } from '@prisma/client';
-import { useSearchParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { joinTrend } from '@/actions/trend-actions/joinTrend';
-import { UserStatus } from '@/types';
+import { TrendWithPostsAndMembers, UserStatus } from '@/types';
 import { leaveTrend } from '@/actions/trend-actions/leaveTrend';
-import { CreatePostButton } from '@/components/trends/create-post/CreatePostButton';
+import { CreatePostButton } from '@/components/trends/trend-main/CreatePostButton';
 import { Avatar, AvatarImage } from '@/components/ui/avatar';
 
-export const TrendHeader = ({ trend, userStatus }: { trend: Trend; userStatus: UserStatus }) => {
+export const TrendHeader = ({ trend, userStatus }: { trend: TrendWithPostsAndMembers; userStatus: UserStatus }) => {
     // const searchParams = useSearchParams();
 
     return (
-        <div className="w-full flex flex-col px-2">
+        <div className="w-full flex flex-col px-2 space-y-6">
             <div className="flex items-center justify-center gap-2">
                 <Avatar className="w-16 h-16">
                     <AvatarImage src={trend.image_url} alt="trend_image" />

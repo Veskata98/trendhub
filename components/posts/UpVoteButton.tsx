@@ -1,9 +1,9 @@
 import { upvotePost } from '@/actions/post-actions/postVoteActions';
 import { Button } from '../ui/button';
-import { ArrowBigUp } from 'lucide-react';
 import { useUser } from '@clerk/nextjs';
 import { Like } from '@prisma/client';
 import { cn } from '@/lib/utils';
+import Image from 'next/image';
 
 type UpVoteButtonProps = {
     postId: string;
@@ -28,7 +28,11 @@ export const UpVoteButton = ({ postId, likes }: UpVoteButtonProps) => {
             size="sm"
             className={cn('px-[6px]', !user?.username && 'pointer-events-none')}
         >
-            <ArrowBigUp className={cn('h-5 w-5 text-muted-foreground', isUpvoted && 'text-emerald-400')} />
+            {isUpvoted ? (
+                <Image src="/upvote-arrow-filled.svg" alt="upvote_arrow" width={20} height={20} />
+            ) : (
+                <Image src="/upvote-arrow.svg" alt="upvote_arrow" width={20} height={20} />
+            )}
         </Button>
     );
 };

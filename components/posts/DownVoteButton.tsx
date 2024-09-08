@@ -1,9 +1,9 @@
 import { downvotePost } from '@/actions/post-actions/postVoteActions';
 import { Button } from '../ui/button';
-import { ArrowBigDown } from 'lucide-react';
 import { useUser } from '@clerk/nextjs';
 import { Like } from '@prisma/client';
 import { cn } from '@/lib/utils';
+import Image from 'next/image';
 
 type DownVoteButtonProps = {
     postId: string;
@@ -28,7 +28,11 @@ export const DownVoteButton = ({ postId, likes }: DownVoteButtonProps) => {
             size="sm"
             className={cn('px-[6px]', !user?.username && 'pointer-events-none')}
         >
-            <ArrowBigDown className={cn('h-5 w-5 text-muted-foreground', isDownvoted && 'text-rose-400')} />
+            {isDownvoted ? (
+                <Image src="/downvote-arrow-filled.svg" alt="downvote_arrow" width={20} height={20} />
+            ) : (
+                <Image src="/downvote-arrow.svg" alt="downvote_arrow" width={20} height={20} />
+            )}
         </Button>
     );
 };
