@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation';
-import { ProfileActivitySection } from '@/components/profile/profile-activity-section/ProfileActivitySection';
 import { currentUser } from '@clerk/nextjs/server';
+import { PostFeed } from '@/components/home-page/home-page-post/PostFeed';
+import prisma from '@/lib/db';
 
 type ProfileActivityPageProps = {
     params: {
@@ -25,5 +26,39 @@ export default async function ProfileActivityPage({ params }: ProfileActivityPag
         redirect('/');
     }
 
-    return <div>posts</div>;
+    const posts = await prisma.post.findMany({
+        where: {
+            ...(activity === 'posts' && { creator_name: username }),
+            ...(activity === 'upvotes' && { likes: { some: { type: 'LIKE', username } } }),
+            ...(activity === 'downvotes' && { likes: { some: { type: 'DISLIKE', username } } }),
+        },
+        include: {
+            creator: {
+                select: {
+                    image_url: true,
+                },
+            },
+            likes: true,
+            trend: {
+                select: {
+                    image_url: true,
+                    name: true,
+                },
+            },
+        },
+        orderBy: {
+            created_at: 'desc',
+        },
+        take: 10,
+    });
+
+    if (activity === 'upvotes' && user?.username) {
+        return <PostFeed initialPosts={posts} username={user.username} activity="upvotes" />;
+    }
+
+    if (activity === 'downvotes' && user?.username) {
+        return <PostFeed initialPosts={posts} username={user.username} activity="downvotes" />;
+    }
+
+    return <PostFeed initialPosts={posts} isHomePage={false} username={username} />;
 }

@@ -13,10 +13,12 @@ export const PostFeed = ({
     initialPosts,
     isHomePage = true,
     username,
+    activity,
 }: {
     initialPosts: ExtentedPost[];
     isHomePage?: boolean;
     username?: string;
+    activity?: 'upvotes' | 'downvotes';
 }) => {
     const [posts, setPosts] = useState<ExtentedPost[]>([]);
     const [page, setPage] = useState(1);
@@ -36,7 +38,7 @@ export const PostFeed = ({
         if (!hasMore) return; // Stop loading if no more posts
 
         const next = page + 1;
-        const newPosts = await getPostsWithTrend(next, username);
+        const newPosts = await getPostsWithTrend(next, username, activity);
 
         if (newPosts.length === 0) {
             setHasMore(false); // No more posts to load
@@ -44,7 +46,7 @@ export const PostFeed = ({
             setPage(next);
             setPosts((prev) => [...prev, ...newPosts]);
         }
-    }, [page, hasMore, username]);
+    }, [page, hasMore, username, activity]);
 
     useEffect(() => {
         if (inView && hasMore) {
@@ -65,7 +67,7 @@ export const PostFeed = ({
     };
 
     return (
-        <div className="space-y-2 flex flex-col items-center">
+        <div className="space-y-2 flex flex-col items-center mb-4">
             {posts.map((post) => (
                 <PostCardHomePage
                     isHomePage={isHomePage}

@@ -34,3 +34,9 @@ export interface TrendWithPostsAndMembers extends Trend {
         image_url: string;
     };
 }
+
+export interface TrendWithMembers extends Trend {
+    members: {
+        profile_username: string;
+    }[];
+}

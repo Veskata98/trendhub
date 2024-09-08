@@ -4,12 +4,14 @@ import prisma from '@/lib/db';
 
 const LIMIT = 10;
 
-export const getPostsWithTrend = async (page: number = 1, username?: string) => {
+export const getPostsWithTrend = async (page: number = 1, username?: string, activity?: 'upvotes' | 'downvotes') => {
     try {
         const skip = (page - 1) * LIMIT;
         const latestPosts = await prisma.post.findMany({
             where: {
-                ...(username && { creator_name: username }),
+                ...(username && !activity && { creator_name: username }),
+                ...(activity === 'upvotes' && { likes: { some: { type: 'LIKE', username } } }),
+                ...(activity === 'downvotes' && { likes: { some: { type: 'DISLIKE', username } } }),
             },
             skip,
             take: LIMIT,
