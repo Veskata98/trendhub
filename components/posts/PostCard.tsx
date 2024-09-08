@@ -16,7 +16,7 @@ export const PostCard = ({ post }: { post: PostWithCreatorAvatarAndLikes }) => {
     return (
         <Card className="w-full max-w-[750px] dark:bg-zinc-700/30">
             <CardHeader className="flex flex-row items-center gap-4 py-4 px-4 md:px-6">
-                <Avatar className="h-8 w-8">
+                <Avatar className="h-8 w-8 shadow">
                     {post.creator.image_url ? (
                         <AvatarImage src={post.creator.image_url} alt="trend_avatar" />
                     ) : (

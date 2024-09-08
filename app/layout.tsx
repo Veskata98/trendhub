@@ -12,7 +12,7 @@ import { ModalProvider } from '@/components/providers/ModalProvider';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-    title: 'TrendHub',
+    title: 'TrendIt',
 };
 
 export default function RootLayout({

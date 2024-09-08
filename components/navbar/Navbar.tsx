@@ -36,7 +36,7 @@ export const Navbar = async () => {
                                     </div>
                                 </SignInButton>
                                 <SignUpButton>
-                                    <div className="bg-gray-200 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-300 cursor-pointer">
+                                    <div className="bg-gray-200 text-primary-800 px-4 py-2 rounded-md hover:bg-gray-300 cursor-pointer">
                                         Sign up
                                     </div>
                                 </SignUpButton>
