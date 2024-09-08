@@ -27,7 +27,7 @@ export const TrendSidebar = async ({ trend }: TrendSidebarProps) => {
                 <div className="space-y-3">
                     <h6 className="text-center text-sm">Creator</h6>
                     <Link href={`/profile/${trend.creator_name}`} className="flex flex-col items-center">
-                        <Avatar className="h-10 w-10">
+                        <Avatar className="h-10 w-10 shadow">
                             {trend.creator.image_url ? (
                                 <AvatarImage src={trend.creator.image_url} alt="user_avatar" />
                             ) : (

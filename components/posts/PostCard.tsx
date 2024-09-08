@@ -8,9 +8,9 @@ import moment from 'moment';
 import { PostWithCreatorAvatarAndLikes } from '@/types';
 import Link from 'next/link';
 import { PostImage } from './PostImage';
-import { UpVoteButton } from './UpVoteButton';
 import { PostLikeCount } from './PostLikeCount';
-import { DownVoteButton } from './DownVoteButton';
+import { UpVoteButton } from './vote-buttons/UpVoteButton';
+import { DownVoteButton } from './vote-buttons/DownVoteButton';
 
 type PostCardProps = {
     post: PostWithCreatorAvatarAndLikes;

@@ -1,14 +1,18 @@
-import { Separator } from '../ui/separator';
-import { TrendList } from './TrendList';
+import { ScrollArea } from '../ui/scroll-area';
+import { JoinedTrendList } from './trend-lists/JoinedTrendList';
+import { MyTrendList } from './trend-lists/MyTrendList';
+import { NewTrendList } from './trend-lists/NewTrendList';
+import { TopTrendList } from './trend-lists/TopTrendList';
 
 export const LeftSidebar = async () => {
     return (
-        <aside className="w-72 xl:w-80 h-full hidden md:block sticky top-0">
-            <div className="p-4 flex flex-col gap-2">
-                <h2 className="text-lg font-semibold">New trends</h2>
-                <Separator className="h-[1px] bg-zinc-600" />
-                <TrendList />
-            </div>
+        <aside className="w-96 h-full hidden md:block sticky top-0 overflow-scroll">
+            <ScrollArea className="p-4 px-1 flex flex-col overflow-scroll">
+                <TopTrendList />
+                <NewTrendList />
+                <MyTrendList />
+                <JoinedTrendList />
+            </ScrollArea>
         </aside>
     );
 };

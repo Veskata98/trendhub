@@ -21,11 +21,18 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                 },
             },
             likes: true,
+            trend: {
+                select: {
+                    image_url: true,
+                    name: true,
+                },
+            },
         },
         orderBy: {
             created_at: 'desc',
         },
+        take: 10,
     });
 
-    return <PostFeed initialPosts={posts} />;
+    return <PostFeed initialPosts={posts} isHomePage={false} username={username} />;
 }

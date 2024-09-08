@@ -9,7 +9,15 @@ import { downvotePost, upvotePost } from '@/actions/post-actions/postVoteActions
 import { updateVotes } from '@/lib/utils';
 import { useUser } from '@clerk/nextjs';
 
-export const PostFeed = ({ initialPosts }: { initialPosts: ExtentedPost[] }) => {
+export const PostFeed = ({
+    initialPosts,
+    isHomePage = true,
+    username,
+}: {
+    initialPosts: ExtentedPost[];
+    isHomePage?: boolean;
+    username?: string;
+}) => {
     const [posts, setPosts] = useState<ExtentedPost[]>([]);
     const [page, setPage] = useState(1);
     const [hasMore, setHasMore] = useState(true);
@@ -28,7 +36,7 @@ export const PostFeed = ({ initialPosts }: { initialPosts: ExtentedPost[] }) => 
         if (!hasMore) return; // Stop loading if no more posts
 
         const next = page + 1;
-        const newPosts = await getPostsWithTrend(next);
+        const newPosts = await getPostsWithTrend(next, username);
 
         if (newPosts.length === 0) {
             setHasMore(false); // No more posts to load
@@ -36,7 +44,7 @@ export const PostFeed = ({ initialPosts }: { initialPosts: ExtentedPost[] }) => 
             setPage(next);
             setPosts((prev) => [...prev, ...newPosts]);
         }
-    }, [page, hasMore]);
+    }, [page, hasMore, username]);
 
     useEffect(() => {
         if (inView && hasMore) {
@@ -60,6 +68,7 @@ export const PostFeed = ({ initialPosts }: { initialPosts: ExtentedPost[] }) => 
         <div className="space-y-2 flex flex-col items-center">
             {posts.map((post) => (
                 <PostCardHomePage
+                    isHomePage={isHomePage}
                     key={post.id}
                     post={post}
                     handleUpvote={handleUpvote}

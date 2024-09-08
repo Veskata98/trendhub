@@ -2,23 +2,24 @@ import { Avatar, AvatarFallback, AvatarImage } from '../../ui/avatar';
 import { Card, CardContent, CardFooter, CardHeader } from '../../ui/card';
 import { Button } from '../../ui/button';
 import { MessageSquare, Share2 } from 'lucide-react';
-import { ExtentedPost, PostWithTrendAndLikes } from '@/types';
+import { ExtentedPost } from '@/types';
 
 import moment from 'moment';
+import Link from 'next/link';
 
 import { PostImage } from '../../posts/PostImage';
-import Link from 'next/link';
-import { UpVoteButton } from '@/components/posts/UpVoteButton';
 import { PostLikeCount } from '@/components/posts/PostLikeCount';
-import { DownVoteButton } from '@/components/posts/DownVoteButton';
+import { UpVoteButton } from '@/components/posts/vote-buttons/UpVoteButton';
+import { DownVoteButton } from '@/components/posts/vote-buttons/DownVoteButton';
 
 type PostCardProps = {
+    isHomePage: boolean;
     post: ExtentedPost;
     handleUpvote: (postId: string) => void;
     handleDownvote: (postId: string) => void;
 };
 
-export const PostCardHomePage = ({ post, handleUpvote, handleDownvote }: PostCardProps) => {
+export const PostCardHomePage = ({ isHomePage, post, handleUpvote, handleDownvote }: PostCardProps) => {
     return (
         <Card className="w-full max-w-[750px] dark:bg-zinc-700/30">
             <CardHeader className="flex flex-row items-center gap-4 py-4 px-4 md:px-6">
@@ -28,11 +29,13 @@ export const PostCardHomePage = ({ post, handleUpvote, handleDownvote }: PostCar
                 </Avatar>
                 <div className="flex flex-col !mt-0">
                     <Link href={`/t/${post.trend_name}`}>
-                        <p className="text-sm font-semibold">{post.trend?.name}</p>
+                        <p className="text-sm font-semibold">t/{post.trend?.name}</p>
                     </Link>
-                    <p className="text-xs text-muted-foreground">
-                        Posted by {post.creator_name} • {moment(post.created_at).fromNow()}
-                    </p>
+                    {isHomePage && (
+                        <p className="text-xs text-muted-foreground">
+                            Posted by {post.creator_name} • {moment(post.created_at).fromNow()}
+                        </p>
+                    )}
                 </div>
             </CardHeader>
             <CardContent className="space-y-2">

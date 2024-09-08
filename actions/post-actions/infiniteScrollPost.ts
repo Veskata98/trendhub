@@ -4,10 +4,13 @@ import prisma from '@/lib/db';
 
 const LIMIT = 10;
 
-export const getPostsWithTrend = async (page: number = 1) => {
+export const getPostsWithTrend = async (page: number = 1, username?: string) => {
     try {
         const skip = (page - 1) * LIMIT;
         const latestPosts = await prisma.post.findMany({
+            where: {
+                ...(username && { creator_name: username }),
+            },
             skip,
             take: LIMIT,
             orderBy: { created_at: 'desc' },

@@ -55,9 +55,9 @@ export const createPost = async (formData: FormData, trendName: string, imageUrl
 
         await prisma.post.create({
             data: {
-                title,
+                title: title.trim(),
                 trend_name: trendName,
-                description,
+                description: description.trim(),
                 image_url: imageUrl,
                 creator_name: user!.username,
             },

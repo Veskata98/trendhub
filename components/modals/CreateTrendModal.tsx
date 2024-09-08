@@ -127,7 +127,7 @@ export const CreateTrendModal = () => {
 
                         {image ? (
                             <div className="relative m-auto">
-                                <Avatar className="h-24 w-24">
+                                <Avatar className="h-24 w-24 shadow">
                                     <AvatarImage src={URL.createObjectURL(image)} alt="trend_avatar" />
                                 </Avatar>
                                 <Button

@@ -32,8 +32,8 @@ export const createTrend = async (formdata: FormData, imageUrl: string | null) =
 
         await prisma.trend.create({
             data: {
-                name,
-                description,
+                name: name.trim(),
+                description: description.trim(),
                 creator_name: user!.username,
                 image_url: imageUrl ? imageUrl : '/default-trend-logo.png',
             },

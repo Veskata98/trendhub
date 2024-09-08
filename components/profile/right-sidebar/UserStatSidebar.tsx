@@ -5,6 +5,7 @@ import { AuraSection } from './AuraSection';
 import { currentUser } from '@clerk/nextjs/server';
 import { JoinDate } from './JoinDate';
 import { Separator } from '@/components/ui/separator';
+import { DeleteProfileButton } from './DeleteProfileButton';
 
 type UserStatSidebarProps = {
     username: string;
@@ -32,11 +33,7 @@ export const UserStatSidebar = async ({ username }: UserStatSidebarProps) => {
             <AuraSection username={username} />
             <Separator className="bg-zinc-100" />
             <JoinDate joinDate={profile.created_at.toISOString()} />
-            {canEdit && (
-                <button className="bg-zinc-300 w-full text-rose-600 font-semibold py-2 px-4 rounded transition duration-200 ease-out hover:bg-rose-300 mt-auto">
-                    Delete account
-                </button>
-            )}
+            {canEdit && <DeleteProfileButton />}
         </aside>
     );
 };

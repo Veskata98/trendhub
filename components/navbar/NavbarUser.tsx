@@ -28,7 +28,7 @@ export const NavbarUser = ({ profilePicture, username }: NavbarUserProps) => {
             <Popover open={isOpen} onOpenChange={setIsOpen}>
                 <PopoverTrigger asChild onClick={() => setIsOpen(true)}>
                     <div>
-                        <Avatar className="h-8 w-8">
+                        <Avatar className="h-8 w-8 shadow">
                             {profilePicture ? (
                                 <AvatarImage src={profilePicture} alt="user_avatar" />
                             ) : (

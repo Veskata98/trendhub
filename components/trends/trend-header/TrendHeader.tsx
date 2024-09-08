@@ -14,7 +14,7 @@ export const TrendHeader = ({ trend, userStatus }: { trend: TrendWithPostsAndMem
     return (
         <div className="w-full flex flex-col px-2 space-y-6">
             <div className="flex items-center justify-center gap-2">
-                <Avatar className="w-16 h-16">
+                <Avatar className="w-16 h-16 shadow">
                     <AvatarImage src={trend.image_url} alt="trend_image" />
                 </Avatar>
                 <TrendName trendName={trend.name} />

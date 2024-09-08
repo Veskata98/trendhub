@@ -1,4 +1,4 @@
-import { Button } from '../ui/button';
+import { Button } from '@/components/ui/button';
 import { useUser } from '@clerk/nextjs';
 import { Like } from '@prisma/client';
 import { cn } from '@/lib/utils';
