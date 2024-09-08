@@ -12,6 +12,8 @@ type ProfileActivityPageProps = {
 
 const ACTIVITY_TYPES = ['posts', 'comments', 'upvotes', 'downvotes'];
 
+export const dynamic = 'force-dynamic';
+
 export default async function ProfileActivityPage({ params }: ProfileActivityPageProps) {
     const activity = params.activity;
     const username = params.username;

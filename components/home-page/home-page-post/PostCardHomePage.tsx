@@ -23,10 +23,12 @@ export const PostCardHomePage = ({ isHomePage, post, handleUpvote, handleDownvot
     return (
         <Card className="w-full max-w-[750px] dark:bg-zinc-700/30">
             <CardHeader className="flex flex-row items-center gap-4 py-4 px-4 md:px-6">
-                <Avatar className="h-8 w-8 shadow">
-                    <AvatarImage src={post.trend?.image_url} alt="trend_avatar" />
-                    <AvatarFallback>T</AvatarFallback>
-                </Avatar>
+                <Link href={`/t/${post.trend_name}`}>
+                    <Avatar className="h-8 w-8 shadow">
+                        <AvatarImage src={post.trend?.image_url} alt="trend_avatar" />
+                        <AvatarFallback>T</AvatarFallback>
+                    </Avatar>
+                </Link>
                 <div className="flex flex-col !mt-0">
                     <Link href={`/t/${post.trend_name}`}>
                         <p className="text-sm font-semibold">t/{post.trend?.name}</p>

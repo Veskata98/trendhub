@@ -22,15 +22,17 @@ export const PostCard = ({ post, handleUpvote, handleDownvote }: PostCardProps) 
     return (
         <Card className="w-full max-w-[750px] dark:bg-zinc-700/30">
             <CardHeader className="flex flex-row items-center gap-4 py-4 px-4 md:px-6">
-                <Avatar className="h-8 w-8 shadow">
-                    {post.creator.image_url ? (
-                        <AvatarImage src={post.creator.image_url} alt="trend_avatar" />
-                    ) : (
-                        <AvatarFallback className="text-lg select-none">
-                            {post.creator_name.at(0)?.toUpperCase()}
-                        </AvatarFallback>
-                    )}
-                </Avatar>
+                <Link href={`/profile/${post.creator_name}`}>
+                    <Avatar className="h-8 w-8 shadow">
+                        {post.creator.image_url ? (
+                            <AvatarImage src={post.creator.image_url} alt="trend_avatar" />
+                        ) : (
+                            <AvatarFallback className="text-lg select-none">
+                                {post.creator_name.at(0)?.toUpperCase()}
+                            </AvatarFallback>
+                        )}
+                    </Avatar>
+                </Link>
                 <p className="text-sm font-semibold !m-0">
                     <Link href={`/profile/${post.creator_name}`}>{post.creator_name}</Link>
                     <span className="text-zinc-500 dark:text-zinc-400"> • {moment(post.created_at).fromNow()}</span>

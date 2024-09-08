@@ -18,7 +18,7 @@ export const JoinedActionButton = ({
     };
 
     return isCreator(trend) ? (
-        <Button className="">-</Button>
+        <p className="w-10">-</p>
     ) : trend.members.some((member) => member.profile_username === currentUserUsername) ? (
         <Button
             className="font-semibold text-rose-500 hover:bg-rose-500/20"
