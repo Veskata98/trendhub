@@ -22,6 +22,17 @@ export interface PostWithCreatorAvatarAndLikes extends Post {
     likes: Like[];
 }
 
+export interface ExtentedPost extends Post {
+    trend?: {
+        image_url: string;
+        name: string;
+    };
+    creator?: {
+        image_url: string;
+    };
+    likes: Like[];
+}
+
 export interface TrendWithPostsAndMembers extends Trend {
     members: {
         profile_username: string;

@@ -2,15 +2,20 @@
 
 import { getPostsWithTrend } from '@/actions/post-actions/infiniteScrollPost';
 import { PostCardHomePage } from './PostCardHomePage';
-import { PostWithTrendAndLikes } from '@/types';
+import { ExtentedPost } from '@/types';
 import { useCallback, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
+import { downvotePost, upvotePost } from '@/actions/post-actions/postVoteActions';
+import { updateVotes } from '@/lib/utils';
+import { useUser } from '@clerk/nextjs';
 
-export const NewPosts = ({ initialPosts }: { initialPosts: PostWithTrendAndLikes[] }) => {
-    const [posts, setPosts] = useState<PostWithTrendAndLikes[]>([]);
+export const PostFeed = ({ initialPosts }: { initialPosts: ExtentedPost[] }) => {
+    const [posts, setPosts] = useState<ExtentedPost[]>([]);
     const [page, setPage] = useState(1);
     const [hasMore, setHasMore] = useState(true);
     const [ref, inView] = useInView();
+
+    const { user } = useUser();
 
     useEffect(() => {
         setPosts(initialPosts);
@@ -39,10 +44,27 @@ export const NewPosts = ({ initialPosts }: { initialPosts: PostWithTrendAndLikes
         }
     }, [inView, loadMorePosts, hasMore]);
 
+    const handleUpvote = async (postId: string) => {
+        const result = await upvotePost(postId);
+        if (!result.success) return;
+        setPosts((oldPosts) => updateVotes(oldPosts, postId, result.data, user?.username));
+    };
+
+    const handleDownvote = async (postId: string) => {
+        const result = await downvotePost(postId);
+        if (!result.success) return;
+        setPosts((oldPosts) => updateVotes(oldPosts, postId, result.data, user?.username));
+    };
+
     return (
         <div className="space-y-2 flex flex-col items-center">
             {posts.map((post) => (
-                <PostCardHomePage key={post.id} post={post} />
+                <PostCardHomePage
+                    key={post.id}
+                    post={post}
+                    handleUpvote={handleUpvote}
+                    handleDownvote={handleDownvote}
+                />
             ))}
             {hasMore && <div ref={ref}>Loading...</div>}
         </div>

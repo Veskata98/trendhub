@@ -2,14 +2,13 @@
 
 import prisma from '@/lib/db';
 import serverUser from '@/lib/serverUser';
-import { revalidateTag } from 'next/cache';
 
 export const upvotePost = async (postId: string) => {
     try {
         const user = await serverUser();
 
         if (!user) {
-            return;
+            return { success: false };
         }
 
         const alreadyVoted = await prisma.like.findFirst({
@@ -27,10 +26,9 @@ export const upvotePost = async (postId: string) => {
                     },
                 });
 
-                revalidateTag(`${postId}`);
-                return;
+                return { success: true, data: null };
             } else {
-                await prisma.like.update({
+                const updatedLike = await prisma.like.update({
                     where: {
                         id: alreadyVoted.id,
                     },
@@ -39,12 +37,11 @@ export const upvotePost = async (postId: string) => {
                     },
                 });
 
-                revalidateTag(`${postId}`);
-                return;
+                return { success: true, data: updatedLike };
             }
         }
 
-        await prisma.like.create({
+        const newUpvote = await prisma.like.create({
             data: {
                 type: 'LIKE',
                 postId,
@@ -52,9 +49,10 @@ export const upvotePost = async (postId: string) => {
             },
         });
 
-        revalidateTag(`${postId}`);
+        return { success: true, data: newUpvote };
     } catch (error) {
         console.error(error);
+        return { success: false };
     }
 };
 
@@ -63,7 +61,7 @@ export const downvotePost = async (postId: string) => {
         const user = await serverUser();
 
         if (!user) {
-            return;
+            return { success: false };
         }
 
         const alreadyVoted = await prisma.like.findFirst({
@@ -81,10 +79,9 @@ export const downvotePost = async (postId: string) => {
                     },
                 });
 
-                revalidateTag(`${postId}`);
-                return;
+                return { success: true, data: null };
             } else {
-                await prisma.like.update({
+                const updatedDislike = await prisma.like.update({
                     where: {
                         id: alreadyVoted.id,
                     },
@@ -93,12 +90,11 @@ export const downvotePost = async (postId: string) => {
                     },
                 });
 
-                revalidateTag(`${postId}`);
-                return;
+                return { success: true, data: updatedDislike };
             }
         }
 
-        await prisma.like.create({
+        const newDownvote = await prisma.like.create({
             data: {
                 type: 'DISLIKE',
                 postId,
@@ -106,8 +102,9 @@ export const downvotePost = async (postId: string) => {
             },
         });
 
-        revalidateTag(`${postId}`);
+        return { success: true, data: newDownvote };
     } catch (error) {
         console.error(error);
+        return { success: false };
     }
 };

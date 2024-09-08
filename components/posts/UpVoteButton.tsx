@@ -1,4 +1,3 @@
-import { upvotePost } from '@/actions/post-actions/postVoteActions';
 import { Button } from '../ui/button';
 import { useUser } from '@clerk/nextjs';
 import { Like } from '@prisma/client';
@@ -8,22 +7,19 @@ import Image from 'next/image';
 type UpVoteButtonProps = {
     postId: string;
     likes: Like[];
+    handleUpvote: (postId: string) => void;
 };
 
-export const UpVoteButton = ({ postId, likes }: UpVoteButtonProps) => {
+export const UpVoteButton = ({ postId, likes, handleUpvote }: UpVoteButtonProps) => {
     const { user } = useUser();
 
     const isUpvoted = likes.find(
         (like) => like.type === 'LIKE' && like.postId === postId && like.username === user?.username
     );
 
-    const onClick = async () => {
-        await upvotePost(postId);
-    };
-
     return (
         <Button
-            onClick={onClick}
+            onClick={() => handleUpvote(postId)}
             variant="ghost"
             size="sm"
             className={cn('px-[6px]', !user?.username && 'pointer-events-none')}

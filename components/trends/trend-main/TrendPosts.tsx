@@ -6,6 +6,9 @@ import { PostWithCreatorAvatarAndLikes } from '@/types';
 import { useCallback, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { getPostsWithCreator } from '@/actions/post-actions/infiniteScrollPost';
+import { downvotePost, upvotePost } from '@/actions/post-actions/postVoteActions';
+import { useUser } from '@clerk/nextjs';
+import { updateVotes } from '@/lib/utils';
 
 export const TrendPosts = ({
     trendName,
@@ -18,6 +21,8 @@ export const TrendPosts = ({
     const [page, setPage] = useState(1);
     const [hasMore, setHasMore] = useState(true);
     const [ref, inView] = useInView();
+
+    const { user } = useUser();
 
     // Update state when initialPosts changes
     useEffect(() => {
@@ -47,11 +52,23 @@ export const TrendPosts = ({
         }
     }, [inView, loadMorePosts, hasMore]);
 
+    const handleUpvote = async (postId: string) => {
+        const result = await upvotePost(postId);
+        if (!result.success) return;
+        setPosts((oldPosts) => updateVotes(oldPosts, postId, result.data, user?.username));
+    };
+
+    const handleDownvote = async (postId: string) => {
+        const result = await downvotePost(postId);
+        if (!result.success) return;
+        setPosts((oldPosts) => updateVotes(oldPosts, postId, result.data, user?.username));
+    };
+
     return (
         <ScrollArea className="w-full px-0 py-4 mx-auto pt-2">
             <div className="space-y-2 flex flex-col items-center">
                 {posts.map((post) => (
-                    <PostCard key={post.id} post={post} />
+                    <PostCard key={post.id} post={post} handleUpvote={handleUpvote} handleDownvote={handleDownvote} />
                 ))}
                 {hasMore && <div ref={ref}>Loading...</div>}
             </div>

@@ -1,12 +1,12 @@
 import prisma from '@/lib/db';
-import { NewPosts } from './NewPosts';
+import { PostFeed } from './PostFeed';
 
-export const PostsFetcher = async () => {
+export const HomePagePosts = async () => {
     const posts = await prisma.post.findMany({
         take: 10,
         orderBy: { created_at: 'desc' },
         include: { likes: true, trend: { select: { name: true, image_url: true } } },
     });
 
-    return <NewPosts initialPosts={posts} />;
+    return <PostFeed initialPosts={posts} />;
 };
