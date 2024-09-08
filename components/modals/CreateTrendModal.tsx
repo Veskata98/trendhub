@@ -102,7 +102,7 @@ export const CreateTrendModal = () => {
                         </div>
                         <div>
                             <Label htmlFor="description" className="font-semibold">
-                                Trend Info
+                                Trend Description
                             </Label>
                             <Textarea
                                 className="focus-visible:ring-0 focus-visible:outline-none

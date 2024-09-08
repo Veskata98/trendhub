@@ -3,6 +3,8 @@ import { redirect } from 'next/navigation';
 import { CopyProfileUrlButton } from './CopyProfileUrlButton';
 import { AuraSection } from './AuraSection';
 import { currentUser } from '@clerk/nextjs/server';
+import { JoinDate } from './JoinDate';
+import { Separator } from '@/components/ui/separator';
 
 type UserStatSidebarProps = {
     username: string;
@@ -21,15 +23,17 @@ export const UserStatSidebar = async ({ username }: UserStatSidebarProps) => {
     return (
         <aside
             className="text-white rounded-xl flex-col gap-8 w-80 hidden lg:flex pt-12 
-        bg-gradient-to-t from-primary-500/90 via-purple-500/90 to-rose-500/90 p-4 sticky top-0"
+        bg-gradient-to-t from-primary-500/90 via-violet-500/90 to-black/80 p-4 sticky top-0"
         >
             <div className="mx-auto text-center space-y-1">
-                <p>{profile.username}</p>
+                <p className="font-semibold">{profile.username}</p>
                 <CopyProfileUrlButton />
             </div>
-            <AuraSection createdAtDate={profile.created_at.toLocaleDateString()} username={username} />
+            <AuraSection username={username} />
+            <Separator className="bg-zinc-100" />
+            <JoinDate joinDate={profile.created_at.toISOString()} />
             {canEdit && (
-                <button className="bg-red-500 w-full text-white py-2 px-4 rounded transition duration-200 ease-out hover:bg-red-600 mt-auto">
+                <button className="bg-zinc-300 w-full text-rose-600 font-semibold py-2 px-4 rounded transition duration-200 ease-out hover:bg-rose-300 mt-auto">
                     Delete account
                 </button>
             )}

@@ -6,6 +6,7 @@ import { TrendWithPostsAndMembers, UserStatus } from '@/types';
 import { leaveTrend } from '@/actions/trend-actions/leaveTrend';
 import { CreatePostButton } from '@/components/trends/trend-main/CreatePostButton';
 import { Avatar, AvatarImage } from '@/components/ui/avatar';
+import { TrendName } from './TrendName';
 
 export const TrendHeader = ({ trend, userStatus }: { trend: TrendWithPostsAndMembers; userStatus: UserStatus }) => {
     // const searchParams = useSearchParams();
@@ -16,7 +17,7 @@ export const TrendHeader = ({ trend, userStatus }: { trend: TrendWithPostsAndMem
                 <Avatar className="w-16 h-16">
                     <AvatarImage src={trend.image_url} alt="trend_image" />
                 </Avatar>
-                <span className="text-xl font-semibold">t/{trend.name}</span>
+                <TrendName trendName={trend.name} />
             </div>
             <div className="flex justify-between items-center border-b-[1px] border-zinc-300/50 dark:border-zinc-700/50 pb-2">
                 <div>Sort type</div>

@@ -1,6 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Separator } from '@/components/ui/separator';
 import { TrendWithPostsAndMembers } from '@/types';
+import Link from 'next/link';
 
 type TrendSidebarProps = {
     trend: TrendWithPostsAndMembers;
@@ -25,7 +26,7 @@ export const TrendSidebar = async ({ trend }: TrendSidebarProps) => {
                 <Separator className="bg-zinc-500" />
                 <div className="space-y-3">
                     <h6 className="text-center text-sm">Creator</h6>
-                    <div className="flex flex-col items-center">
+                    <Link href={`/profile/${trend.creator_name}`} className="flex flex-col items-center">
                         <Avatar className="h-10 w-10">
                             {trend.creator.image_url ? (
                                 <AvatarImage src={trend.creator.image_url} alt="user_avatar" />
@@ -34,7 +35,7 @@ export const TrendSidebar = async ({ trend }: TrendSidebarProps) => {
                             )}
                         </Avatar>
                         <p className="font-semibold text-sm">{trend.creator_name}</p>
-                    </div>
+                    </Link>
                 </div>
             </div>
         </aside>

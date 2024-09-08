@@ -2,27 +2,24 @@
 
 import { Forward } from 'lucide-react';
 import { useParams } from 'next/navigation';
-import { useToast } from '@/components/ui/use-toast';
+import { toast } from 'sonner';
 
 export const CopyProfileUrlButton = () => {
-    const { toast } = useToast();
     const params = useParams();
 
     const profileUrl = `${process.env.NEXT_PUBLIC_BASE_URL!}/profile/${params.username}`;
 
     const handleCopyClick = async () => {
         await navigator.clipboard.writeText(profileUrl);
-        toast({
-            className: 'bg-primary-500 text-white',
-            duration: 1000,
-            title: 'Profile copied to clipboard ',
-        });
+        toast.success('Profile copied to clipboard');
     };
 
     return (
         <button
             onClick={handleCopyClick}
-            className="flex gap-2 justify-center text-sm bg-zinc-700 hover:bg-opacity-70 bg-opacity-50 py-[6px] px-2 rounded-md"
+            className="flex gap-2 justify-center text-sm bg-zinc-400
+            hover:bg-opacity-70 bg-opacity-50 py-[6px] px-2 rounded-md
+            font-semibold"
         >
             <Forward />
             Share Profile
