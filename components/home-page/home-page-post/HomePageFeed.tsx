@@ -1,7 +1,7 @@
 import prisma from '@/lib/db';
 import { PostFeed } from '../../posts/PostFeed';
 
-export const HomePagePosts = async () => {
+export const HomePageFeed = async () => {
     const posts = await prisma.post.findMany({
         take: 10,
         orderBy: { created_at: 'desc' },

@@ -1,7 +1,7 @@
 'use client';
 
 import { getPostsWithTrend } from '@/actions/post-actions/infiniteScrollPost';
-import { PostCardHomePage } from '../home-page/home-page-post/PostCardHomePage';
+import { HomePagePostCard } from '../home-page/home-page-post/HomePagePostCard';
 import { ExtentedPost } from '@/types';
 import { useCallback, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
@@ -9,7 +9,6 @@ import { downvotePost, upvotePost } from '@/actions/post-actions/postVoteActions
 import { updateVotes } from '@/lib/utils';
 import { useUser } from '@clerk/nextjs';
 import { Loader2 } from 'lucide-react';
-import { revalidateTag } from 'next/cache';
 
 export const PostFeed = ({
     initialPosts,
@@ -71,7 +70,7 @@ export const PostFeed = ({
     return (
         <div className="space-y-2 flex flex-col items-center mb-4">
             {posts.map((post) => (
-                <PostCardHomePage
+                <HomePagePostCard
                     isHomePage={isHomePage}
                     key={post.id}
                     post={post}

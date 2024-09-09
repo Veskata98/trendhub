@@ -21,7 +21,7 @@ type PostCardProps = {
 export const PostCard = ({ post, handleUpvote, handleDownvote }: PostCardProps) => {
     return (
         <Card className="w-full max-w-[750px] dark:bg-zinc-700/30">
-            <CardHeader className="flex flex-row items-center gap-4 py-4 px-4 md:px-6">
+            <CardHeader className="flex flex-row items-center gap-2 py-4 px-4 md:px-6">
                 <Link href={`/profile/${post.creator_name}`}>
                     <Avatar className="h-8 w-8 shadow">
                         {post.creator.image_url ? (

@@ -57,17 +57,17 @@ export const NavbarUser = ({ profilePicture, username }: NavbarUserProps) => {
                         <Separator className="dark:bg-slate-600" />
 
                         <div
-                            className="px-4 flex md:hidden w-full flex-col items-center sm:items-start
+                            className="flex md:hidden w-full flex-col items-center sm:items-start
                      hover:bg-zinc-300 dark:hover:bg-zinc-600"
                         >
-                            <div onClick={() => setIsOpen(false)} className="w-full flex items-center gap-4 h-12">
+                            <div onClick={() => setIsOpen(false)} className="px-4 w-full flex items-center gap-4 h-12">
                                 <CreateTrendButton smallDisplay={true} />
                             </div>
                             <Separator className="dark:bg-slate-600" />
                         </div>
 
-                        <div className="px-4 flex md:hidden w-full flex-col items-center sm:items-start">
-                            <div className="flex items-center gap-4 h-12">
+                        <div className="flex md:hidden w-full flex-col items-center sm:items-start">
+                            <div className="px-4 flex items-center gap-4 h-12">
                                 {theme === 'dark' ? (
                                     <p className="hidden sm:block">Dark Mode</p>
                                 ) : (

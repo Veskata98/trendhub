@@ -26,10 +26,10 @@ export const ProfileRightSidebar = async ({ username, smallDisplay = false }: Pr
 
     if (smallDisplay) {
         return (
-            <div className=" space-y-4 bg-zinc-100/40 dark:bg-zinc-700/40 rounded-xl w-full flex-col flex lg:hidden py-4">
+            <div className=" space-y-4 bg-zinc-100/40 dark:bg-zinc-700/40 rounded-xl w-full flex-col flex lg:hidden py-6">
                 <div className="justify-around items-center space-y-1 flex">
                     <CopyProfileUrlMobileButton username={profile.username} />
-                    <JoinDate className="text-xs font-normal" joinDate={profile.created_at.toISOString()} />
+                    <JoinDate className="text-xs font-normal lowercase" joinDate={profile.created_at.toISOString()} />
                 </div>
                 <Separator className="dark:bg-white bg-zinc-600 w-[90%] mx-auto" />
                 <MobileAuraSection username={username} />

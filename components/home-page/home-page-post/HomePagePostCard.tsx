@@ -12,17 +12,17 @@ import { PostLikeCount } from '@/components/posts/PostLikeCount';
 import { UpVoteButton } from '@/components/posts/vote-buttons/UpVoteButton';
 import { DownVoteButton } from '@/components/posts/vote-buttons/DownVoteButton';
 
-type PostCardProps = {
+type HomePagePostCardProps = {
     isHomePage: boolean;
     post: ExtentedPost;
     handleUpvote: (postId: string) => void;
     handleDownvote: (postId: string) => void;
 };
 
-export const PostCardHomePage = ({ isHomePage, post, handleUpvote, handleDownvote }: PostCardProps) => {
+export const HomePagePostCard = ({ isHomePage, post, handleUpvote, handleDownvote }: HomePagePostCardProps) => {
     return (
         <Card className="w-full max-w-[750px] dark:bg-zinc-700/30">
-            <CardHeader className="flex flex-row items-center gap-4 py-4 px-4 md:px-6">
+            <CardHeader className="flex flex-row items-center gap-2 py-4 px-4 md:px-6">
                 <Link href={`/t/${post.trend_name}`}>
                     <Avatar className="h-8 w-8 shadow">
                         <AvatarImage src={post.trend?.image_url} alt="trend_avatar" />
