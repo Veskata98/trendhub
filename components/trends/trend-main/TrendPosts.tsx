@@ -2,22 +2,16 @@
 
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { PostCard } from '@/components/posts/PostCard';
-import { PostWithCreatorAvatarAndLikes } from '@/types';
+import { ExtentedPost } from '@/types';
 import { useCallback, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { getPostsWithCreator } from '@/actions/post-actions/infiniteScrollPost';
+import { getPosts } from '@/actions/post-actions/getPosts';
 import { downvotePost, upvotePost } from '@/actions/post-actions/postVoteActions';
 import { useUser } from '@clerk/nextjs';
 import { updateVotes } from '@/lib/utils';
 
-export const TrendPosts = ({
-    trendName,
-    initialPosts,
-}: {
-    trendName: string;
-    initialPosts: PostWithCreatorAvatarAndLikes[];
-}) => {
-    const [posts, setPosts] = useState<PostWithCreatorAvatarAndLikes[]>([]);
+export const TrendPosts = ({ trendName, initialPosts }: { trendName: string; initialPosts: ExtentedPost[] }) => {
+    const [posts, setPosts] = useState<ExtentedPost[]>([]);
     const [page, setPage] = useState(1);
     const [hasMore, setHasMore] = useState(true);
     const [ref, inView] = useInView();
@@ -36,7 +30,7 @@ export const TrendPosts = ({
         if (!hasMore) return; // Stop loading if no more posts
 
         const next = page + 1;
-        const newPosts = await getPostsWithCreator(next, trendName);
+        const newPosts = await getPosts({ page: next, trendName });
 
         if (newPosts.length === 0) {
             setHasMore(false); // No more posts to load

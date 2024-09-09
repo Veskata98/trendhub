@@ -55,12 +55,12 @@ export default async function ProfileActivityPage({ params }: ProfileActivityPag
     });
 
     if (activity === 'upvotes' && user?.username) {
-        return <PostFeed initialPosts={posts} username={user.username} activity="upvotes" />;
+        return <PostFeed initialPosts={posts} username={user.username} activity="upvotes" isProfilePage={true} />;
     }
 
     if (activity === 'downvotes' && user?.username) {
-        return <PostFeed initialPosts={posts} username={user.username} activity="downvotes" />;
+        return <PostFeed initialPosts={posts} username={user.username} activity="downvotes" isProfilePage={true} />;
     }
 
-    return <PostFeed initialPosts={posts} isHomePage={false} username={username} />;
+    return <PostFeed initialPosts={posts} isHomePage={false} username={username} isProfilePage={true} />;
 }

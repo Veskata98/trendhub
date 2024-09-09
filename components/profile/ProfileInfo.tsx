@@ -1,6 +1,6 @@
 import prisma from '@/lib/db';
 import { redirect } from 'next/navigation';
-import { ProfileAvatar } from './ProfileAvatar';
+import { ProfileAvatar } from './profile-avatar/ProfileAvatar';
 import { currentUser } from '@clerk/nextjs/server';
 
 type ProfileInfoProps = {

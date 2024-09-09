@@ -1,7 +1,6 @@
-import { Input } from '../ui/input';
-import { Button } from '../ui/button';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../ui/tooltip';
-import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
+import { Button } from '@/components/ui/button';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Check, UserPen, X } from 'lucide-react';
 import { useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
@@ -34,6 +33,7 @@ export const EditableAvatar = ({ src, username }: { src: string; username: strin
 
         if (imageUrl) {
             await changeAvatar(username, imageUrl);
+            toast.success('Avatar successfully changed');
         }
         setNewAvatar(null);
     };

@@ -75,3 +75,23 @@
     --uc-primary-oklch-dark: 69% 0.1768 258.4;
     --uc-primary-oklch-light: 59% 0.22 264;
 }
+
+/* For WebKit browsers (Chrome, Safari) */
+.scroll-hidden {
+    overflow: hidden; /* This hides the scrollbar and prevents scrolling */
+    overflow-y: scroll; /* Allows vertical scrolling */
+}
+
+/* For Firefox */
+.scroll-hidden {
+    scrollbar-width: none; /* Hides scrollbar in Firefox */
+}
+
+/* For IE and Edge */
+.scroll-hidden {
+    -ms-overflow-style: none; /* Hides scrollbar in IE and Edge */
+}
+
+.scroll-hidden::-webkit-scrollbar {
+    display: none; /* Hides scrollbar in WebKit browsers */
+}

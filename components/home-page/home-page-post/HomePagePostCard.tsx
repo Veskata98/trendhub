@@ -41,7 +41,7 @@ export const HomePagePostCard = ({ isHomePage, post, handleUpvote, handleDownvot
                 </div>
             </CardHeader>
             <CardContent className="space-y-2">
-                <h2 className="md:text-xl font-bold">{post.title}</h2>
+                <h2 className="md:text-lg font-bold">{post.title}</h2>
                 {post.description && <p className="text-muted-foreground text-sm md:text-base">{post.description}</p>}
                 {post.image_url && <PostImage imageUrl={post.image_url} />}
             </CardContent>

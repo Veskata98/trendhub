@@ -5,7 +5,7 @@ import { Card, CardContent, CardFooter, CardHeader } from '../ui/card';
 import { Button } from '../ui/button';
 import { MessageSquare, Share2 } from 'lucide-react';
 import moment from 'moment';
-import { PostWithCreatorAvatarAndLikes } from '@/types';
+import { ExtentedPost } from '@/types';
 import Link from 'next/link';
 import { PostImage } from './PostImage';
 import { PostLikeCount } from './PostLikeCount';
@@ -13,7 +13,7 @@ import { UpVoteButton } from './vote-buttons/UpVoteButton';
 import { DownVoteButton } from './vote-buttons/DownVoteButton';
 
 type PostCardProps = {
-    post: PostWithCreatorAvatarAndLikes;
+    post: ExtentedPost;
     handleUpvote: (postId: string) => void;
     handleDownvote: (postId: string) => void;
 };
@@ -24,7 +24,7 @@ export const PostCard = ({ post, handleUpvote, handleDownvote }: PostCardProps) 
             <CardHeader className="flex flex-row items-center gap-2 py-4 px-4 md:px-6">
                 <Link href={`/profile/${post.creator_name}`}>
                     <Avatar className="h-8 w-8 shadow">
-                        {post.creator.image_url ? (
+                        {post?.creator?.image_url ? (
                             <AvatarImage src={post.creator.image_url} alt="trend_avatar" />
                         ) : (
                             <AvatarFallback className="text-lg select-none">
@@ -39,7 +39,7 @@ export const PostCard = ({ post, handleUpvote, handleDownvote }: PostCardProps) 
                 </p>
             </CardHeader>
             <CardContent className="space-y-2">
-                <h2 className="md:text-xl font-bold">{post.title}</h2>
+                <h2 className="md:text-lg font-bold">{post.title}</h2>
                 {post.description && <p className="text-muted-foreground text-sm md:text-base">{post.description}</p>}
                 {post.image_url && <PostImage imageUrl={post.image_url} />}
             </CardContent>

@@ -1,6 +1,6 @@
 'use client';
 
-import { getPostsWithTrend } from '@/actions/post-actions/infiniteScrollPost';
+import { getPosts } from '@/actions/post-actions/getPosts';
 import { HomePagePostCard } from '../home-page/home-page-post/HomePagePostCard';
 import { ExtentedPost } from '@/types';
 import { useCallback, useEffect, useState } from 'react';
@@ -13,13 +13,19 @@ import { Loader2 } from 'lucide-react';
 export const PostFeed = ({
     initialPosts,
     isHomePage = true,
+    isProfilePage = false,
     username,
     activity,
+    searchTerm,
+    sort = 'hot',
 }: {
     initialPosts: ExtentedPost[];
     isHomePage?: boolean;
+    isProfilePage?: boolean;
     username?: string;
     activity?: 'upvotes' | 'downvotes';
+    searchTerm?: string;
+    sort?: 'hot' | 'new' | 'top';
 }) => {
     const [posts, setPosts] = useState<ExtentedPost[]>([]);
     const [page, setPage] = useState(1);
@@ -39,7 +45,13 @@ export const PostFeed = ({
         if (!hasMore) return; // Stop loading if no more posts
 
         const next = page + 1;
-        const newPosts = await getPostsWithTrend(next, username, activity);
+        const newPosts = await getPosts({
+            page: next,
+            username,
+            activity,
+            searchTerm,
+            sort: isProfilePage ? 'new' : sort,
+        });
 
         if (newPosts.length === 0) {
             setHasMore(false); // No more posts to load
@@ -47,7 +59,7 @@ export const PostFeed = ({
             setPage(next);
             setPosts((prev) => [...prev, ...newPosts]);
         }
-    }, [page, hasMore, username, activity]);
+    }, [page, hasMore, username, activity, searchTerm, sort, isProfilePage]);
 
     useEffect(() => {
         if (inView && hasMore) {

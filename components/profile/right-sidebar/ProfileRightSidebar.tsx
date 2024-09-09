@@ -40,7 +40,7 @@ export const ProfileRightSidebar = async ({ username, smallDisplay = false }: Pr
     return (
         <aside
             className="text-white rounded-xl flex-col gap-8 w-80 hidden lg:flex pt-12 
-        bg-gradient-to-t from-primary-500/90 via-violet-600/90 to-black/80 p-4 sticky top-0"
+        bg-gradient-to-t from-primary-600/90 via-violet-700/90 to-black/80 p-4 sticky top-0"
         >
             <div className="mx-auto text-center space-y-1">
                 <p className="font-semibold">{profile.username}</p>

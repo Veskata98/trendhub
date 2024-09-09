@@ -2,13 +2,13 @@
 
 import { Button } from '@/components/ui/button';
 import { joinTrend } from '@/actions/trend-actions/joinTrend';
-import { TrendWithPostsAndMembers, UserStatus } from '@/types';
+import { TrendWithMembers, UserStatus } from '@/types';
 import { leaveTrend } from '@/actions/trend-actions/leaveTrend';
 import { CreatePostButton } from '@/components/trends/trend-main/CreatePostButton';
 import { Avatar, AvatarImage } from '@/components/ui/avatar';
 import { TrendName } from './TrendName';
 
-export const TrendHeader = ({ trend, userStatus }: { trend: TrendWithPostsAndMembers; userStatus: UserStatus }) => {
+export const TrendHeader = ({ trend, userStatus }: { trend: TrendWithMembers; userStatus: UserStatus }) => {
     // const searchParams = useSearchParams();
 
     return (
