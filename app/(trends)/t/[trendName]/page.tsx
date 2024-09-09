@@ -63,8 +63,8 @@ export default async function TrendNamePage({ params }: TrendNamePageProps) {
     }
 
     return (
-        <section className="flex p-4 px-0 md:px-4 w-full justify-between xl:justify-center gap-4 overflow-y-auto">
-            <div className="w-full px-2 py-4 pt-4 xl:w-auto flex-1">
+        <section className="flex p-4 px-0 md:px-4 w-full justify-between xl:justify-center gap-4">
+            <div className="w-full px-2 py-4 pt-4 xl:w-auto flex-1 overflow-y-scroll">
                 <TrendHeader trend={trend} userStatus={userStatus} />
                 <TrendPosts trendName={trendName} initialPosts={trend.posts} />
             </div>

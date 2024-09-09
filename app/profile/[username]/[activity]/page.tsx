@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation';
 import { currentUser } from '@clerk/nextjs/server';
-import { PostFeed } from '@/components/home-page/home-page-post/PostFeed';
+import { PostFeed } from '@/components/posts/PostFeed';
 import prisma from '@/lib/db';
 
 type ProfileActivityPageProps = {

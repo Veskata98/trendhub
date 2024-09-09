@@ -10,7 +10,7 @@ export const ProfileActivitySection = async ({ username }: { username: string })
     const links = canEdit ? LIST_ITEMS : { Summary: '', Posts: 'posts', Comments: 'comments' };
 
     return (
-        <div className="p-2 py-4">
+        <div className="p-2">
             <ActivityLinks links={links} username={username} />
         </div>
     );

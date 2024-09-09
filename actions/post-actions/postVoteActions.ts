@@ -2,6 +2,7 @@
 
 import prisma from '@/lib/db';
 import serverUser from '@/lib/serverUser';
+import { revalidateTag } from 'next/cache';
 
 export const upvotePost = async (postId: string) => {
     try {
@@ -28,7 +29,7 @@ export const upvotePost = async (postId: string) => {
 
                 return { success: true, data: null };
             } else {
-                const updatedLike = await prisma.like.update({
+                const updatedVote = await prisma.like.update({
                     where: {
                         id: alreadyVoted.id,
                     },
@@ -37,7 +38,7 @@ export const upvotePost = async (postId: string) => {
                     },
                 });
 
-                return { success: true, data: updatedLike };
+                return { success: true, data: updatedVote };
             }
         }
 
@@ -81,7 +82,7 @@ export const downvotePost = async (postId: string) => {
 
                 return { success: true, data: null };
             } else {
-                const updatedDislike = await prisma.like.update({
+                const updatedVote = await prisma.like.update({
                     where: {
                         id: alreadyVoted.id,
                     },
@@ -90,7 +91,7 @@ export const downvotePost = async (postId: string) => {
                     },
                 });
 
-                return { success: true, data: updatedDislike };
+                return { success: true, data: updatedVote };
             }
         }
 

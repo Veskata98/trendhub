@@ -1,7 +1,7 @@
 'use client';
 
 import { getPostsWithTrend } from '@/actions/post-actions/infiniteScrollPost';
-import { PostCardHomePage } from './PostCardHomePage';
+import { PostCardHomePage } from '../home-page/home-page-post/PostCardHomePage';
 import { ExtentedPost } from '@/types';
 import { useCallback, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
@@ -9,6 +9,7 @@ import { downvotePost, upvotePost } from '@/actions/post-actions/postVoteActions
 import { updateVotes } from '@/lib/utils';
 import { useUser } from '@clerk/nextjs';
 import { Loader2 } from 'lucide-react';
+import { revalidateTag } from 'next/cache';
 
 export const PostFeed = ({
     initialPosts,

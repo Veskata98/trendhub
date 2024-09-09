@@ -1,6 +1,7 @@
 import { ProfileActivitySection } from '@/components/profile/profile-activity-section/ProfileActivitySection';
 import { ProfileInfo } from '@/components/profile/ProfileInfo';
-import { UserStatSidebar } from '@/components/profile/right-sidebar/UserStatSidebar';
+import { MobileRightSidebar } from '@/components/profile/right-sidebar/mobile/MobileRightSidebar';
+import { ProfileRightSidebar } from '@/components/profile/right-sidebar/ProfileRightSidebar';
 import prisma from '@/lib/db';
 import { redirect } from 'next/navigation';
 import { ReactNode } from 'react';
@@ -21,15 +22,16 @@ export default async function UsernameLayout({
     }
 
     return (
-        <section className="flex p-4 w-full justify-between xl:justify-center gap-4 overflow-y-auto">
-            <div className="w-full xl:w-auto flex-1">
-                <ProfileInfo username={username} />
+        <section className="flex p-4 w-full justify-between xl:justify-center gap-4">
+            <div className="w-full xl:w-auto flex-1 overflow-y-auto space-y-2">
+                <ProfileInfo username={profile.username} />
+                <MobileRightSidebar username={profile.username} />
                 <>
-                    <ProfileActivitySection username={username} />
+                    <ProfileActivitySection username={profile.username} />
                     {children}
                 </>
             </div>
-            <UserStatSidebar username={username} />
+            <ProfileRightSidebar username={profile.username} />
         </section>
     );
 }

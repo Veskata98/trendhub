@@ -7,7 +7,7 @@ const LIMIT = 10;
 export const getPostsWithTrend = async (page: number = 1, username?: string, activity?: 'upvotes' | 'downvotes') => {
     try {
         const skip = (page - 1) * LIMIT;
-        const latestPosts = await prisma.post.findMany({
+        const posts = await prisma.post.findMany({
             where: {
                 ...(username && !activity && { creator_name: username }),
                 ...(activity === 'upvotes' && { likes: { some: { type: 'LIKE', username } } }),
@@ -19,7 +19,7 @@ export const getPostsWithTrend = async (page: number = 1, username?: string, act
             include: { likes: true, trend: { select: { name: true, image_url: true } } },
         });
 
-        return latestPosts;
+        return posts;
     } catch (error) {
         console.log(error);
         return [];
@@ -29,7 +29,7 @@ export const getPostsWithTrend = async (page: number = 1, username?: string, act
 export const getPostsWithCreator = async (page: number = 1, trendName: string) => {
     try {
         const skip = (page - 1) * LIMIT;
-        const latestPosts = await prisma.post.findMany({
+        const posts = await prisma.post.findMany({
             where: {
                 trend_name: trendName,
             },
@@ -39,7 +39,7 @@ export const getPostsWithCreator = async (page: number = 1, trendName: string) =
             include: { likes: true, creator: { select: { image_url: true } } },
         });
 
-        return latestPosts;
+        return posts;
     } catch (error) {
         console.log(error);
         return [];
