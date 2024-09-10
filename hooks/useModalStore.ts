@@ -1,9 +1,10 @@
 import { create } from 'zustand';
 
-export type ModalType = 'createTrend' | 'createPost' | 'deleteTrend';
+export type ModalType = 'createTrend' | 'createPost' | 'deleteTrend' | 'deleteProfile';
 
 interface ModalData {
     trendName?: string;
+    username?: string;
 }
 
 interface ModalStore {

@@ -1,7 +1,7 @@
 import prisma from '@/lib/db';
 import { redirect } from 'next/navigation';
 import { ProfileAvatar } from './profile-avatar/ProfileAvatar';
-import { currentUser } from '@clerk/nextjs/server';
+import serverUser from '@/lib/serverUser';
 
 type ProfileInfoProps = {
     username: string;
@@ -16,7 +16,7 @@ export const ProfileInfo = async ({ username }: ProfileInfoProps) => {
 
     const nameToShow = profile.first_name ? `${profile.first_name} ${profile.last_name}` : profile.username;
 
-    const user = await currentUser();
+    const user = await serverUser();
     const canEdit = user?.username === username;
 
     return (

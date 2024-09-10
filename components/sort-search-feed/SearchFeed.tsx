@@ -31,7 +31,7 @@ export default function SearchFeed() {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="flex w-full max-w-sm items-center space-x-1 text-black">
+        <form onSubmit={handleSubmit} className="flex max-w-sm items-center text-black w-60">
             <Input
                 type="search"
                 placeholder="Search posts..."
@@ -41,7 +41,7 @@ export default function SearchFeed() {
                 focus:ring-0 focus:ring-offset-0 dark:text-white h-9"
                 onChange={(e) => setSearchTerm(e.target.value)}
             />
-            <Button type="submit">
+            <Button type="submit" className="pr-0">
                 <Search className="h-4 w-4 dark:text-white" />
                 <span className="sr-only">Search</span>
             </Button>

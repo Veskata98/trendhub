@@ -1,7 +1,9 @@
 'use server';
 
 import prisma from '@/lib/db';
-import serverUser from '@/lib/serverUser';
+import { ServerUser } from '@/types';
+import { currentUser } from '@clerk/nextjs/server';
+
 import { revalidatePath } from 'next/cache';
 import z, { ZodError } from 'zod';
 
@@ -21,7 +23,7 @@ export const createPost = async (formData: FormData, trendName: string, imageUrl
     const description = formData.get('description') as string;
 
     try {
-        const user = await serverUser({ redirectToLogin: true });
+        const user = (await currentUser()) as ServerUser;
 
         const trend = await prisma.trend.findFirst({
             where: {

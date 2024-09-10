@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { CreateTrendModal } from '../modals/CreateTrendModal';
 import { CreatePostModal } from '../modals/CreatePostModal';
 import { DeleteTrendModal } from '../modals/DeleteTrendModal';
+import { DeleteProfileModal } from '../modals/DeleteProfileModal';
 
 export const ModalProvider = () => {
     const [isMounted, setIsMounted] = useState(false);
@@ -21,6 +22,7 @@ export const ModalProvider = () => {
             <CreateTrendModal />
             <CreatePostModal />
             <DeleteTrendModal />
+            <DeleteProfileModal />
         </>
     );
 };

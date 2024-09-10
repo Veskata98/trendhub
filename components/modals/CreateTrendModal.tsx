@@ -1,4 +1,4 @@
-import { UserPen, X } from 'lucide-react';
+import { Pencil, X } from 'lucide-react';
 import { MouseEvent, useEffect, useRef, useState } from 'react';
 import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
@@ -163,7 +163,7 @@ export const CreateTrendModal = () => {
                                             >
                                                 <AvatarImage src="/default-trend-logo.png" alt="trend_avatar" />
                                                 {showEdit && (
-                                                    <UserPen className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white" />
+                                                    <Pencil className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white" />
                                                 )}
                                             </Avatar>
                                         </TooltipTrigger>

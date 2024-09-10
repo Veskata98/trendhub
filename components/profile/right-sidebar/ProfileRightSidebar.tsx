@@ -2,12 +2,12 @@ import prisma from '@/lib/db';
 import { redirect } from 'next/navigation';
 import { CopyProfileUrlButton } from './CopyProfileUrlButton';
 import { AuraSection } from './AuraSection';
-import { currentUser } from '@clerk/nextjs/server';
 import { JoinDate } from './JoinDate';
 import { Separator } from '@/components/ui/separator';
 import { DeleteProfileButton } from './DeleteProfileButton';
 import { CopyProfileUrlMobileButton } from './mobile/CopyProfileUrlMobile';
 import { MobileAuraSection } from './mobile/MobileAuraSection';
+import serverUser from '@/lib/serverUser';
 
 type ProfileRightSidebarProps = {
     username: string;
@@ -21,7 +21,7 @@ export const ProfileRightSidebar = async ({ username, smallDisplay = false }: Pr
         redirect('/');
     }
 
-    const user = await currentUser();
+    const user = await serverUser();
     const canEdit = user?.username === profile.username;
 
     if (smallDisplay) {
@@ -49,7 +49,7 @@ export const ProfileRightSidebar = async ({ username, smallDisplay = false }: Pr
             <AuraSection username={username} />
             <Separator className="bg-zinc-100" />
             <JoinDate joinDate={profile.created_at.toISOString()} />
-            {canEdit && <DeleteProfileButton />}
+            {canEdit && <DeleteProfileButton username={username} />}
         </aside>
     );
 };

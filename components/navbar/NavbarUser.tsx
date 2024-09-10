@@ -78,12 +78,15 @@ export const NavbarUser = ({ profilePicture, username }: NavbarUserProps) => {
                             <Separator className="dark:bg-slate-600" />
                         </div>
 
-                        <div className="px-4 w-full flex gap-2 h-12 items-center justify-center sm:justify-start cursor-pointer hover:bg-zinc-200 dark:hover:bg-zinc-600">
-                            <LogOut width={18} height={18} />
-                            <SignOutButton>
+                        <SignOutButton redirectUrl="/">
+                            <div
+                                className="px-4 w-full flex gap-2 h-12 items-center justify-center 
+                                sm:justify-start cursor-pointer hover:bg-zinc-200 dark:hover:bg-zinc-600"
+                            >
+                                <LogOut width={18} height={18} />
                                 <p>Log Out</p>
-                            </SignOutButton>
-                        </div>
+                            </div>
+                        </SignOutButton>
                     </div>
                 </PopoverContent>
             </Popover>

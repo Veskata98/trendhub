@@ -59,30 +59,14 @@ export async function POST(req: Request) {
     if (eventType === 'user.created') {
         const userData: any = {};
 
-        //External account
-        if (bodyObject?.data?.external_accounts?.length > 0) {
-            const externalAcc = bodyObject?.data?.external_accounts[0];
+        const data = bodyObject?.data;
 
-            userData.id = externalAcc?.id;
-            userData.email_address = externalAcc?.email_address;
-            userData.first_name = externalAcc?.first_name;
-            userData.last_name = externalAcc?.last_name;
-            userData.username = externalAcc?.username;
-            userData.image_url = externalAcc?.image_url;
-            userData.created_at = new Date(externalAcc?.created_at).toISOString();
-            userData.updated_at = new Date(externalAcc?.updated_at).toISOString();
-        } else {
-            const data = bodyObject?.data;
-
-            userData.id = data?.id;
-            userData.email_address = data?.email_addresses[0]?.email_address;
-            userData.first_name = data?.first_name;
-            userData.last_name = data?.last_name;
-            userData.username = data?.username;
-            userData.image_url = '';
-            userData.created_at = new Date(data?.created_at).toISOString();
-            userData.updated_at = new Date(data?.updated_at).toISOString();
-        }
+        userData.id = data?.id;
+        userData.email_address = data?.email_addresses[0]?.email_address;
+        userData.first_name = data?.first_name;
+        userData.last_name = data?.last_name;
+        userData.username = data?.username;
+        userData.image_url = data?.image_url || '';
 
         await prisma.profile.create({
             data: { ...userData },

@@ -20,14 +20,17 @@ export const Navbar = async () => {
                     </Link>
                     <div className="flex justify-center gap-4">
                         <DarkModeToggle className="hidden md:flex" />
-                        {user && (
+                        {(profile || user) && (
                             <div className="hidden md:block">
                                 <CreateTrendButton />
                             </div>
                         )}
 
-                        {profile ? (
-                            <NavbarUser profilePicture={profile.image_url} username={profile.username} />
+                        {profile || user ? (
+                            <NavbarUser
+                                profilePicture={profile?.image_url || user?.imageUrl || null}
+                                username={profile?.username || user?.username || ''}
+                            />
                         ) : (
                             <div className="flex gap-2 justify-center text-sm">
                                 <SignInButton>

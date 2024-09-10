@@ -1,20 +1,14 @@
 import { ServerUser } from '@/types';
-import { auth, currentUser } from '@clerk/nextjs/server';
+import { currentUser } from '@clerk/nextjs/server';
 
-type ServerUserProps = {
-    redirectToLogin?: boolean;
-};
+export default async function serverUser() {
+    try {
+        const user = await currentUser();
 
-export default async function serverUser({ redirectToLogin = false }: ServerUserProps = {}) {
-    const user = await currentUser();
-
-    if (user) {
-        return user as ServerUser;
+        if (user) {
+            return user as ServerUser;
+        }
+    } catch (error) {
+        return null;
     }
-
-    if (redirectToLogin) {
-        return auth().redirectToSignIn();
-    }
-
-    return null;
 }
