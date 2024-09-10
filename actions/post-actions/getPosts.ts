@@ -2,7 +2,7 @@
 
 import prisma from '@/lib/db';
 import { hotPostQuery } from '@/lib/hotPostQuery';
-import { ExtentedPost } from '@/types';
+import { ExtendedPost } from '@/types';
 
 const LIMIT = 10;
 
@@ -66,7 +66,7 @@ export const getPosts = async ({
             });
         }
 
-        return posts as ExtentedPost[];
+        return posts as ExtendedPost[];
     } catch (error) {
         console.log(error);
         return [];

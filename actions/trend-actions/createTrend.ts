@@ -2,6 +2,7 @@
 
 import prisma from '@/lib/db';
 import serverUser from '@/lib/serverUser';
+import { revalidateTag } from 'next/cache';
 import { redirect } from 'next/navigation';
 import z, { ZodError } from 'zod';
 
@@ -24,7 +25,9 @@ export const createTrend = async (formdata: FormData, imageUrl: string | null) =
             throw parseError;
         }
 
-        const alreadyExistingTrend = await prisma.trend.findUnique({ where: { name } });
+        const alreadyExistingTrend = await prisma.trend.findFirst({
+            where: { name: { equals: name, mode: 'insensitive' } },
+        });
 
         if (alreadyExistingTrend) {
             throw 'Trend already exists';
@@ -38,6 +41,7 @@ export const createTrend = async (formdata: FormData, imageUrl: string | null) =
                 image_url: imageUrl ? imageUrl : '/default-trend-logo.png',
             },
         });
+        revalidateTag('trend');
     } catch (error) {
         if (error instanceof ZodError) {
             return error.flatten().fieldErrors;

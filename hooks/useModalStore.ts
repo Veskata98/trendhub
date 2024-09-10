@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-export type ModalType = 'createTrend' | 'createPost';
+export type ModalType = 'createTrend' | 'createPost' | 'deleteTrend';
 
 interface ModalData {
     trendName?: string;

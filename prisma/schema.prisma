@@ -68,7 +68,7 @@ model Post {
   trend      Trend  @relation(fields: [trend_name], references: [name], onDelete: Cascade)
 
   creator_name String
-  creator      Profile @relation(fields: [creator_name], references: [username])
+  creator      Profile @relation(fields: [creator_name], references: [username], onDelete: Cascade)
 
   likes Like[]
 
@@ -81,10 +81,10 @@ model Like {
   type LikeType
 
   username String
-  profile  Profile @relation(fields: [username], references: [username])
+  profile  Profile @relation(fields: [username], references: [username], onDelete: Cascade)
 
   postId String
-  post   Post   @relation(fields: [postId], references: [id])
+  post   Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
 
   @@unique([username, postId, type])
 }

@@ -2,7 +2,7 @@
 
 import { getPosts } from '@/actions/post-actions/getPosts';
 import { HomePagePostCard } from '../home-page/home-page-post/HomePagePostCard';
-import { ExtentedPost } from '@/types';
+import { ExtendedPost } from '@/types';
 import { useCallback, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { downvotePost, upvotePost } from '@/actions/post-actions/postVoteActions';
@@ -19,7 +19,7 @@ export const PostFeed = ({
     searchTerm,
     sort = 'hot',
 }: {
-    initialPosts: ExtentedPost[];
+    initialPosts: ExtendedPost[];
     isHomePage?: boolean;
     isProfilePage?: boolean;
     username?: string;
@@ -27,7 +27,7 @@ export const PostFeed = ({
     searchTerm?: string;
     sort?: 'hot' | 'new' | 'top';
 }) => {
-    const [posts, setPosts] = useState<ExtentedPost[]>([]);
+    const [posts, setPosts] = useState<ExtendedPost[]>([]);
     const [page, setPage] = useState(1);
     const [hasMore, setHasMore] = useState(true);
     const [ref, inView] = useInView();

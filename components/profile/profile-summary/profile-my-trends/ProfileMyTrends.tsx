@@ -25,6 +25,11 @@ export const ProfileMyTrends = async ({ username }: { username: string }) => {
                     profile_username: true,
                 },
             },
+            creator: {
+                select: {
+                    image_url: true,
+                },
+            },
         },
     });
 
@@ -42,7 +47,7 @@ export const ProfileMyTrends = async ({ username }: { username: string }) => {
                                 </Avatar>
                                 <span className="font-semibold text-sm">{trend.name}</span>
                             </Link>
-                            <span className="text-sm font-semibold flex-1">{trend.members.length} members</span>
+                            <span className="text-sm font-semibold flex-1">{trend.members.length + 1} members</span>
                             <MyTrendActionButton currentUserUsername={user?.username} trend={trend} />
                         </li>
                     ))}

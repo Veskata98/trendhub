@@ -104,6 +104,7 @@ export const CreateTrendModal = () => {
                                 type="text"
                                 name="name"
                                 required
+                                autoComplete="off"
                             />
                             <span className="absolute top-[6px] left-2 select-none font-semibold text-lg text-white">
                                 t/

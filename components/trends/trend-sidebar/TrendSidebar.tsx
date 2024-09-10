@@ -1,10 +1,10 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Separator } from '@/components/ui/separator';
-import { TrendWithPostsAndMembers } from '@/types';
+import { TrendWithMembers } from '@/types';
 import Link from 'next/link';
 
 type TrendSidebarProps = {
-    trend: TrendWithPostsAndMembers;
+    trend: TrendWithMembers;
 };
 
 export const TrendSidebar = async ({ trend }: TrendSidebarProps) => {
@@ -20,7 +20,7 @@ export const TrendSidebar = async ({ trend }: TrendSidebarProps) => {
                 </div>
                 <Separator className="bg-zinc-500" />
                 <div className="flex flex-col items-center">
-                    <p className="font-semibold">{trend.members.length}</p>
+                    <p className="font-semibold">{trend.members.length + 1}</p>
                     <span className="text-sm font-semibold">Members</span>
                 </div>
                 <Separator className="bg-zinc-500" />

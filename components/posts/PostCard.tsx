@@ -5,7 +5,7 @@ import { Card, CardContent, CardFooter, CardHeader } from '../ui/card';
 import { Button } from '../ui/button';
 import { MessageSquare, Share2 } from 'lucide-react';
 import moment from 'moment';
-import { ExtentedPost } from '@/types';
+import { ExtendedPost } from '@/types';
 import Link from 'next/link';
 import { PostImage } from './PostImage';
 import { PostLikeCount } from './PostLikeCount';
@@ -13,7 +13,7 @@ import { UpVoteButton } from './vote-buttons/UpVoteButton';
 import { DownVoteButton } from './vote-buttons/DownVoteButton';
 
 type PostCardProps = {
-    post: ExtentedPost;
+    post: ExtendedPost;
     handleUpvote: (postId: string) => void;
     handleDownvote: (postId: string) => void;
 };

@@ -2,7 +2,7 @@
 
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { PostCard } from '@/components/posts/PostCard';
-import { ExtentedPost } from '@/types';
+import { ExtendedPost } from '@/types';
 import { useCallback, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { getPosts } from '@/actions/post-actions/getPosts';
@@ -10,8 +10,8 @@ import { downvotePost, upvotePost } from '@/actions/post-actions/postVoteActions
 import { useUser } from '@clerk/nextjs';
 import { updateVotes } from '@/lib/utils';
 
-export const TrendPosts = ({ trendName, initialPosts }: { trendName: string; initialPosts: ExtentedPost[] }) => {
-    const [posts, setPosts] = useState<ExtentedPost[]>([]);
+export const TrendPosts = ({ trendName, initialPosts }: { trendName: string; initialPosts: ExtendedPost[] }) => {
+    const [posts, setPosts] = useState<ExtendedPost[]>([]);
     const [page, setPage] = useState(1);
     const [hasMore, setHasMore] = useState(true);
     const [ref, inView] = useInView();

@@ -2,7 +2,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '../../ui/avatar';
 import { Card, CardContent, CardFooter, CardHeader } from '../../ui/card';
 import { Button } from '../../ui/button';
 import { MessageSquare, Share2 } from 'lucide-react';
-import { ExtentedPost } from '@/types';
+import { ExtendedPost } from '@/types';
 
 import moment from 'moment';
 import Link from 'next/link';
@@ -14,7 +14,7 @@ import { DownVoteButton } from '@/components/posts/vote-buttons/DownVoteButton';
 
 type HomePagePostCardProps = {
     isHomePage: boolean;
-    post: ExtentedPost;
+    post: ExtendedPost;
     handleUpvote: (postId: string) => void;
     handleDownvote: (postId: string) => void;
 };

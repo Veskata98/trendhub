@@ -29,7 +29,6 @@ export const hotPostQuery = async (searchTerm: string, skip: number, trendName?:
             )
             SELECT
                 pv.id,
-                pv.upvotes - pv.downvotes AS net_votes,
                 (pv.upvotes - pv.downvotes) / POWER(EXTRACT(EPOCH FROM (NOW() - pv.created_at)) / 3600 + 2, 1.5) AS hotness_score
             FROM
                 PostVotes pv

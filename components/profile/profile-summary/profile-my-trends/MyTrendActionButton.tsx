@@ -3,6 +3,7 @@
 import { joinTrend } from '@/actions/trend-actions/joinTrend';
 import { leaveTrend } from '@/actions/trend-actions/leaveTrend';
 import { Button } from '@/components/ui/button';
+import { useModal } from '@/hooks/useModalStore';
 import { TrendWithMembers } from '@/types';
 import { Trend } from '@prisma/client';
 
@@ -13,12 +14,18 @@ export const MyTrendActionButton = ({
     trend: TrendWithMembers;
     currentUserUsername: string | undefined;
 }) => {
+    const { onOpen } = useModal();
     const isCreator = (trend: Trend) => {
         return trend.creator_name === currentUserUsername;
     };
 
     return isCreator(trend) ? (
-        <Button className="font-semibold text-primary-800 dark:text-primary-300 hover:bg-black/30">Delete</Button>
+        <Button
+            onClick={() => onOpen('deleteTrend', { trendName: trend.name })}
+            className="font-semibold text-primary-800 dark:text-primary-300 hover:bg-black/30"
+        >
+            Delete
+        </Button>
     ) : trend.members.some((member) => member.profile_username === currentUserUsername) ? (
         <Button
             className="font-semibold text-rose-500 hover:bg-rose-500/20"

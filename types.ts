@@ -7,7 +7,7 @@ export interface ServerUser extends User {
 
 export type UserStatus = 'owner' | 'member' | 'nonMember' | 'guest';
 
-export interface ExtentedPost extends Post {
+export interface ExtendedPost extends Post {
     trend?: {
         image_url: string;
         name: string;
@@ -32,10 +32,4 @@ export interface TrendWithMembers extends Trend {
     creator: {
         image_url: string;
     };
-}
-
-export interface TrendWithMembers extends Trend {
-    members: {
-        profile_username: string;
-    }[];
 }
