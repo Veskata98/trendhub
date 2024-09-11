@@ -6,13 +6,14 @@ import Link from 'next/link';
 
 import { DarkModeToggle } from '../other/DarkModeToggle';
 import { Separator } from '../ui/separator';
-import { LogOut, User } from 'lucide-react';
+import { LogOut, User, UserX } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { SignOutButton } from '@clerk/nextjs';
 
 import { useState } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { CreateTrendButton } from './CreateTrendButton';
+import { useModal } from '@/hooks/useModalStore';
 
 type NavbarUserProps = {
     profilePicture: string | null;
@@ -22,6 +23,7 @@ type NavbarUserProps = {
 export const NavbarUser = ({ profilePicture, username }: NavbarUserProps) => {
     const [isOpen, setIsOpen] = useState(false);
     const { theme } = useTheme();
+    const { onOpen } = useModal();
 
     return (
         <div className="my-auto cursor-pointer">
@@ -87,6 +89,18 @@ export const NavbarUser = ({ profilePicture, username }: NavbarUserProps) => {
                                 <p>Log Out</p>
                             </div>
                         </SignOutButton>
+
+                        <div className="block lg:hidden w-full">
+                            <Separator className="dark:bg-slate-600" />
+                            <div
+                                onClick={() => onOpen('deleteProfile', { username })}
+                                className="px-4 w-full flex gap-2 h-12 items-center justify-center 
+                            sm:justify-start cursor-pointer hover:bg-zinc-200 dark:hover:bg-zinc-600"
+                            >
+                                <UserX width={18} height={18} className="text-rose-500" />
+                                <p className="text-rose-500">Delete Profile</p>
+                            </div>
+                        </div>
                     </div>
                 </PopoverContent>
             </Popover>

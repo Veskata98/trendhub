@@ -31,7 +31,7 @@ export default function SearchFeed() {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="flex max-w-sm items-center text-black w-60">
+        <form onSubmit={handleSubmit} className="flex max-w-sm items-center text-black w-48 sm:w-60">
             <Input
                 type="search"
                 placeholder="Search posts..."

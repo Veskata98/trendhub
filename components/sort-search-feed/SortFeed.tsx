@@ -22,7 +22,7 @@ export default function SortFeed() {
     return (
         <Select defaultValue="new" onValueChange={handleValueChange} value={searchParams.get('sort') || 'hot'}>
             <SelectTrigger
-                className="w-[180px] bg-transparent border-[1px] border-zinc-200 dark:border-none focus-visible:ring-0 
+                className="w-[100px] sm:w-[180px] bg-transparent border-[1px] border-zinc-200 dark:border-none focus-visible:ring-0 
             focus-visible:ring-offset-0 focus-visible:border-none focus-visible:outline-none
             focus:ring-0 focus:ring-offset-0 h-9"
             >

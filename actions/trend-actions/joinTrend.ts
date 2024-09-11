@@ -6,11 +6,13 @@ import { revalidatePath } from 'next/cache';
 
 export const joinTrend = async (trendName: string) => {
     try {
-        const user = await serverUser({ redirectToLogin: true });
+        const user = await serverUser();
+
+        if (!user) return { success: false };
 
         //Get the profile from db
         const profile = await prisma.profile.findFirst({
-            where: { username: user!.username },
+            where: { username: user.username },
             include: {
                 created_trends: {
                     where: {
@@ -25,7 +27,7 @@ export const joinTrend = async (trendName: string) => {
 
         //Check if the profile exists in db and he is not the owner of the trend
         if (!profile || profile.created_trends.length > 0) {
-            return;
+            return { success: false };
         }
 
         await prisma.trendOnProfile.create({
@@ -35,8 +37,10 @@ export const joinTrend = async (trendName: string) => {
             },
         });
         revalidatePath(`/t/${trendName}`);
+
+        return { success: true };
     } catch (error) {
         console.log(error);
-        return;
+        return { success: false };
     }
 };

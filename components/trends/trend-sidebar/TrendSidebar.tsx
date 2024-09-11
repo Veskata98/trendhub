@@ -10,8 +10,8 @@ type TrendSidebarProps = {
 export const TrendSidebar = async ({ trend }: TrendSidebarProps) => {
     return (
         <aside
-            className="text-white rounded-xl flex-col gap-8 w-80 hidden lg:flex pt-12 
-         bg-zinc-800 dark:bg-zinc-950 shadow p-4 sticky top-0"
+            className="text-white rounded-xl flex-col gap-8 w-64 xl:w-72 2xl:w-80 hidden lg:flex pt-12 
+         bg-zinc-800 dark:bg-zinc-900 shadow p-4 sticky top-0"
         >
             <div className="space-y-6">
                 <div>
