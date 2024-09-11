@@ -33,3 +33,5 @@ export interface TrendWithMembers extends Trend {
         image_url: string;
     };
 }
+
+export type PostCardPageType = 'profile' | 'trend' | 'home';

@@ -48,7 +48,7 @@ export const ProfileRightSidebar = async ({ username, smallDisplay = false }: Pr
             </div>
             <AuraSection username={username} />
             <Separator className="bg-zinc-100" />
-            <JoinDate joinDate={profile.created_at.toISOString()} />
+            <JoinDate className="font-normal" joinDate={profile.created_at.toISOString()} />
             {canEdit && <DeleteProfileButton username={username} />}
         </aside>
     );

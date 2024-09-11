@@ -34,8 +34,8 @@ export const ProfileMyTrends = async ({ username }: { username: string }) => {
     });
 
     return (
-        <div className="p-1 space-y-1">
-            <h2 className="font-semibold">{username}&apos;s trends</h2>
+        <div className="px-1 md:px-2 space-y-2 py-4">
+            <h2 className="font-semibold text-sm md:text-base">{username}&apos;s trends</h2>
             <Separator className="dark:bg-zinc-200 bg-zinc-800" />
             {myTrends.length ? (
                 <ul>
@@ -45,9 +45,11 @@ export const ProfileMyTrends = async ({ username }: { username: string }) => {
                                 <Avatar className="shadow w-8 h-8">
                                     <AvatarImage src={trend.image_url} alt="trend_image" />
                                 </Avatar>
-                                <span className="font-semibold text-sm">{trend.name}</span>
+                                <span className="font-semibold text-sm">t/{trend.name}</span>
                             </Link>
-                            <span className="text-sm font-semibold flex-1">{trend.members.length + 1} members</span>
+                            <span className="hidden sm:block text-sm font-semibold flex-1">
+                                {trend.members.length + 1} members
+                            </span>
                             <MyTrendActionButton currentUserUsername={user?.username} trend={trend} />
                         </li>
                     ))}

@@ -22,7 +22,7 @@ export default async function UsernameLayout({
     }
 
     return (
-        <section className="flex p-4 w-full justify-between xl:justify-center gap-4">
+        <section className="flex p-4 px-2 md:px-4 w-full justify-between xl:justify-center gap-4">
             <div className="w-full xl:w-auto flex-1 scroll-hidden space-y-2">
                 <ProfileInfo username={profile.username} />
                 <MobileRightSidebar username={profile.username} />

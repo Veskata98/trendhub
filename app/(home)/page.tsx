@@ -1,5 +1,5 @@
 import EditFeed from '@/components/sort-search-feed/EditFeed';
-import { HomePageFeed } from '@/components/home-page/home-page-post/HomePageFeed';
+import { HomePageFeed } from '@/components/home-page/HomePageFeed';
 import { ScrollArea } from '@/components/ui/scroll-area';
 
 export default async function Home({ searchParams }: { searchParams: { sort: string; search: string } }) {

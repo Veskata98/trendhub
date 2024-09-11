@@ -8,7 +8,7 @@ export const TrendListElement = async ({ trend }: { trend: Trend }) => {
             <Avatar className="shadow w-8 h-8">
                 <AvatarImage src={trend.image_url} alt="trend_image" />
             </Avatar>
-            <span className="font-semibold text-sm">{trend.name}</span>
+            <span className="font-semibold text-sm">t/{trend.name}</span>
         </Link>
     );
 };

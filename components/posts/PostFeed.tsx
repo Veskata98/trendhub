@@ -1,28 +1,28 @@
 'use client';
 
 import { getPosts } from '@/actions/post-actions/getPosts';
-import { HomePagePostCard } from '../home-page/home-page-post/HomePagePostCard';
-import { ExtendedPost } from '@/types';
+import { ExtendedPost, PostCardPageType } from '@/types';
 import { useCallback, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { downvotePost, upvotePost } from '@/actions/post-actions/postVoteActions';
 import { updateVotes } from '@/lib/utils';
 import { useUser } from '@clerk/nextjs';
 import { Loader2 } from 'lucide-react';
+import { PostCard } from './PostCard';
 
 export const PostFeed = ({
     initialPosts,
-    isHomePage = true,
-    isProfilePage = false,
+    pageType,
     username,
+    trendName,
     activity,
     searchTerm,
     sort = 'hot',
 }: {
     initialPosts: ExtendedPost[];
-    isHomePage?: boolean;
-    isProfilePage?: boolean;
+    pageType: PostCardPageType;
     username?: string;
+    trendName?: string;
     activity?: 'upvotes' | 'downvotes';
     searchTerm?: string;
     sort?: 'hot' | 'new' | 'top';
@@ -48,9 +48,10 @@ export const PostFeed = ({
         const newPosts = await getPosts({
             page: next,
             username,
+            trendName,
             activity,
             searchTerm,
-            sort: isProfilePage ? 'new' : sort,
+            sort: pageType === 'profile' ? 'new' : sort,
         });
 
         if (newPosts.length === 0) {
@@ -59,7 +60,7 @@ export const PostFeed = ({
             setPage(next);
             setPosts((prev) => [...prev, ...newPosts]);
         }
-    }, [page, hasMore, username, activity, searchTerm, sort, isProfilePage]);
+    }, [page, hasMore, username, activity, searchTerm, sort, pageType, trendName]);
 
     useEffect(() => {
         if (inView && hasMore) {
@@ -82,8 +83,8 @@ export const PostFeed = ({
     return (
         <div className="space-y-2 flex flex-col items-center mb-4">
             {posts.map((post) => (
-                <HomePagePostCard
-                    isHomePage={isHomePage}
+                <PostCard
+                    pageType={pageType}
                     key={post.id}
                     post={post}
                     handleUpvote={handleUpvote}

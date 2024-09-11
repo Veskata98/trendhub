@@ -4,19 +4,31 @@ import { Button } from '@/components/ui/button';
 import { joinTrend } from '@/actions/trend-actions/joinTrend';
 import { TrendWithMembers, UserStatus } from '@/types';
 import { leaveTrend } from '@/actions/trend-actions/leaveTrend';
-import { CreatePostButton } from '@/components/trends/trend-main/CreatePostButton';
-import { Avatar, AvatarImage } from '@/components/ui/avatar';
+import { CreatePostButton } from '@/components/trends/trend-header/CreatePostButton';
 import { TrendName } from './TrendName';
+import TrendImage from './TrendImage';
+import TrendEditableImage from './TrendEditableImage';
 
-export const TrendHeader = ({ trend, userStatus }: { trend: TrendWithMembers; userStatus: UserStatus }) => {
+export const TrendHeader = ({
+    trend,
+    userStatus,
+    canEdit,
+}: {
+    trend: TrendWithMembers;
+    userStatus: UserStatus;
+    canEdit: boolean;
+}) => {
     // const searchParams = useSearchParams();
 
     return (
         <div className="w-full flex flex-col px-2 space-y-6">
             <div className="flex items-center justify-center gap-2">
-                <Avatar className="w-16 h-16 shadow">
-                    <AvatarImage src={trend.image_url} alt="trend_image" />
-                </Avatar>
+                {canEdit ? (
+                    <TrendEditableImage imageUrl={trend.image_url} trendName={trend.name} />
+                ) : (
+                    <TrendImage imageUrl={trend.image_url} />
+                )}
+
                 <TrendName trendName={trend.name} />
             </div>
             <div className="flex justify-between items-center border-b-[1px] border-zinc-300/50 dark:border-zinc-700/50 pb-2">

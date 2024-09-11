@@ -57,7 +57,7 @@ export const DeleteProfileModal = () => {
             >
                 <X className="absolute top-2 right-2 cursor-pointer text-zinc-200 rounded" onClick={onClose} />
 
-                <h4 className="font-semibold text-white">Delete Profile</h4>
+                <h4 className="font-semibold text-white !mt-0">Delete Profile</h4>
 
                 <div className="flex flex-col items-center w-full space-y-8">
                     <p className="text-white text-center lg:text-left">

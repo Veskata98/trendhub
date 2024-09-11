@@ -1,6 +1,6 @@
 import { getPosts } from '@/actions/post-actions/getPosts';
+import { PostFeed } from '@/components/posts/PostFeed';
 import { TrendHeader } from '@/components/trends/trend-header/TrendHeader';
-import { TrendPosts } from '@/components/trends/trend-main/TrendPosts';
 import { TrendSidebar } from '@/components/trends/trend-sidebar/TrendSidebar';
 import prisma from '@/lib/db';
 import serverUser from '@/lib/serverUser';
@@ -55,11 +55,13 @@ export default async function TrendNamePage({ params }: TrendNamePageProps) {
 
     const posts = await getPosts({ trendName });
 
+    const canEdit = user?.username === trend.creator_name;
+
     return (
         <section className="flex p-4 px-0 md:px-4 w-full justify-between xl:justify-center gap-4">
             <div className="w-full px-2 py-4 pt-4 xl:w-auto flex-1 scroll-hidden">
-                <TrendHeader trend={trend} userStatus={userStatus} />
-                <TrendPosts trendName={trendName} initialPosts={posts} />
+                <TrendHeader trend={trend} userStatus={userStatus} canEdit={canEdit} />
+                <PostFeed trendName={trendName} initialPosts={posts} pageType="trend" />
             </div>
             <TrendSidebar trend={trend} />
         </section>
