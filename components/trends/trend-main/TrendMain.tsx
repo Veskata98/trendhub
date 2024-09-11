@@ -1,40 +1,36 @@
 'use client';
 
 import { PostFeed } from '@/components/posts/PostFeed';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
-import { Separator } from '@/components/ui/separator';
 import { cn } from '@/lib/utils';
 import { ExtendedPost, TrendWithMembers, UserStatus } from '@/types';
-import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import TrendStatusButton from './TrendStatusButton';
 import TrendInfo from './TrendInfo';
+import EditFeed from '@/components/sort-search-feed/EditFeed';
 
 type TrendMainProps = {
     trend: TrendWithMembers;
     posts: ExtendedPost[];
     userStatus: UserStatus;
+    searchTerm?: string;
+    sort?: 'hot' | 'new' | 'top';
 };
 
-export const TrendMain = ({ trend, posts, userStatus }: TrendMainProps) => {
+export const TrendMain = ({ trend, posts, userStatus, searchTerm, sort }: TrendMainProps) => {
     const [show, setShow] = useState<'feed' | 'info'>('feed');
 
     useEffect(() => {
-        // Function to check window width and update state
         const checkWidth = () => {
             if (window.innerWidth > 1024) {
                 setShow('feed');
             }
         };
 
-        // Check width on initial render
         checkWidth();
 
-        // Add event listener for window resize
         window.addEventListener('resize', checkWidth);
 
-        // Cleanup function to remove the event listener
         return () => {
             window.removeEventListener('resize', checkWidth);
         };
@@ -68,7 +64,16 @@ export const TrendMain = ({ trend, posts, userStatus }: TrendMainProps) => {
             </div>
 
             {show === 'feed' ? (
-                <PostFeed trendName={trend.name} initialPosts={posts} pageType="trend" />
+                <>
+                    <EditFeed className="!w-full" />
+                    <PostFeed
+                        trendName={trend.name}
+                        initialPosts={posts}
+                        pageType="trend"
+                        searchTerm={searchTerm}
+                        sort={sort}
+                    />
+                </>
             ) : (
                 <TrendInfo trend={trend} />
             )}

@@ -12,9 +12,17 @@ type TrendNamePageProps = {
     params: {
         trendName: string;
     };
+    searchParams: { sort: string; search: string };
 };
 
-export default async function TrendNamePage({ params }: TrendNamePageProps) {
+export default async function TrendNamePage({ params, searchParams }: TrendNamePageProps) {
+    const searchTerm = searchParams.search;
+    let sort = searchParams.sort;
+
+    if (sort !== 'hot' && sort !== 'new' && sort !== 'top') {
+        sort = 'hot';
+    }
+
     const trendName = params.trendName;
     const user = await serverUser();
 
@@ -53,15 +61,21 @@ export default async function TrendNamePage({ params }: TrendNamePageProps) {
         userStatus = 'guest';
     }
 
-    const posts = await getPosts({ trendName });
+    const posts = await getPosts({ trendName, searchTerm, sort: sort as 'hot' | 'new' | 'top' });
 
     const canEdit = user?.username === trend.creator_name;
 
     return (
-        <section className="flex p-4 px-2 xl:px-4 w-full justify-between xl:justify-center gap-0 xl:gap-4">
+        <section className="flex py-2 px-0 pb-2 lg:px-2 xl:px-4 w-full justify-between xl:justify-center gap-0 xl:gap-4">
             <div className="w-full px-2 py-4 pt-4 xl:w-auto flex-1 scroll-hidden">
                 <TrendHeader trend={trend} canEdit={canEdit} />
-                <TrendMain trend={trend} posts={posts} userStatus={userStatus} />
+                <TrendMain
+                    searchTerm={searchTerm}
+                    sort={sort as 'hot' | 'new' | 'top'}
+                    trend={trend}
+                    posts={posts}
+                    userStatus={userStatus}
+                />
             </div>
             <TrendSidebar trend={trend} />
         </section>

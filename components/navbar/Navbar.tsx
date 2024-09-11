@@ -6,6 +6,8 @@ import prisma from '@/lib/db';
 import { DarkModeToggle } from '../other/DarkModeToggle';
 import serverUser from '@/lib/serverUser';
 import { CreateTrendButton } from './CreateTrendButton';
+import MobileMenu from './mobile-menu/MobileMenu';
+import { LeftSidebar } from '../left-sidebar/LeftSidebar';
 
 export const Navbar = async () => {
     const user = await serverUser();
@@ -15,9 +17,14 @@ export const Navbar = async () => {
         <nav className="h-[56px] bg-violet-500 px-4 md:px-8 text-white">
             <div className="w-full lg:w-2/3 mx-auto h-full">
                 <div className="flex justify-between items-center h-full">
-                    <Link href="/" className="font-semibold text-xl">
-                        TrendIt
-                    </Link>
+                    <div className="flex items-center gap-3">
+                        <MobileMenu>
+                            <LeftSidebar className="!w-full block scroll-hidden" />
+                        </MobileMenu>
+                        <Link href="/" className="font-semibold text-xl">
+                            TrendIt
+                        </Link>
+                    </div>
                     <div className="flex justify-center gap-4">
                         <DarkModeToggle className="hidden md:flex" />
                         {(profile || user) && (

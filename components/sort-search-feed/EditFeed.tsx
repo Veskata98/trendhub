@@ -1,10 +1,18 @@
+import { cn } from '@/lib/utils';
 import SearchFeed from './SearchFeed';
 import SortFeed from './SortFeed';
 
-export default function EditFeed() {
+export default function EditFeed({ className }: { className?: string }) {
     return (
-        <div className="flex flex-col dark:bg-zinc-900/70 w-full lg:w-[80%] xl:w-[75%] 2xl:w-[70%] mx-auto rounded-md p-1 px-2">
-            <div className="flex justify-between items-center">
+        <div className="px-2">
+            <div
+                className={cn(
+                    `flex dark:bg-zinc-900/70 w-full 
+                lg:w-[80%] xl:w-[75%] 2xl:w-[70%] mx-auto rounded-md p-1 
+                justify-between items-center px-2`,
+                    className
+                )}
+            >
                 <SortFeed />
                 <SearchFeed />
             </div>
