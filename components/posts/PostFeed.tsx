@@ -87,7 +87,7 @@ export const PostFeed = ({
     };
 
     return (
-        <div className="space-y-2 flex flex-col items-center mb-4 ">
+        <div className="space-y-2 flex flex-col items-center mb-4 px-2">
             {posts.map((post) => (
                 <PostCard
                     pageType={pageType}
