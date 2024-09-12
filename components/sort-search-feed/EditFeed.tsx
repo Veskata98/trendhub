@@ -2,7 +2,7 @@ import { cn } from '@/lib/utils';
 import SearchFeed from './SearchFeed';
 import SortFeed from './SortFeed';
 
-export default function EditFeed({ className }: { className?: string }) {
+export default function EditFeed({ className, isHomePage = false }: { className?: string; isHomePage?: boolean }) {
     return (
         <div className="px-2">
             <div
@@ -14,7 +14,7 @@ export default function EditFeed({ className }: { className?: string }) {
                 )}
             >
                 <SortFeed />
-                <SearchFeed />
+                <SearchFeed isHomePage={isHomePage} />
             </div>
         </div>
     );

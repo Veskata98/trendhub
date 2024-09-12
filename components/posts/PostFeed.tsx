@@ -9,6 +9,7 @@ import { updateVotes } from '@/lib/utils';
 import { useUser } from '@clerk/nextjs';
 import { Loader2 } from 'lucide-react';
 import { PostCard } from './PostCard';
+import { ScrollArea } from '../ui/scroll-area';
 
 export const PostFeed = ({
     initialPosts,
@@ -81,7 +82,7 @@ export const PostFeed = ({
     };
 
     return (
-        <div className="space-y-2 flex flex-col items-center mb-4">
+        <div className="space-y-2 flex flex-col items-center mb-4 ">
             {posts.map((post) => (
                 <PostCard
                     pageType={pageType}

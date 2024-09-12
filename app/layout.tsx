@@ -26,7 +26,7 @@ export default function RootLayout({
                 <body className={inter.className}>
                     <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
                         <Navbar />
-                        <main className="h-[calc(100%-56px)] w-full 2xl:w-3/4 flex mx-auto overflow-y-auto">
+                        <main className="h-[calc(100%-56px)] w-full 2xl:w-3/4 flex mx-auto">
                             <LeftSidebar />
                             {children}
                         </main>
