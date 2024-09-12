@@ -54,6 +54,10 @@ export default async function ProfileActivityPage({ params }: ProfileActivityPag
         take: 10,
     });
 
+    if (activity === 'comments') {
+        return <p>TODO: Comments</p>;
+    }
+
     if (activity === 'upvotes' && user?.username) {
         return <PostFeed initialPosts={posts} username={user.username} activity="upvotes" pageType="profile" />;
     }

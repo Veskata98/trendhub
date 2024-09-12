@@ -41,7 +41,7 @@ export const DeleteTrendModal = () => {
         const res = await deleteTrend(trendName);
 
         if (res.success) {
-            toast.success(`Trend ${trendName} was deleted`);
+            toast.success(`Trend "${trendName}" was deleted`);
             onClose();
         } else {
             toast.error('Something went wrong');

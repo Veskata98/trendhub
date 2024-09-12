@@ -9,7 +9,6 @@ import { updateVotes } from '@/lib/utils';
 import { useUser } from '@clerk/nextjs';
 import { Loader2 } from 'lucide-react';
 import { PostCard } from './PostCard';
-import { ScrollArea } from '../ui/scroll-area';
 
 export const PostFeed = ({
     initialPosts,
