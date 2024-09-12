@@ -41,7 +41,6 @@ export default function SearchFeed({ isHomePage = false }: { isHomePage?: boolea
                 focus:ring-0 focus:ring-offset-0 dark:text-white h-9"
                 onChange={(e) => setSearchTerm(e.target.value)}
             />
-            {/* TODO x BUTTON */}
             {initialValue ? (
                 <Button type="submit" className="pr-0 pl-2" onClick={() => setSearchTerm('')}>
                     <X className="h-6 w-6 text-rose-500" />

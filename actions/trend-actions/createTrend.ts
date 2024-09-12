@@ -17,7 +17,7 @@ export const createTrend = async (formdata: FormData, imageUrl: string | null) =
     const description = formdata.get('description') as string;
 
     try {
-        const user = await serverUser({ redirectToLogin: true });
+        const user = await serverUser();
 
         const parseError = trendSchema.safeParse({ name, description, imageUrl }).error;
 
