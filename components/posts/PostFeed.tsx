@@ -38,7 +38,12 @@ export const PostFeed = ({
     useEffect(() => {
         setPosts(initialPosts);
         setPage(1); // Reset page if initial posts change
-        setHasMore(true); // Reset hasMore if initial posts change
+
+        if (initialPosts.length < 10) {
+            setHasMore(false);
+        } else {
+            setHasMore(true); // Reset hasMore if initial posts change
+        }
     }, [initialPosts]);
 
     // Load more posts when in view and if more posts are available
