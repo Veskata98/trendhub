@@ -3,6 +3,8 @@ import { useUser } from '@clerk/nextjs';
 import { Like } from '@prisma/client';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
+import { useState } from 'react';
+import LoadingSpinner from '@/components/other/LoadingSpinner';
 
 type UpVoteButtonProps = {
     postId: string;
@@ -12,14 +14,23 @@ type UpVoteButtonProps = {
 
 export const UpVoteButton = ({ postId, likes, handleUpvote }: UpVoteButtonProps) => {
     const { user } = useUser();
+    const [loading, setLoading] = useState(false);
 
     const isUpvoted = likes.find(
         (like) => like.type === 'LIKE' && like.postId === postId && like.username === user?.username
     );
 
-    return (
+    return loading ? (
+        <div className="px-[6px]">
+            <LoadingSpinner className="w-5 h-5" />
+        </div>
+    ) : (
         <Button
-            onClick={() => handleUpvote(postId)}
+            onClick={async () => {
+                setLoading(true);
+                await handleUpvote(postId);
+                setLoading(false);
+            }}
             variant="ghost"
             size="sm"
             className={cn('px-[6px]', !user?.username && 'pointer-events-none')}

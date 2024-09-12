@@ -1,6 +1,8 @@
 import EditFeed from '@/components/sort-search-feed/EditFeed';
 import { HomePageFeed } from '@/components/home-page/HomePageFeed';
 
+export const dynamic = 'force-dynamic';
+
 export default async function Home({ searchParams }: { searchParams: { sort: string; search: string } }) {
     const searchTerm = searchParams.search;
     let sort = searchParams.sort;

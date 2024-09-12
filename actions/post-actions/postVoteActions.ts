@@ -2,7 +2,6 @@
 
 import prisma from '@/lib/db';
 import serverUser from '@/lib/serverUser';
-import { revalidateTag } from 'next/cache';
 
 export const upvotePost = async (postId: string) => {
     try {
