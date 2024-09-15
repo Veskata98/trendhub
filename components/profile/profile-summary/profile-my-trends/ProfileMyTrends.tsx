@@ -35,7 +35,9 @@ export const ProfileMyTrends = async ({ username }: { username: string }) => {
 
     return (
         <div className="px-1 md:px-2 space-y-2 py-4">
-            <h2 className="font-semibold text-sm md:text-base">{username}&apos;s trends</h2>
+            <h2 className="font-semibold text-sm md:text-base">
+                {user?.username === username ? 'My Trends' : `${username}'s trends`}
+            </h2>
             <Separator className="dark:bg-zinc-200 bg-zinc-800" />
             {myTrends.length ? (
                 <ul>

@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarImage } from '@/components/ui/avatar';
-import { Check, Pencil, X } from 'lucide-react';
+import { Camera, Check, X } from 'lucide-react';
 import { useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
 import { imageUpload } from '@/lib/imageUpload';
@@ -90,7 +90,7 @@ const TrendEditableImage = ({ imageUrl, trendName }: { imageUrl: string; trendNa
                     </Avatar>
 
                     {showEdit && (
-                        <Pencil className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
+                        <Camera className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
                     )}
                 </>
             )}

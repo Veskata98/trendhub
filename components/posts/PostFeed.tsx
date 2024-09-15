@@ -96,7 +96,7 @@ export const PostFeed = ({
                     handleDownvote={handleDownvote}
                 />
             ))}
-            {hasMore && <Loader2 ref={ref} className="w-10 h-10 text-zinc-500 animate-spin" />}
+            {hasMore && <Loader2 ref={ref} className="w-10 h-10 mt-12 text-zinc-500 animate-spin" />}
         </div>
     );
 };

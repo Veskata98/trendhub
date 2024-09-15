@@ -15,8 +15,6 @@ type TrendNamePageProps = {
     searchParams: { sort: string; search: string };
 };
 
-export const dynamic = 'force-dynamic';
-
 export default async function TrendNamePage({ params, searchParams }: TrendNamePageProps) {
     const searchTerm = searchParams.search;
     let sort = searchParams.sort;

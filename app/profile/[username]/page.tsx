@@ -6,8 +6,6 @@ type ProfilePageProps = {
     };
 };
 
-export const dynamic = 'force-dynamic';
-
 export default async function ProfilePage({ params }: ProfilePageProps) {
     const username = params.username;
 

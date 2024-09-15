@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation';
-import { currentUser } from '@clerk/nextjs/server';
 import { PostFeed } from '@/components/posts/PostFeed';
 import prisma from '@/lib/db';
+import serverUser from '@/lib/serverUser';
 
 type ProfileActivityPageProps = {
     params: {
@@ -12,13 +12,11 @@ type ProfileActivityPageProps = {
 
 const ACTIVITY_TYPES = ['posts', 'comments', 'upvotes', 'downvotes'];
 
-export const dynamic = 'force-dynamic';
-
 export default async function ProfileActivityPage({ params }: ProfileActivityPageProps) {
     const activity = params.activity;
     const username = params.username;
 
-    const user = await currentUser();
+    const user = await serverUser();
 
     if (!ACTIVITY_TYPES.includes(activity)) {
         redirect('/');

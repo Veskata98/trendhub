@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Check, UserPen, X } from 'lucide-react';
+import { Check, Camera, X } from 'lucide-react';
 import { useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
 import { imageUpload } from '@/lib/imageUpload';
@@ -100,7 +100,7 @@ export const EditableAvatar = ({ src, username }: { src: string; username: strin
                                 </Avatar>
 
                                 {showEdit && (
-                                    <UserPen className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
+                                    <Camera className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
                                 )}
                             </>
                         )}

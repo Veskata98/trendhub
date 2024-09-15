@@ -5,9 +5,11 @@ export default async function serverUser() {
     try {
         const user = await currentUser();
 
-        if (user) {
-            return user as ServerUser;
+        if (!user) {
+            return null;
         }
+
+        return user as ServerUser;
     } catch (error) {
         return null;
     }

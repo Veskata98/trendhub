@@ -82,7 +82,7 @@ export const CreateTrendModal = () => {
 
     return (
         <div
-            className="fixed inset-0 z-50 flex items-start md:items-center justify-center bg-black bg-opacity-60 backdrop-blur-sm w-screen h-screen"
+            className="overflow-scroll fixed inset-0 z-50 flex items-start md:items-center justify-center bg-black bg-opacity-60 backdrop-blur-sm w-screen h-screen"
             onClick={onBackdropClick}
         >
             <div

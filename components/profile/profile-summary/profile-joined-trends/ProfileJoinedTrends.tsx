@@ -1,7 +1,6 @@
 import { Avatar, AvatarImage } from '@/components/ui/avatar';
 import { Separator } from '@/components/ui/separator';
 import Link from 'next/link';
-import React from 'react';
 import serverUser from '@/lib/serverUser';
 import prisma from '@/lib/db';
 import { redirect } from 'next/navigation';
@@ -39,7 +38,7 @@ export const ProfileJoinedTrends = async ({ username }: { username: string }) =>
 
     return (
         <div className="p-1 space-y-1">
-            <h2 className="font-semibold text-sm md:text-base">{username}&apos;s joined trends</h2>
+            <h2 className="font-semibold text-sm md:text-base">Joined trends</h2>
             <Separator className="dark:bg-zinc-200 bg-zinc-800" />
             {joinedTrends.length ? (
                 <ul>
@@ -58,7 +57,7 @@ export const ProfileJoinedTrends = async ({ username }: { username: string }) =>
                 </ul>
             ) : (
                 <div className="w-full min-h-28 flex justify-center items-center text-muted-foreground">
-                    <p className="font-semibold text-sm md:text-base">{username} haven&apos;t joined any trends yet</p>
+                    <p className="font-semibold text-sm md:text-base">You haven&apos;t joined any trends yet</p>
                 </div>
             )}
         </div>
