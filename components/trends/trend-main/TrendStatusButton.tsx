@@ -16,7 +16,7 @@ const TrendStatusButton = ({ userStatus, trendName }: { userStatus: UserStatus; 
                     onClick={async () => {
                         const res = await leaveTrend(trendName);
                         if (res.success) {
-                            toast.error('Successfully leaved trend');
+                            toast.error(`You left trend "${trendName}"`);
                         }
                     }}
                 >
@@ -30,7 +30,7 @@ const TrendStatusButton = ({ userStatus, trendName }: { userStatus: UserStatus; 
                     onClick={async () => {
                         const res = await joinTrend(trendName);
                         if (res.success) {
-                            toast.success('Successfully joined trend');
+                            toast.success(`Successfully joined trend "${trendName}"`);
                         }
                     }}
                 >
