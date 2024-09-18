@@ -101,10 +101,10 @@ export const PostCard = ({ pageType, post, handleUpvote, handleDownvote }: PostC
                     <PostLikeCount likes={post.likes} />
                     <DownVoteButton handleDownvote={handleDownvote} postId={post.id} likes={post.likes} />
                 </div>
-                <Button variant="ghost" size="sm" className="space-x-2">
+                <Link href={`/post/${post.id}`} className="flex gap-2 items-center">
                     <MessageSquare className="h-4 w-4" />
                     <span className="text-sm sm:text-base">0 Comments</span>
-                </Button>
+                </Link>
                 <Button variant="ghost" size="sm" className="space-x-2">
                     <Share2 className="h-4 w-4" />
                     <span className="text-sm sm:text-base">Share</span>

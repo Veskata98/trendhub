@@ -1,5 +1,5 @@
 import { User } from '@clerk/nextjs/server';
-import { Like, Post, Trend } from '@prisma/client';
+import { Comment, Like, Post, Trend } from '@prisma/client';
 
 export interface ServerUser extends User {
     username: string;
@@ -35,3 +35,7 @@ export interface TrendWithMembers extends Trend {
 }
 
 export type PostCardPageType = 'profile' | 'trend' | 'home';
+
+export interface ExtendedComment extends Comment {
+    replies: ExtendedComment[];
+}

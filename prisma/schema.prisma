@@ -24,8 +24,10 @@ model Profile {
   created_trends Trend[]
   trends         TrendOnProfile[]
 
-  posts Post[]
-  likes Like[]
+  posts        Post[]
+  likes        Like[]
+  comments     Comment[]
+  commentLikes CommentLike[]
 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
@@ -70,10 +72,16 @@ model Post {
   creator_name String
   creator      Profile @relation(fields: [creator_name], references: [username], onDelete: Cascade)
 
-  likes Like[]
+  likes    Like[]
+  comments Comment[]
 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
+}
+
+enum LikeType {
+  LIKE
+  DISLIKE
 }
 
 model Like {
@@ -89,7 +97,35 @@ model Like {
   @@unique([username, postId, type])
 }
 
-enum LikeType {
-  LIKE
-  DISLIKE
+model Comment {
+  id           String  @id @default(uuid())
+  content      String
+  creator_name String
+  creator      Profile @relation(fields: [creator_name], references: [username], onDelete: Cascade)
+
+  postId String
+  post   Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  parentId String? // This will be null for top-level comments
+  parent   Comment? @relation("CommentReplies", fields: [parentId], references: [id])
+
+  replies Comment[] @relation("CommentReplies")
+
+  likes CommentLike[] // Track likes/dislikes for this comment
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+model CommentLike {
+  id   Int      @id @default(autoincrement())
+  type LikeType // Enum for UPVOTE or DOWNVOTE
+
+  username String
+  profile  Profile @relation(fields: [username], references: [username], onDelete: Cascade)
+
+  commentId String
+  comment   Comment @relation(fields: [commentId], references: [id], onDelete: Cascade)
+
+  @@unique([username, commentId, type]) // Ensure a user can upvote or downvote a comment only once
 }
