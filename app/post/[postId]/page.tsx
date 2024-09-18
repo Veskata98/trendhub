@@ -14,7 +14,7 @@ export default async function PostPage({ params }: { params: { postId: string } 
         },
     });
 
-    console.log(post);
+    //TODO: Post with comments page
 
     return <div className="w-full">page</div>;
 }
