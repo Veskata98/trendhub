@@ -1,5 +1,7 @@
 import PostPageComponent from '@/components/posts/post-page/PostPageComponent';
 import prisma from '@/lib/db';
+import { nestComments } from '@/lib/nestComments';
+import { ExtendedComment } from '@/types';
 import { redirect } from 'next/navigation';
 
 export default async function PostPage({ params }: { params: { postId: string } }) {
@@ -31,11 +33,25 @@ export default async function PostPage({ params }: { params: { postId: string } 
         redirect('/');
     }
 
-    //TODO: Post with comments page
+    const comments = await prisma.comment.findMany({
+        where: {
+            postId: post.id,
+        },
+        include: {
+            replies: true,
+            creator: {
+                select: {
+                    image_url: true,
+                },
+            },
+        },
+    });
+
+    const nestedComments = nestComments(comments as ExtendedComment[]);
 
     return (
-        <div className="w-full h-full">
-            <PostPageComponent post={post} />
+        <div className="w-full h-full overflow-scroll scroll-hidden">
+            <PostPageComponent post={post} comments={nestedComments} />
         </div>
     );
 }

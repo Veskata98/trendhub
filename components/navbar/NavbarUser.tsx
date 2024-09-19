@@ -44,7 +44,7 @@ export const NavbarUser = ({ profilePicture, username }: NavbarUserProps) => {
                         <div className="w-full flex gap-2 h-12 items-center justify-center">
                             <p className="font-semibold">{username}</p>
                         </div>
-                        <Separator className="dark:bg-primary-600" />
+                        <Separator className="dark:bg-primary-600/50" />
 
                         <div className="px-4 hover:bg-zinc-200 dark:hover:bg-zinc-600 w-full">
                             <Link
@@ -56,7 +56,7 @@ export const NavbarUser = ({ profilePicture, username }: NavbarUserProps) => {
                                 View Profile
                             </Link>
                         </div>
-                        <Separator className="dark:bg-primary-600" />
+                        <Separator className="dark:bg-primary-600/50" />
 
                         <div
                             className="flex md:hidden w-full flex-col items-center sm:items-start
@@ -65,7 +65,7 @@ export const NavbarUser = ({ profilePicture, username }: NavbarUserProps) => {
                             <div onClick={() => setIsOpen(false)} className="px-4 w-full flex items-center gap-4 h-12">
                                 <CreateTrendButton smallDisplay={true} />
                             </div>
-                            <Separator className="dark:bg-primary-600" />
+                            <Separator className="dark:bg-primary-600/50" />
                         </div>
 
                         <div className="flex md:hidden w-full flex-col items-center sm:items-start">
@@ -77,7 +77,7 @@ export const NavbarUser = ({ profilePicture, username }: NavbarUserProps) => {
                                 )}
                                 <DarkModeToggle className="hover:bg-zinc-300 dark:hover:bg-zinc-600" />
                             </div>
-                            <Separator className="dark:bg-primary-600" />
+                            <Separator className="dark:bg-primary-600/50" />
                         </div>
 
                         <SignOutButton redirectUrl="/">
@@ -91,7 +91,7 @@ export const NavbarUser = ({ profilePicture, username }: NavbarUserProps) => {
                         </SignOutButton>
 
                         <div className="block lg:hidden w-full">
-                            <Separator className="dark:bg-primary-600" />
+                            <Separator className="dark:bg-primary-600/50" />
                             <div
                                 onClick={() => onOpen('deleteProfile', { username })}
                                 className="px-4 w-full flex gap-2 h-12 items-center justify-center 

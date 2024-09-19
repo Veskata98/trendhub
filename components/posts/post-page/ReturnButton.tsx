@@ -4,11 +4,11 @@ import { Button } from '@/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
-const ReturnButton = () => {
+const ReturnButton = ({ trendName }: { trendName: string }) => {
     const router = useRouter();
 
     const handleClick = () => {
-        router.back();
+        router.push(`/t/${trendName}`);
     };
 
     return (

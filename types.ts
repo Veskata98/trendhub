@@ -18,8 +18,7 @@ export interface ExtendedPost extends Post {
     likes: Like[];
 }
 
-export interface ExtendedPostWithComments extends Omit<ExtendedPost, 'trend'> {
-    comments: Comment[];
+export interface ExtendedPostWithMandatoryTrendName extends Omit<ExtendedPost, 'trend'> {
     trend: {
         image_url: string;
     };
@@ -45,4 +44,7 @@ export type PostCardPageType = 'profile' | 'trend' | 'home';
 
 export interface ExtendedComment extends Comment {
     replies: ExtendedComment[];
+    creator?: {
+        image_url: string;
+    };
 }

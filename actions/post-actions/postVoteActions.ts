@@ -2,8 +2,9 @@
 
 import prisma from '@/lib/db';
 import serverUser from '@/lib/serverUser';
+import { revalidatePath } from 'next/cache';
 
-export const upvotePost = async (postId: string) => {
+export const upvotePost = async (postId: string, revalidate?: boolean) => {
     try {
         const user = await serverUser();
 
@@ -26,6 +27,10 @@ export const upvotePost = async (postId: string) => {
                     },
                 });
 
+                if (revalidate) {
+                    revalidatePath(`/post/${postId}`);
+                }
+
                 return { success: true, data: null };
             } else {
                 const updatedVote = await prisma.like.update({
@@ -36,6 +41,10 @@ export const upvotePost = async (postId: string) => {
                         type: 'LIKE',
                     },
                 });
+
+                if (revalidate) {
+                    revalidatePath(`/post/${postId}`);
+                }
 
                 return { success: true, data: updatedVote };
             }
@@ -49,6 +58,10 @@ export const upvotePost = async (postId: string) => {
             },
         });
 
+        if (revalidate) {
+            revalidatePath(`/post/${postId}`);
+        }
+
         return { success: true, data: newUpvote };
     } catch (error) {
         console.error(error);
@@ -56,7 +69,7 @@ export const upvotePost = async (postId: string) => {
     }
 };
 
-export const downvotePost = async (postId: string) => {
+export const downvotePost = async (postId: string, revalidate?: boolean) => {
     try {
         const user = await serverUser();
 
@@ -79,6 +92,10 @@ export const downvotePost = async (postId: string) => {
                     },
                 });
 
+                if (revalidate) {
+                    revalidatePath(`/post/${postId}`);
+                }
+
                 return { success: true, data: null };
             } else {
                 const updatedVote = await prisma.like.update({
@@ -89,6 +106,10 @@ export const downvotePost = async (postId: string) => {
                         type: 'DISLIKE',
                     },
                 });
+
+                if (revalidate) {
+                    revalidatePath(`/post/${postId}`);
+                }
 
                 return { success: true, data: updatedVote };
             }
@@ -101,6 +122,10 @@ export const downvotePost = async (postId: string) => {
                 username: user.username,
             },
         });
+
+        if (revalidate) {
+            revalidatePath(`/post/${postId}`);
+        }
 
         return { success: true, data: newDownvote };
     } catch (error) {

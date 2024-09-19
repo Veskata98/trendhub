@@ -26,7 +26,7 @@ const SubmitCommentForm = ({ postId }: { postId: string }) => {
                 required
                 name="content"
                 className="focus-visible:ring-0 focus-visible:outline-none
-                focus-visible:ring-offset-0 border-[1px] shadow
+                focus-visible:ring-offset-0 border-[1px] shadow-sm
                 dark:border-zinc-500"
             />
             <div className="flex justify-end">

@@ -11,26 +11,35 @@ import { PostLikeCount } from '../PostLikeCount';
 import { DownVoteButton } from '../vote-buttons/DownVoteButton';
 import { MessageSquare } from 'lucide-react';
 import SharePostButton from '../SharePostButton';
-import { Textarea } from '@/components/ui/textarea';
-import { Button } from '@/components/ui/button';
-import { ExtendedPostWithComments } from '@/types';
+import { ExtendedComment, ExtendedPostWithMandatoryTrendName } from '@/types';
 import SubmitCommentForm from '@/components/comments/SubmitCommentForm';
+import { downvotePost, upvotePost } from '@/actions/post-actions/postVoteActions';
+import CommentSection from '@/components/comments/CommentSection';
+import { useUser } from '@clerk/nextjs';
 
-const PostPageComponent = ({ post }: { post: ExtendedPostWithComments }) => {
+const PostPageComponent = ({
+    post,
+    comments,
+}: {
+    post: ExtendedPostWithMandatoryTrendName;
+    comments: ExtendedComment[];
+}) => {
+    const { user } = useUser();
+
     const handleUpvote = async (postId: string) => {
-        // const result = await upvotePost(postId);
-        // if (!result.success) return;
+        const result = await upvotePost(postId, true);
+        if (!result.success) return;
     };
 
     const handleDownvote = async (postId: string) => {
-        // const result = await downvotePost(postId);
-        // if (!result.success) return;};
+        const result = await downvotePost(postId, true);
+        if (!result.success) return;
     };
 
     return (
         <div className="w-full max-w-[750px] p-4 md:py-8 space-y-4 mx-auto">
             <Card className="dark:bg-zinc-700/30 relative">
-                <ReturnButton />
+                <ReturnButton trendName={post.trend_name} />
                 <CardHeader className="p-4 md:px-6">
                     <div className="flex flex-row items-center gap-2">
                         <Link href={`/t/${post.trend_name}`}>
@@ -70,12 +79,13 @@ const PostPageComponent = ({ post }: { post: ExtendedPostWithComments }) => {
                     </div>
                     <div className="flex gap-2 items-center select-none">
                         <MessageSquare className="h-4 w-4" />
-                        <span className="text-sm sm:text-base">{post.comments.length} Comments</span>
+                        <span className="text-sm sm:text-base">{comments.length} Comments</span>
                     </div>
                     <SharePostButton postId={post.id} />
                 </CardFooter>
             </Card>
-            <SubmitCommentForm postId={post.id} />
+            {user && <SubmitCommentForm postId={post.id} />}
+            <CommentSection comments={comments} />
         </div>
     );
 };
