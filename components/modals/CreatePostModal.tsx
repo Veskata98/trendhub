@@ -101,13 +101,26 @@ export const CreatePostModal = () => {
                             <Label className="text-white" htmlFor="title">
                                 <sup>*</sup>Title
                             </Label>
-                            <Input type="text" name="title" required />
+                            <Input
+                                type="text"
+                                name="title"
+                                required
+                                autoComplete="off"
+                                className="focus-visible:ring-0 focus-visible:outline-none
+                                focus-visible:ring-offset-0"
+                            />
                         </div>
                         <div>
                             <Label className="text-white" htmlFor="description">
                                 Description
                             </Label>
-                            <Textarea name="description" rows={5} />
+                            <Textarea
+                                name="description"
+                                rows={5}
+                                autoComplete="off"
+                                className="focus-visible:ring-0 focus-visible:outline-none
+                                focus-visible:ring-offset-0"
+                            />
                         </div>
 
                         <SubmitButton />

@@ -11,6 +11,7 @@ import { PostImage } from './PostImage';
 import { PostLikeCount } from './PostLikeCount';
 import { UpVoteButton } from './vote-buttons/UpVoteButton';
 import { DownVoteButton } from './vote-buttons/DownVoteButton';
+import SharePostButton from './SharePostButton';
 
 type PostCardProps = {
     pageType: PostCardPageType;
@@ -105,10 +106,7 @@ export const PostCard = ({ pageType, post, handleUpvote, handleDownvote }: PostC
                     <MessageSquare className="h-4 w-4" />
                     <span className="text-sm sm:text-base">0 Comments</span>
                 </Link>
-                <Button variant="ghost" size="sm" className="space-x-2">
-                    <Share2 className="h-4 w-4" />
-                    <span className="text-sm sm:text-base">Share</span>
-                </Button>
+                <SharePostButton postId={post.id} />
             </CardFooter>
         </Card>
     );

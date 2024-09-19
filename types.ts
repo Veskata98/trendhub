@@ -18,6 +18,13 @@ export interface ExtendedPost extends Post {
     likes: Like[];
 }
 
+export interface ExtendedPostWithComments extends Omit<ExtendedPost, 'trend'> {
+    comments: Comment[];
+    trend: {
+        image_url: string;
+    };
+}
+
 export interface PostWithCreatorAvatarAndLikes extends Post {
     creator: {
         image_url: string;

@@ -12,8 +12,12 @@ const ReturnButton = () => {
     };
 
     return (
-        <Button onClick={handleClick} variant="ghost" className="hidden xl:block absolute -left-16 -top-2">
-            <ArrowLeft />
+        <Button
+            onClick={handleClick}
+            variant="ghost"
+            className="hidden xl:block absolute -left-16 top-0 hover:bg-transparent"
+        >
+            <ArrowLeft className="hover:text-zinc-600 dark:hover:text-zinc-200" />
         </Button>
     );
 };
