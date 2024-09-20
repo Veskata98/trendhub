@@ -1,5 +1,5 @@
-import PostPageComponent from '@/components/posts/post-page/PostPageComponent';
 import prisma from '@/lib/db';
+import PostPageComponent from '@/components/posts/post-page/PostPageComponent';
 import { nestComments } from '@/lib/nestComments';
 import { ExtendedComment } from '@/types';
 import { redirect } from 'next/navigation';
@@ -26,6 +26,7 @@ export default async function PostPage({ params }: { params: { postId: string } 
                 },
             },
             likes: true,
+            _count: { select: { comments: true } },
         },
     });
 
@@ -44,6 +45,7 @@ export default async function PostPage({ params }: { params: { postId: string } 
                     image_url: true,
                 },
             },
+            likes: true,
         },
     });
 

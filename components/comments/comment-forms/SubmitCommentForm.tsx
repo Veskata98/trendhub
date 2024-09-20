@@ -1,5 +1,5 @@
-import { Textarea } from '../ui/textarea';
-import { Button } from '../ui/button';
+import { Textarea } from '../../ui/textarea';
+import { Button } from '../../ui/button';
 import { useFormStatus } from 'react-dom';
 import { addComment } from '@/actions/comment-actions/addComment';
 import { toast } from 'sonner';

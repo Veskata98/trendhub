@@ -104,7 +104,7 @@ export const PostCard = ({ pageType, post, handleUpvote, handleDownvote }: PostC
                 </div>
                 <Link href={`/post/${post.id}`} className="flex gap-2 items-center">
                     <MessageSquare className="h-4 w-4" />
-                    <span className="text-sm sm:text-base">0 Comments</span>
+                    <span className="text-sm sm:text-base">{post._count.comments} Comments</span>
                 </Link>
                 <SharePostButton postId={post.id} />
             </CardFooter>

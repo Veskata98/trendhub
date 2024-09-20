@@ -12,7 +12,7 @@ import { DownVoteButton } from '../vote-buttons/DownVoteButton';
 import { MessageSquare } from 'lucide-react';
 import SharePostButton from '../SharePostButton';
 import { ExtendedComment, ExtendedPostWithMandatoryTrendName } from '@/types';
-import SubmitCommentForm from '@/components/comments/SubmitCommentForm';
+import SubmitCommentForm from '@/components/comments/comment-forms/SubmitCommentForm';
 import { downvotePost, upvotePost } from '@/actions/post-actions/postVoteActions';
 import CommentSection from '@/components/comments/CommentSection';
 import { useUser } from '@clerk/nextjs';
@@ -79,7 +79,7 @@ const PostPageComponent = ({
                     </div>
                     <div className="flex gap-2 items-center select-none">
                         <MessageSquare className="h-4 w-4" />
-                        <span className="text-sm sm:text-base">{comments.length} Comments</span>
+                        <span className="text-sm sm:text-base">{post._count.comments} Comments</span>
                     </div>
                     <SharePostButton postId={post.id} />
                 </CardFooter>

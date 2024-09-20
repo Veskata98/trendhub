@@ -59,6 +59,7 @@ export const hotPostQuery = async (searchTerm: string, skip: number, trendName?:
                     },
                 },
                 likes: true,
+                _count: { select: { comments: true } },
             },
         });
 

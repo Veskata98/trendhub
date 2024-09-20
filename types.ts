@@ -1,5 +1,5 @@
 import { User } from '@clerk/nextjs/server';
-import { Comment, Like, Post, Trend } from '@prisma/client';
+import { Comment, CommentLike, Like, Post, Trend } from '@prisma/client';
 
 export interface ServerUser extends User {
     username: string;
@@ -16,6 +16,9 @@ export interface ExtendedPost extends Post {
         image_url: string;
     };
     likes: Like[];
+    _count: {
+        comments: number;
+    };
 }
 
 export interface ExtendedPostWithMandatoryTrendName extends Omit<ExtendedPost, 'trend'> {
@@ -47,4 +50,5 @@ export interface ExtendedComment extends Comment {
     creator?: {
         image_url: string;
     };
+    likes: CommentLike[];
 }

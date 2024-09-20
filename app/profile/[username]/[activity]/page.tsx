@@ -39,6 +39,7 @@ export default async function ProfileActivityPage({ params }: ProfileActivityPag
                 },
             },
             likes: true,
+            _count: { select: { comments: true } },
             trend: {
                 select: {
                     image_url: true,

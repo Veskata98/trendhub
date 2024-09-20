@@ -62,6 +62,7 @@ export const getPosts = async ({
                             image_url: true,
                         },
                     },
+                    _count: { select: { comments: true } },
                 },
             });
         }
