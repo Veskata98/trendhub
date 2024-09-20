@@ -102,7 +102,10 @@ export const PostCard = ({ pageType, post, handleUpvote, handleDownvote }: PostC
                     <PostLikeCount likes={post.likes} />
                     <DownVoteButton handleDownvote={handleDownvote} postId={post.id} likes={post.likes} />
                 </div>
-                <Link href={`/post/${post.id}`} className="flex gap-2 items-center">
+                <Link
+                    href={`/post/${post.id}`}
+                    className="flex gap-2 items-center px-3 py-2 hover:dark:bg-zinc-800 rounded hover:bg-zinc-100"
+                >
                     <MessageSquare className="h-4 w-4" />
                     <span className="text-sm sm:text-base">{post._count.comments} Comments</span>
                 </Link>
