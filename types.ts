@@ -52,3 +52,11 @@ export interface ExtendedComment extends Comment {
     };
     likes: CommentLike[];
 }
+
+export interface ProfilePageComments extends Comment {
+    likes: CommentLike[];
+    post: {
+        title: string;
+        trend: Trend;
+    };
+}

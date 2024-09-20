@@ -5,7 +5,7 @@ import { ExtendedPost, PostCardPageType } from '@/types';
 import { useCallback, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { downvotePost, upvotePost } from '@/actions/post-actions/postVoteActions';
-import { updateVotes } from '@/lib/utils';
+import { cn, updateVotes } from '@/lib/utils';
 import { useUser } from '@clerk/nextjs';
 import { Loader2 } from 'lucide-react';
 import { PostCard } from './PostCard';
@@ -86,7 +86,7 @@ export const PostFeed = ({
     };
 
     return (
-        <div className="space-y-2 flex flex-col items-center mb-4 px-2">
+        <div className={cn('space-y-2 flex flex-col items-center mb-4 px-2', pageType === 'profile' && 'px-0')}>
             {posts.map((post) => (
                 <PostCard
                     pageType={pageType}

@@ -42,7 +42,11 @@ export const PostCard = ({ pageType, post, handleUpvote, handleDownvote }: PostC
                             </Link>
 
                             <p className="text-xs text-muted-foreground">
-                                Posted by {post.creator_name} • {moment(post.created_at).fromNow()}
+                                Posted by{' '}
+                                <Link className="hover:underline" href={`/profile/${post.creator_name}`}>
+                                    {post.creator_name}
+                                </Link>{' '}
+                                • {moment(post.created_at).fromNow()}
                             </p>
                         </div>
                     </>

@@ -5,6 +5,7 @@ import { leaveTrend } from '@/actions/trend-actions/leaveTrend';
 import { Button } from '@/components/ui/button';
 import { useModal } from '@/hooks/useModalStore';
 import { TrendWithMembers } from '@/types';
+import { useUser } from '@clerk/nextjs';
 import { Trend } from '@prisma/client';
 
 export const MyTrendActionButton = ({
@@ -15,9 +16,14 @@ export const MyTrendActionButton = ({
     currentUserUsername: string | undefined;
 }) => {
     const { onOpen } = useModal();
+    const { user } = useUser();
     const isCreator = (trend: Trend) => {
         return trend.creator_name === currentUserUsername;
     };
+
+    if (!user) {
+        return <span className="pr-8">-</span>;
+    }
 
     return isCreator(trend) ? (
         <Button

@@ -2,6 +2,7 @@ import { redirect } from 'next/navigation';
 import { PostFeed } from '@/components/posts/PostFeed';
 import prisma from '@/lib/db';
 import serverUser from '@/lib/serverUser';
+import ProfileComments from '@/components/comments/profile-comments/ProfileComments';
 
 type ProfileActivityPageProps = {
     params: {
@@ -54,7 +55,7 @@ export default async function ProfileActivityPage({ params }: ProfileActivityPag
     });
 
     if (activity === 'comments') {
-        return <p>TODO: Comments</p>;
+        return <ProfileComments username={username} />;
     }
 
     if (activity === 'upvotes' && user?.username) {
