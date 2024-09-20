@@ -7,7 +7,9 @@ import { TopTrendList } from './trend-lists/TopTrendList';
 
 export const LeftSidebar = async ({ className }: { className?: string }) => {
     return (
-        <aside className={cn('w-80 xl:w-96 h-full hidden md:block sticky top-0 overflow-scroll', className)}>
+        <aside
+            className={cn('w-80 xl:w-96 h-full hidden md:block sticky top-0 overflow-scroll scroll-hidden', className)}
+        >
             <ScrollArea className="p-4 px-1 flex flex-col">
                 <TopTrendList />
                 <NewTrendList />

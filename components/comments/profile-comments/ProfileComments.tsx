@@ -5,7 +5,7 @@ const ProfileComments = async ({ username }: { username: string }) => {
     const comments = await getComments(username);
 
     return (
-        <div className="w-full space-y-2 mx-auto bg-background overflow-x-scroll">
+        <div className="w-full space-y-2 mx-auto bg-background overflow-x-scroll scroll-hidden">
             {comments.length ? (
                 comments.map((comment) => <ProfileCommentCard key={comment.id} comment={comment} />)
             ) : (

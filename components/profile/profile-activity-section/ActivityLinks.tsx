@@ -29,7 +29,7 @@ export const ActivityLinks = ({ links, username }: { links: Links; username: str
     return (
         <ul
             className={cn(
-                'flex gap-1 md:gap-4 justify-center p-1 overflow-x-scroll text-sm',
+                'flex gap-1 md:gap-4 justify-center p-1 overflow-x-scroll text-sm scroll-hidden',
                 Object.values(links).length === 5 && 'justify-start sm:justify-center'
             )}
         >
