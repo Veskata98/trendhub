@@ -8,7 +8,7 @@ const TrendInfo = ({ trend }: { trend: TrendWithMembers }) => {
     return (
         <div className="space-y-6 pt-4 px-1 sm:px-2 md:px-4">
             <div className="space-y-2">
-                <h2 className="font-bold text-center">t/{trend.name}</h2>
+                <h2 className="font-bold">t/{trend.name}</h2>
                 <p className="text-sm">{trend.description}</p>
             </div>
             <Separator className="bg-zinc-700" />
