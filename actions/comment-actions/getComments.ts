@@ -1,6 +1,6 @@
-'use server';
+"use server";
 
-import prisma from '@/lib/db';
+import prisma from "@/lib/db";
 
 export default async function getComments(username: string) {
     try {
@@ -11,6 +11,9 @@ export default async function getComments(username: string) {
             include: {
                 likes: true,
                 post: { include: { trend: true } },
+            },
+            orderBy: {
+                created_at: "desc",
             },
         });
 
