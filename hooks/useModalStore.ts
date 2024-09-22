@@ -1,6 +1,11 @@
-import { create } from 'zustand';
+import { create } from "zustand";
 
-export type ModalType = 'createTrend' | 'createPost' | 'deleteTrend' | 'deleteProfile';
+export type ModalType =
+    | "createTrend"
+    | "createPost"
+    | "deleteTrend"
+    | "deleteProfile"
+    | "leaveTrend";
 
 interface ModalData {
     trendName?: string;
@@ -19,6 +24,8 @@ export const useModal = create<ModalStore>((set) => ({
     type: null,
     isOpen: false,
     data: {},
-    onOpen: (type, data = {}) => set((prev) => ({ ...prev, isOpen: true, type, data })),
-    onClose: () => set((prev) => ({ ...prev, isOpen: false, type: null, data: {} })),
+    onOpen: (type, data = {}) =>
+        set((prev) => ({ ...prev, isOpen: true, type, data })),
+    onClose: () =>
+        set((prev) => ({ ...prev, isOpen: false, type: null, data: {} })),
 }));

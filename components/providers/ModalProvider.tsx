@@ -1,10 +1,11 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import { CreateTrendModal } from '../modals/CreateTrendModal';
-import { CreatePostModal } from '../modals/CreatePostModal';
-import { DeleteTrendModal } from '../modals/DeleteTrendModal';
-import { DeleteProfileModal } from '../modals/DeleteProfileModal';
+import { useEffect, useState } from "react";
+import { CreateTrendModal } from "../modals/CreateTrendModal";
+import { CreatePostModal } from "../modals/CreatePostModal";
+import { DeleteTrendModal } from "../modals/DeleteTrendModal";
+import { DeleteProfileModal } from "../modals/DeleteProfileModal";
+import LeaveTrendModal from "../modals/LeaveTrendModal";
 
 export const ModalProvider = () => {
     const [isMounted, setIsMounted] = useState(false);
@@ -23,6 +24,7 @@ export const ModalProvider = () => {
             <CreatePostModal />
             <DeleteTrendModal />
             <DeleteProfileModal />
+            <LeaveTrendModal />
         </>
     );
 };
