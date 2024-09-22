@@ -1,9 +1,9 @@
-'use server';
+"use server";
 
-import prisma from '@/lib/db';
-import serverUser from '@/lib/serverUser';
-import { clerkClient } from '@clerk/nextjs/server';
-import { revalidateTag } from 'next/cache';
+import prisma from "@/lib/db";
+import serverUser from "@/lib/serverUser";
+import { clerkClient } from "@clerk/nextjs/server";
+import { revalidateTag } from "next/cache";
 
 const deleteProfile = async (username: string) => {
     try {
@@ -18,7 +18,9 @@ const deleteProfile = async (username: string) => {
             },
         });
 
-        if (!profile) return { success: false };
+        if (!profile || profile.username !== user.username) {
+            return { success: false };
+        }
 
         await clerkClient().users.deleteUser(user.id);
         await prisma.profile.delete({ where: { username } });

@@ -1,26 +1,30 @@
-'use server';
+"use server";
 
-import prisma from '@/lib/db';
-import { ServerUser } from '@/types';
-import { currentUser } from '@clerk/nextjs/server';
+import prisma from "@/lib/db";
+import { ServerUser } from "@/types";
+import { currentUser } from "@clerk/nextjs/server";
 
-import { revalidatePath } from 'next/cache';
-import z, { ZodError } from 'zod';
+import { revalidatePath } from "next/cache";
+import z, { ZodError } from "zod";
 
 const postSchema = z.object({
     title: z
         .string()
         .regex(/^[a-zA-Z0-9\s]*$/, {
-            message: 'Title must be alphanumeric',
+            message: "Title must be alphanumeric",
         })
-        .min(3, { message: 'Title must be at least 3 characters' }),
+        .min(3, { message: "Title must be at least 3 characters" }),
     description: z.string().optional(),
-    imageUrl: z.union([z.string(), z.null()]).optional(),
+    imageUrl: z.string().url().nullable().optional(),
 });
 
-export const createPost = async (formData: FormData, trendName: string, imageUrl: string | null) => {
-    const title = formData.get('title') as string;
-    const description = formData.get('description') as string;
+export const createPost = async (
+    formData: FormData,
+    trendName: string,
+    imageUrl: string | null,
+) => {
+    const title = formData.get("title") as string;
+    const description = formData.get("description") as string;
 
     try {
         const user = (await currentUser()) as ServerUser;
@@ -35,7 +39,7 @@ export const createPost = async (formData: FormData, trendName: string, imageUrl
                             {
                                 members: {
                                     some: {
-                                        profile_username: user!.username,
+                                        profile_username: user.username,
                                     },
                                 },
                             },
@@ -46,10 +50,14 @@ export const createPost = async (formData: FormData, trendName: string, imageUrl
         });
 
         if (!trend) {
-            throw 'Join the trend before creating post';
+            throw "Join the trend before creating post";
         }
 
-        const parseError = postSchema.safeParse({ title, description, imageUrl }).error;
+        const parseError = postSchema.safeParse({
+            title,
+            description,
+            imageUrl,
+        }).error;
 
         if (parseError) {
             throw parseError;
@@ -61,7 +69,7 @@ export const createPost = async (formData: FormData, trendName: string, imageUrl
                 trend_name: trendName,
                 description: description.trim(),
                 image_url: imageUrl,
-                creator_name: user!.username,
+                creator_name: user.username,
             },
         });
 
@@ -71,11 +79,11 @@ export const createPost = async (formData: FormData, trendName: string, imageUrl
             return error.flatten().fieldErrors;
         }
 
-        if (typeof error === 'string') {
+        if (typeof error === "string") {
             return { authError: [error] };
         }
 
         console.log(error);
-        return { serverError: ['Something went wrong'] };
+        return { serverError: ["Something went wrong"] };
     }
 };
