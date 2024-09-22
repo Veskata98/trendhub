@@ -10,9 +10,6 @@ import z, { ZodError } from "zod";
 const postSchema = z.object({
     title: z
         .string()
-        .regex(/^[a-zA-Z0-9\s]*$/, {
-            message: "Title must be alphanumeric",
-        })
         .min(3, { message: "Title must be at least 3 characters" }),
     description: z.string().optional(),
     imageUrl: z.string().url().nullable().optional(),
